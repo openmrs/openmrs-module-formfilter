@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqldiff PUBLIC "-//OpenMRS//DTD OpenMRS SQL Diff Config 1.0//EN" "http://resources.openmrs.org/doctype/sqldiff-1.0.dtd">
+
+<sqldiff version="1.0">
+	<help>
+		USE:
+		The diffs are ordered by data model version number.
+		The script can be run in a top down fashion and is
+		expected to not fail or overwrite old data
+
+		EXPECT:
+		- "use business-database-name;" was called prior to
+		calling this script
+	</help>
+
+
+	<diff>
+		<version>1.0.0</version>
+		<author>goutham</author>
+		<date>June 3 2012</date>
+		<description>
+			Creates tables for filtering forms under form entry tab of patient
+			dashboard.
+		</description>
+		<sql>
+
+			CREATE TABLE IF NOT EXISTS `formfilter_filter` (
+			`formfilter_filter_id` int(11) NOT NULL AUTO_INCREMENT,
+			`form_id` int(11) NOT NULL,
+			`creator` int(11) NOT NULL,
+			`date_created` datetime NOT NULL,
+			`changed_by` int(11) DEFAULT NULL,
+			`date_changed` datetime DEFAULT NULL,
+			`uuid` varchar(38) NOT NULL,
+			PRIMARY KEY (`formfilter_filter_id`) USING BTREE,
+			KEY `fk_form_id` (`form_id`),
+			KEY `fk_user_who_changed_filter` (`changed_by`),
+			KEY `fk_user_who_created_filter` (`creator`),
+			CONSTRAINT `fk_user_who_changed_filter` FOREIGN KEY (`changed_by`) REFERENCES
+			`users` (`user_id`),
+			CONSTRAINT `fk_user_who_created_filter` FOREIGN KEY (`creator`) REFERENCES
+			`users` (`user_id`),
+			CONSTRAINT `fk_form_id` FOREIGN KEY (`form_id`) REFERENCES `form` (`form_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+			CREATE TABLE IF NOT EXISTS `formfilter_filter_property` (
+			`formfilter_filter_property_id` int(10) NOT NULL AUTO_INCREMENT,
+			`class_name` varchar(50) NOT NULL,
+			`properties` varchar(500) NOT NULL,
+			`retired` tinyint(4) DEFAULT NULL,
+			`retired_by` int(11) DEFAULT NULL,
+			`date_retired` datetime DEFAULT NULL,
+			`retire_reason` varchar(255) DEFAULT NULL,
+			`formfilter_filter_id` int(11) NOT NULL,
+			PRIMARY KEY (`formfilter_filter_property_id`) USING BTREE,
+			KEY `fk_formfilter_filter_id` (`formfilter_filter_id`),
+			KEY `fk_who_retired_filter` (`retired_by`),
+			CONSTRAINT `fk_who_retired_filter` FOREIGN KEY (`retired_by`) REFERENCES
+			`users` (`user_id`),
+			CONSTRAINT `fk_formfilter_filter_id` FOREIGN KEY (`formfilter_filter_id`)
+			REFERENCES `formfilter_filter` (`formfilter_filter_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+		   		
+		</sql>
+	</diff>
+
+
+</sqldiff>
