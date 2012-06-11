@@ -14,10 +14,11 @@
 package org.openmrs.module.formfilter.api;
 
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.formfilter.FormFilter;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
+ * This service has methods related to form filter.
  * <p>
  * It can be accessed only via Context:<br>
  * <code>
@@ -30,7 +31,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface FormFilterService extends OpenmrsService {
      
 	/*
-	 * Add service methods here
+	 * 
 	 * 
 	 */
+	public FormFilter saveFormFilter(FormFilter formFilter);
+	
+	
+	
 }

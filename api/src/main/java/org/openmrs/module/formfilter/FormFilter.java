@@ -15,11 +15,12 @@ package org.openmrs.module.formfilter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.Form;
 import org.openmrs.User;
+
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -40,8 +41,9 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
     
     private Date dateChanged;
     
+    private Set<FormFilterProperty> formFilterProperties;
     
-	
+    
 
 	/**
      * @return the formFilterId
@@ -136,6 +138,21 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
      */
     public void setDateChanged(Date dateChanged) {
     	this.dateChanged = dateChanged;
+    }
+
+
+
+
+
+	
+    public Set<FormFilterProperty> getFormFilterProperties() {
+    	return formFilterProperties;
+    }
+
+
+	
+    public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
+    	this.formFilterProperties = formFilterProperties;
     }
 
 

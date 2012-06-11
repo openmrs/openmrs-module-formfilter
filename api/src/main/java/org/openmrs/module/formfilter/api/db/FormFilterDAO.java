@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.formfilter.api.db;
 
+import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.api.FormFilterService;
 
 /**
@@ -21,6 +22,8 @@ import org.openmrs.module.formfilter.api.FormFilterService;
 public interface FormFilterDAO {
 	
 	/*
-	 * Add DAO methods here
+	 * 
 	 */
+	public FormFilter SaveFormFilter(FormFilter formFilter);
+	
 }

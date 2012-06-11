@@ -16,6 +16,7 @@ package org.openmrs.module.formfilter.api.impl;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.api.FormFilterService;
 import org.openmrs.module.formfilter.api.db.FormFilterDAO;
 
@@ -40,5 +41,12 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
      */
     public FormFilterDAO getDao() {
 	    return dao;
+    }
+
+	@Override
+    public FormFilter saveFormFilter(FormFilter formFilter) {
+	    // TODO Auto-generated method stub
+		
+	    return dao.SaveFormFilter(formFilter);
     }
 }

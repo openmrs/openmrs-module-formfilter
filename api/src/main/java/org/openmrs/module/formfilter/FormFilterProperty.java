@@ -37,6 +37,10 @@ public class FormFilterProperty {
 	private Date dateRetired;
 	
 	private String retireReason;
+	
+	private String filterName;
+	
+	private String filterDescription;
 
 	
     /**
@@ -149,9 +153,33 @@ public class FormFilterProperty {
     public void setDateRetired(Date dateRetired) {
     	this.dateRetired = dateRetired;
     }
+    
+    
+    
+    public String getFilterName() {
+    	return filterName;
+    }
+
 
 	
-    /**
+    public void setFilterName(String filterName) {
+    	this.filterName = filterName;
+    }
+
+
+	
+    public String getFilterDescription() {
+    	return filterDescription;
+    }
+
+
+	
+    public void setFilterDescription(String filterDescription) {
+    	this.filterDescription = filterDescription;
+    }
+
+
+	/**
      * @return the retireReason
      */
     public String getRetireReason() {

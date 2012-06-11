@@ -28,10 +28,8 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-				
-		<mapping resource="FormFilter.hbm.xml" />
-		<mapping resource="FormFilterProperty.hbm.xml" />
-				
+		FormFilter.hbm.xml
+		FormFilterProperty.hbm.xml				
 	</mappingFiles>
 
 	<!-- Internationalization -->

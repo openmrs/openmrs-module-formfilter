@@ -2,16 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping  package="org.openmrs.module.formfilter" >
-    <class name="FormFilterProperty" table="formfilter_filter_property" >
+<hibernate-mapping   >
+    <class name="org.openmrs.module.formfilter.FormFilterProperty" table="formfilter_filter_property" >
      
       <id column="formfilter_filter_property_id" name="formFilterPropertyId" type="int" >
          <generator class="native" ></generator>      
       </id>
               
-     <many-to-one name="formFilter" class="FormFilter" >
-         <column name="formfilter_filter_id" ></column>
-     </many-to-one>
+    
           
      <property name="className" column="class_name" type="java.lang.String" length="50" />
      
@@ -19,13 +17,22 @@
      
      <property name="retired" type="boolean" column="retired" />
      
-     <many-to-one name="retiredBy" class="org.openmrs.User" >
+     <many-to-one name="retiredBy" class="org.openmrs.User"  >
          <column name="retired_by" ></column>
      </many-to-one>
      
      <property name="dateRetired" column="date_retired" type="java.util.Date"  ></property>
      
-     <property name="retireReason" type="java.lang.String" length="255"  />
+     <property name="retireReason" column="retire_reason" type="java.lang.String" length="255"  />
+     
+      <many-to-one name="formFilter" class="org.openmrs.module.formfilter.FormFilter" >
+         <column name="formfilter_filter_id" ></column>
+     </many-to-one>
+     
+     <property name="filterName" column="filter_name" type="java.lang.String" length="50" />
+     
+     <property name="filterDescription" column="filter_description" type="java.lang.String" length="500" />
+     
      
      </class>
 </hibernate-mapping>

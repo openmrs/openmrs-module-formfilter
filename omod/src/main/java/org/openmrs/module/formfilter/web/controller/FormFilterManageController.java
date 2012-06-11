@@ -13,11 +13,11 @@
  */
 package org.openmrs.module.formfilter.web.controller;
 
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Form;
+
+
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Controller;
@@ -29,22 +29,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * The main controller.
  */
 @Controller
-public class  FormFilterManageController {
+public class FormFilterManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	@RequestMapping(value = "/module/formfilter/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
-		System.out.println("==============Came Here==================");
-		FormService formService=Context.getFormService();
-		List<Form> list=formService.getAllForms();
-		for (Form form : list) {
-			System.out.println(form.getName());
-	        
-        }
 		
+		FormService formService = Context.getFormService();
 		model.addAttribute("formList", formService.getAllForms());
-		model.addAttribute("user", Context.getAuthenticatedUser());
+		
+
 	}
 	
 }

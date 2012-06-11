@@ -42,7 +42,7 @@
 		});
 
 		<%-- move the showRetired checkbox inside the flow of the datatable after the filter --%>
-		$j('#handleForShowRetired').appendTo($j('#formFilterTable_filter'));
+		$j('#handleForShowRetired').appendTo($j('#formFilterTable_Filter'));
 
 		
 	});	
