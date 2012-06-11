@@ -17,7 +17,7 @@
 	</help>
 
 
-	<diff>
+	<!-- <diff>
 		<version>1.0.0</version>
 		<author>goutham</author>
 		<date>June 3 2012</date>
@@ -70,6 +70,6 @@
 		   		
 		</sql>
 	</diff>
-
+ -->
 
 </sqldiff>
