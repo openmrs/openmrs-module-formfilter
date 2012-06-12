@@ -1,7 +1,12 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
+<%@ include file="/WEB-INF/template/header.jsp"%>
+
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/css/dataTables.css" />
 <openmrs:htmlInclude file="/scripts/jquery/jquery-1.3.2.min.js" />
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/js/jquery.dataTables.min.js" />
+
+<%@ include file="template/localHeader.jsp"%>
+
 <script type="text/javascript">
 
 	$j = jQuery.noConflict();
@@ -42,21 +47,18 @@
 		});
 
 		<%-- move the showRetired checkbox inside the flow of the datatable after the filter --%>
-		$j('#handleForShowRetired').appendTo($j('#formFilterTable_Filter'));
+		$j('#handleForShowRetired').appendTo($j('#formFilterTable_filter'));
 
 		
 	});	
 	
 </script>
-
-<%@ include file="/WEB-INF/template/header.jsp"%>
-<%@ include file="template/localHeader.jsp"%>
 	
-
-<div>
 	<div class="boxHeader">
 		<b>Forms</b>
 	</div>
+	
+	<div class="box" >
 	<span id="handleForShowRetired">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="checkbox" id="showRetired"/> <spring:message code="SearchResults.includeRetired"/>
