@@ -5,7 +5,7 @@
 <hibernate-mapping   >
     <class name="org.openmrs.module.formfilter.FormFilterProperty" table="formfilter_filter_property" >
      
-      <id column="formfilter_filter_property_id" name="formFilterPropertyId" type="int" >
+      <id column="filter_property_id" name="formFilterPropertyId" type="int" >
          <generator class="native" ></generator>      
       </id>
               
@@ -14,25 +14,13 @@
      <property name="className" column="class_name" type="java.lang.String" length="50" />
      
      <property name="properties" column="properties" type="java.lang.String" length="500" />
-     
-     <property name="retired" type="boolean" column="retired" />
-     
-     <many-to-one name="retiredBy" class="org.openmrs.User"  >
-         <column name="retired_by" ></column>
-     </many-to-one>
-     
-     <property name="dateRetired" column="date_retired" type="java.util.Date"  ></property>
-     
-     <property name="retireReason" column="retire_reason" type="java.lang.String" length="255"  />
-     
-      <many-to-one name="formFilter" class="org.openmrs.module.formfilter.FormFilter" >
-         <column name="formfilter_filter_id" ></column>
-     </many-to-one>
+         
      
      <property name="filterName" column="filter_name" type="java.lang.String" length="50" />
      
      <property name="filterDescription" column="filter_description" type="java.lang.String" length="500" />
      
+     <property name="uuid" type="java.lang.String" length="38" unique="true" />
      
      </class>
 </hibernate-mapping>

@@ -78,7 +78,8 @@
 			<c:forEach var="form" items="${formList}" varStatus="rowCounter">
 				<tr<c:if test="${form.retired}"> class="retired" </c:if>>
 						<td>
-							<a href="#" >${form.name}</a>
+							<a href="editformfilter.form?formId=${form.formId}" >${form.name}</a>
+
 						</td>
 						<td>
 							${rowCounter.count}

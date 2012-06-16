@@ -4,4 +4,7 @@
 
 Editing Form Filtering Details Page.
 
+
+${form.formId} + ${form.name}
+
 <%@ include file="/WEB-INF/template/footer.jsp"%>

@@ -7,18 +7,18 @@
 	<!-- See http://www.liquibase.org/manual/home#available_database_refactorings 
 		for a list of supported elements and attributes -->
 
-	<changeSet author="goutham" id="formfilter_formfilter_filter">
+	<changeSet author="goutham" id="formfilter_form_filter-2012-06-15-13:23">
 		<preConditions onFail="MARK_RAN">
 			<not>
-				<tableExists tableName="formfilter_filter" />
+				<tableExists tableName="formfilter_form_filter" />
 			</not>
 		</preConditions>
 		<comment>
-			Creating the formfilter_filter table.
+			Creating the formfilter_form_filter table.
 		</comment>
-		<createTable tableName="formfilter_filter">
+		<createTable tableName="formfilter_form_filter">
 
-			<column name="formfilter_filter_id" type="int(11)" autoIncrement="true">
+			<column name="form_filter_id" type="int(11)" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -27,16 +27,6 @@
 				<constraints nullable="false" unique="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
-				<constraints nullable="false" />
-			</column>
-
-			<column name="date_created" type="datetime" ></column>
-
-			<column name="changed_by" type="int(11)"></column>
-
-			<column name="date_changed" type="datetime"></column>
-
 			<column name="uuid" type="varchar(38)">
 				<constraints unique="true" nullable="false" />
 			</column>
@@ -44,20 +34,12 @@
 		</createTable>
 
 		<addForeignKeyConstraint constraintName="fk_form_id"
-			referencedTableName="form" baseColumnNames="form_id" baseTableName="formfilter_filter"
-			referencedColumnNames="form_id" />
-
-		<addForeignKeyConstraint constraintName="fk_user_who_changed_filter"
-			referencedTableName="users" baseColumnNames="changed_by"
-			baseTableName="formfilter_filter" referencedColumnNames="user_id" />
-
-		<addForeignKeyConstraint constraintName="fk_user_who_created_filter"
-			referencedTableName="users" baseColumnNames="creator" baseTableName="formfilter_filter"
-			referencedColumnNames="user_id" />
+			referencedTableName="form" baseColumnNames="form_id" baseTableName="formfilter_form_filter"
+			referencedColumnNames="form_id" />	
 
 	</changeSet>
 
-	<changeSet author="goutham" id="formfilter_formfilter_filter_property">
+	<changeSet author="goutham" id="formfilter_filter_property-2012-6-15-15:22">
 		<preConditions onFail="MARK_RAN">
 			<not>
 				<tableExists tableName="formfilter_filter_property" />
@@ -68,7 +50,7 @@
 		</comment>
 		<createTable tableName="formfilter_filter_property">
 
-			<column name="formfilter_filter_property_id" type="int(11)">
+			<column name="filter_property_id" type="int(11)">
 				<constraints primaryKey="true" />
 			</column>
 
@@ -78,34 +60,26 @@
 			<column name="properties" type="varchar(500)"  >			 
 			</column>
 
-			<column name="retired" type="tinyint(4)" />
-
-			<column name="retired_by" type="int(11)" />
-
-			<column name="date_retired" type="datetime" />
-
-			<column name="retire_reason" type="varchar(255)" />
-
-			<column name="formfilter_filter_id" type="int(11)" >
-
-			</column>
-
 			<column name="filter_name" type="varchar(50)" />
 
 			<column name="filter_description" type="varchar(500)" />
 
+			<column name="form_filter_id" type="int(11)" >
+
+			</column>
+
+			<column name="uuid" type="varchar(38)">
+				<constraints unique="true" nullable="false" />
+			</column>
+
 		</createTable>
 
-		<addForeignKeyConstraint constraintName="fk_formfilter_filter_id"
-			referencedTableName="formfilter_filter" baseColumnNames="formfilter_filter_id"
-			baseTableName="formfilter_filter_property" referencedColumnNames="formfilter_filter_id" />
-
-		<addForeignKeyConstraint constraintName="fk_who_retired_filter"
-			referencedTableName="users" baseColumnNames="retired_by"
-			baseTableName="formfilter_filter_property" referencedColumnNames="user_id" />
+		<addForeignKeyConstraint constraintName="fk_form_filter_id"
+			referencedTableName="formfilter_form_filter" baseColumnNames="form_filter_id"
+			baseTableName="formfilter_filter_property" referencedColumnNames="form_filter_id" />
+		
 
 	</changeSet>
-
 
 
 </databaseChangeLog>

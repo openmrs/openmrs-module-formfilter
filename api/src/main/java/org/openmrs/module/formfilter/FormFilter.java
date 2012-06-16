@@ -14,12 +14,10 @@
 package org.openmrs.module.formfilter;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
-
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
-import org.openmrs.User;
+
 
 
 /**
@@ -31,124 +29,34 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	
 	private int formFilterId;
 	
-	private Form form;
-	
-	private User creator;
-	
-    private Date dateCreated;
-    
-    private User changedBy;
-    
-    private Date dateChanged;
+	private Form form;	
     
     private Set<FormFilterProperty> formFilterProperties;
-    
-    
 
-	/**
-     * @return the formFilterId
-     */
+	
     public int getFormFilterId() {
     	return formFilterId;
     }
 
 	
-    /**
-     * @param formFilterId the formFilterId to set
-     */
     public void setFormFilterId(int formFilterId) {
     	this.formFilterId = formFilterId;
     }
 
 	
-    /**
-     * @return the form
-     */
     public Form getForm() {
     	return form;
     }
 
 	
-    /**
-     * @param form the form to set
-     */
     public void setForm(Form form) {
     	this.form = form;
     }
 
 	
-    /**
-     * @return the creator
-     */
-    public User getCreator() {
-    	return creator;
-    }
-
-	
-    /**
-     * @param creator the creator to set
-     */
-    public void setCreator(User creator) {
-    	this.creator = creator;
-    }
-
-	
-    /**
-     * @return the dateCreated
-     */
-    public Date getDateCreated() {
-    	return dateCreated;
-    }
-
-	
-    /**
-     * @param dateCreated the dateCreated to set
-     */
-    public void setDateCreated(Date dateCreated) {
-    	this.dateCreated = dateCreated;
-    }
-
-	
-    /**
-     * @return the changedBy
-     */
-    public User getChangedBy() {
-    	return changedBy;
-    }
-
-	
-    /**
-     * @param changedBy the changedBy to set
-     */
-    public void setChangedBy(User changedBy) {
-    	this.changedBy = changedBy;
-    }
-
-	
-    /**
-     * @return the dateChanged
-     */
-    public Date getDateChanged() {
-    	return dateChanged;
-    }
-
-	
-    /**
-     * @param dateChanged the dateChanged to set
-     */
-    public void setDateChanged(Date dateChanged) {
-    	this.dateChanged = dateChanged;
-    }
-
-
-
-
-
-	
     public Set<FormFilterProperty> getFormFilterProperties() {
     	return formFilterProperties;
     }
-
 
 	
     public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
@@ -169,6 +77,7 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	    
     }
     
+         
     
 	
 

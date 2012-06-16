@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.formfilter"  >
-    <class name="FormFilter" table="formfilter_filter" >
+    <class name="FormFilter" table="formfilter_form_filter" >
      
-      <id column="formfilter_filter_id" name="formFilterId" type="int" >
+      <id column="form_filter_id" name="formFilterId" type="int" >
          <generator class="native" ></generator>      
       </id>
      
@@ -13,24 +13,13 @@
       <column name="form_id" unique="true" not-null="true" ></column>
      </many-to-one>
      
-     <many-to-one name="creator" class="org.openmrs.User"  >
-         <column name="creator" not-null="true" ></column>
-     </many-to-one>
-     
      <set name="formFilterProperties" cascade="save-update,delete-orphan" table="formfilter_filter_property" >
       <key>
-        <column name="formfilter_filter_id"> </column>
+        <column name="form_filter_id"> </column>
       </key>
       <one-to-many class="org.openmrs.module.formfilter.FormFilterProperty" />
-     </set>
-          
-     <property name="dateCreated" column="date_created" type="java.util.Date" length="19"  ></property>
+     </set>    
      
-     <many-to-one name="changedBy" class="org.openmrs.User" >
-         <column name="changed_by" ></column>
-     </many-to-one>
-     
-     <property name="dateChanged" column="date_changed" type="java.util.Date" length="19" ></property>
      
      <property name="uuid" type="java.lang.String" length="38" unique="true" />
      
