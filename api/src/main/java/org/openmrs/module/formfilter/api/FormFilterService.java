@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.formfilter.api;
 
+import org.openmrs.Form;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.formfilter.FormFilter;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,9 @@ public interface FormFilterService extends OpenmrsService {
 	 * 
 	 * 
 	 */
-	public FormFilter saveFormFilter(FormFilter formFilter);
+	public void saveFormFilter(FormFilter formFilter);
+	
+	public FormFilter getFormFilter(Form form);
 	
 	
 	

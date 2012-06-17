@@ -6,6 +6,9 @@
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/js/jquery.dataTables.min.js" />
 
 <%@ include file="template/localHeader.jsp"%>
+<h2>
+<spring:message code="formfilter.selectForm" />
+</h2>
 
 <script type="text/javascript">
 

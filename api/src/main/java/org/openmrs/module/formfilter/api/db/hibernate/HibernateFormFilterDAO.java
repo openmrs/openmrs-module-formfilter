@@ -15,8 +15,9 @@ package org.openmrs.module.formfilter.api.db.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.DailyRollingFileAppender;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.api.db.FormFilterDAO;
@@ -43,8 +44,18 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	    return sessionFactory;
     }
     
-    public FormFilter SaveFormFilter(FormFilter formFilter) throws DAOException{
+    public void saveFormFilter(FormFilter formFilter) throws DAOException{
     	sessionFactory.getCurrentSession().saveOrUpdate(formFilter);
-    	return formFilter;
+    	
+    }
+
+	
+
+	@Override
+    public FormFilter getFormFilter(int formId) {
+	    // TODO Auto-generated method stub
+		Criteria criteria=	sessionFactory.getCurrentSession().createCriteria(FormFilter.class);
+		criteria.add(Restrictions.eq("form.formId", formId));	
+	    return (FormFilter) criteria.list().get(0);
     }
 }

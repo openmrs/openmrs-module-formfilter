@@ -24,6 +24,9 @@ public interface FormFilterDAO {
 	/*
 	 * 
 	 */
-	public FormFilter SaveFormFilter(FormFilter formFilter);
+		
+	public void saveFormFilter(FormFilter formFilter);
 	
+	public FormFilter getFormFilter(int formId);	
+
 }

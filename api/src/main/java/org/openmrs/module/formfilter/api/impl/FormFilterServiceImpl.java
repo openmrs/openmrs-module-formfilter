@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.formfilter.api.impl;
 
+import org.openmrs.Form;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,9 +45,26 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
     }
 
 	@Override
-    public FormFilter saveFormFilter(FormFilter formFilter) {
+    public void saveFormFilter(FormFilter formFilter) {
 	    // TODO Auto-generated method stub
 		
-	    return dao.SaveFormFilter(formFilter);
+		dao.saveFormFilter(formFilter);
+    }
+
+	@Override
+    public FormFilter getFormFilter(Form form) {
+	    // TODO Auto-generated method stub
+		System.out.println("About to retrive formfilter in serviceImp");
+		FormFilter formFilter= dao.getFormFilter(form.getFormId());
+		System.out.println("form filter details:"+formFilter.getFormFilterId());
+		if (formFilter.getForm()==null) {
+			return formFilter;  
+        }else
+        {
+        	formFilter=new FormFilter();
+        	formFilter.setForm(form);        	
+        }
+		
+	    return formFilter;
     }
 }
