@@ -39,6 +39,7 @@ public interface FormFilterService extends OpenmrsService {
 	
 	public FormFilter getFormFilter(Form form);
 	
+	public FormFilter getFormFilter(int formFilterId);
 	
 	
 }

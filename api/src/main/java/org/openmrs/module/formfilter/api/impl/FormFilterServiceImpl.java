@@ -14,6 +14,8 @@
 package org.openmrs.module.formfilter.api.impl;
 
 import org.openmrs.Form;
+import org.openmrs.api.FormService;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -54,17 +56,27 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	@Override
     public FormFilter getFormFilter(Form form) {
 	    // TODO Auto-generated method stub
-		System.out.println("About to retrive formfilter in serviceImp");
-		FormFilter formFilter= dao.getFormFilter(form.getFormId());
-		System.out.println("form filter details:"+formFilter.getFormFilterId());
-		if (formFilter.getForm()==null) {
-			return formFilter;  
-        }else
-        {
-        	formFilter=new FormFilter();
-        	formFilter.setForm(form);        	
-        }
 		
+		FormFilter formFilter;
+		try {
+			formFilter = dao.getFormFilter(form);
+		    
+		}
+		catch (IndexOutOfBoundsException e) {
+			// TODO: handle exception
+			
+			formFilter=new FormFilter();
+			formFilter.setForm(form);
+			dao.saveFormFilter(formFilter);
+			formFilter = dao.getFormFilter(form);
+		}	     
+				
 	    return formFilter;
+    }
+
+	@Override
+    public FormFilter getFormFilter(int formFilterId) {
+	    // TODO Auto-generated method stub
+	    return dao.getFormFilter(formFilterId);
     }
 }

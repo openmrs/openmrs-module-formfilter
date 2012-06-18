@@ -28,5 +28,5 @@
 	
 	<context:component-scan base-package="org.openmrs.module.formfilter.web.controller" />
  
-	<bean id="formFilterPropertyValidator" class="org.openmrs.module.formfilter.web.controller.validator.FormFilterPropertyValidator" />	
+		
 </beans>

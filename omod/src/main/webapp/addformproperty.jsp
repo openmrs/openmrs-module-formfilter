@@ -9,7 +9,8 @@
 <form method="post" >
 	<table>
 		<tr>
-			<td>${form.name}</td>
+			<td>${formFilter.form.name}
+			<input type="hidden" name="formFilterId" value="${formFilter.formFilterId}" /></td>
 		</tr>
 
 		<tr>
@@ -32,19 +33,16 @@
 			</td>
 		</tr>
 		
-		<!-- 
+ 
 		<tr id="AgeProperty" >
-		  <td></td>
-		  <td>Minimum Age:<input type="text" name="minimumAge" maxlength="2"" /><br>Maximum Age:<input type="text" name="maximumAge" maxlength="2" /></td>
-		</tr>
-		 -->
-		<tr id="AgeProperty" >
-		<td>Minimum Age</td><td><input type="text" name="minimumAge" maxlength="3" width="3" /></td>
+		  <td>Age Range</td>
+		  <td>
+		  <table>
+		  	<tr><td>Minimum Age:</td><td><input type="text" name="minimumAge" /></td></tr>
+		  	<tr><td>Maximum Age:</td><td><input type="text" name="maximumAge" /></td></tr>
+		  </table>	  
 		</tr>
 		
-		<tr id="AgeProperty" >
-		<td>Maximum Age<td><td><input type="text" name="maximumAge" maxlength="3" width="3" /></td>
-		</tr>
 
 		<tr id="GenderProperty" >
 			<td>Gender</td>

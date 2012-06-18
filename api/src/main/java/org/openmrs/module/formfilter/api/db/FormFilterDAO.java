@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.formfilter.api.db;
 
+import org.openmrs.Form;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.api.FormFilterService;
 
@@ -27,6 +28,11 @@ public interface FormFilterDAO {
 		
 	public void saveFormFilter(FormFilter formFilter);
 	
-	public FormFilter getFormFilter(int formId);	
-
+	public FormFilter getFormFilter(Form form);
+	
+	public FormFilter getFormFilter(int formFilterId);
+	
+	
+	
+	
 }

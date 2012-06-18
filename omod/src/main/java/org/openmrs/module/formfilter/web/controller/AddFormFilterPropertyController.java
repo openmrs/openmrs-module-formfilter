@@ -4,11 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.xerces.impl.xpath.regex.REUtil;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openmrs.module.formfilter.api.FormFilterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -27,23 +26,29 @@ public class AddFormFilterPropertyController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public void editFormFilter(ModelMap model,@RequestParam("formId") Integer formId) {
+	public void AddFormFilter(ModelMap model,@RequestParam("formFilterId") Integer formFilterId) {
+		System.out.println("IN GET");
+		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
+		model.addAttribute("formfilter",formFilterService.getFormFilter(formFilterId));
 		
-		FormService formService = Context.getFormService();
-		model.addAttribute("form",formService.getForm(formId));
 			
 	}
 	
 	@RequestMapping(method = RequestMethod.POST )
 	public String onSubmit(@ModelAttribute("formfilterproperty")FormFilterProperty formFilterProperty,BindingResult result, SessionStatus status,HttpServletRequest request){
+		System.out.println(request.getParameter("\n\n\n"+request.getParameter("formFilterId")));
 		FormService formService = Context.getFormService();
 		
 		if (request.getParameter("propertyType")== "AgeProperty") {
 			formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.AgeFormFilter");
 			formFilterProperty.setProperties("minimumAge="+request.getParameter("minimumAge")+"&maximumAge="+request.getParameter("maximumAge"));	        
-        }	
+        }else if(request.getParameter("propertyType")== "GenderProperty"){
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.AgeFormFilter");
+        	formFilterProperty.setProperties("gender="+request.getParameter("gender"));
+        }
 		
-		return "redirect:manage";
+		
+		return "manage.list";
 	}
 	
 

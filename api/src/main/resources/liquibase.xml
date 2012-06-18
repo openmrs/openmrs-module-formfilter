@@ -7,7 +7,7 @@
 	<!-- See http://www.liquibase.org/manual/home#available_database_refactorings 
 		for a list of supported elements and attributes -->
 
-	<changeSet author="goutham" id="formfilter_form_filter-2012-06-15-13:00">
+	<changeSet author="goutham" id="formfilter_form_filter-2012-06-15-12:02">
 		<preConditions onFail="MARK_RAN">
 			<not>
 				<tableExists tableName="formfilter_form_filter" />
@@ -28,7 +28,7 @@
 			</column>
 
 			<column name="uuid" type="varchar(38)">
-				<constraints unique="true" nullable="false" />
+				
 			</column>
 
 		</createTable>
@@ -39,7 +39,7 @@
 
 	</changeSet>
 
-	<changeSet author="goutham" id="formfilter_filter_property-2012-6-15-15:00">
+	<changeSet author="goutham" id="formfilter_filter_property-2012-6-15-14:02">
 		<preConditions onFail="MARK_RAN">
 			<not>
 				<tableExists tableName="formfilter_filter_property" />
@@ -69,7 +69,7 @@
 			</column>
 
 			<column name="uuid" type="varchar(38)">
-				<constraints unique="true" nullable="false" />
+				
 			</column>
 
 		</createTable>

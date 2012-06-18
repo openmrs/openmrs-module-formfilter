@@ -6,6 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.Form;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.formfilter.api.FormFilterService;
 
 
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,9 @@ public class EditFormFilterController  {
 	public void editFormFilter(ModelMap model,@RequestParam("formId") Integer formId) {
 		
 		FormService formService = Context.getFormService();
-		//FormFilterService formFilterService=null;
-		//FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
-		//Form form=formService.getForm(formId);
-		model.addAttribute("form",formService.getForm(formId));
+		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
+		System.out.println("came till here happily");
+		model.addAttribute("formfilter",formFilterService.getFormFilter(formService.getForm(formId)));
 		
 		
 	}
