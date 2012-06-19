@@ -6,7 +6,7 @@
 <spring:message code="formfilter.addFormProperty" />
 </h2>
 
-<form method="post" >
+<form method="POST" >
 	<table>
 		<tr>
 			<td>${formFilter.form.name}
