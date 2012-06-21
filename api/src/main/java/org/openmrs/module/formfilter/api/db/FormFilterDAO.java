@@ -15,6 +15,7 @@ package org.openmrs.module.formfilter.api.db;
 
 import org.openmrs.Form;
 import org.openmrs.module.formfilter.FormFilter;
+import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
 
 /**
@@ -32,7 +33,9 @@ public interface FormFilterDAO {
 	
 	public FormFilter getFormFilter(int formFilterId);
 	
+	public void purgeFormFilter(int formFilterPropertyId);
 	
+	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	
 }

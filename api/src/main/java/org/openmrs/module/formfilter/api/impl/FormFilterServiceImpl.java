@@ -94,4 +94,10 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
     	
 	    
     }
+
+	@Override
+	public void purgeFormFilterProperty(int formFilterPropertyId) {
+	    // TODO Auto-generated method stub		
+	    dao.purgeFormFilter(formFilterPropertyId);
+    }
 }

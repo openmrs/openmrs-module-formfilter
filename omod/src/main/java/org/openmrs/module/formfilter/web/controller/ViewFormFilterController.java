@@ -35,6 +35,20 @@ public class ViewFormFilterController  {
 	
 	
 	
+	@RequestMapping(value = "/module/formfilter/deleteFilter", method = RequestMethod.GET)
+	public String deleteFormFilterProperty(ModelMap model,
+	                           @RequestParam(value="formFilterPropertyId") int formFilterPropertyId,
+	                           @RequestParam(value="formFilterId") int formFilterId
+	                           ) {
+		System.out.println("came here");
+		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
+		formFilterService.purgeFormFilterProperty(formFilterPropertyId);		
+		return "redirect:viewformfilter.form?formFilterId="+formFilterId;
+				
+	}
+	
+	
+	
 
 	
 }

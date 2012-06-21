@@ -21,6 +21,7 @@ import org.hibernate.criterion.Restrictions;
 import org.openmrs.Form;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.formfilter.FormFilter;
+import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.db.FormFilterDAO;
 
 /**
@@ -65,6 +66,20 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
     public FormFilter getFormFilter(int formFilterId) {
 	    // TODO Auto-generated method stub
 	    return (FormFilter) sessionFactory.getCurrentSession().get(FormFilter.class, formFilterId);
+    }
+
+	@Override
+    public void purgeFormFilter(int formFilterPropertyId) {
+	    // TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("delete from FormFilterProperty formFilterProperty where formFilterPropertyId ="+formFilterPropertyId).executeUpdate();
+		
+	    
+    }
+
+	@Override
+    public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
+	    // TODO Auto-generated method stub
+	    return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
     }
 
 	

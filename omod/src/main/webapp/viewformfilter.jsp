@@ -5,42 +5,43 @@
 <h2>
 <spring:message code="formfilter.details" />
 </h2>
-
 <table>
 	<tr>
 	  <td>
 	  	${formfilter.form.name}
-		<a style="float:right"  href="addformproperty.form?filterId=${formfilter.formFilterId}"><spring:message code="formfilter.addFormProperty" /></a>
+		<a style="float:right"  href="addformproperty.form?filterId=${formfilter.formFilterId}"><spring:message code="formfilter.addFilter" /></a>
 	  </td>
 	</tr>
 
 	<tr class="boxHeader">
-	  <td>List Of Assigned Filters</td>
+	  <td> <spring:message code="formFilter.listOfAssignedFilters" /> </td>
 	</tr>
 
-	<tr class="box">
-	   <td>
-		<table>
+	<tr >
+	   <td class="box">	   
+		<table id="assignedFilters">
 				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Properties</th>
+					<th><spring:message code="formFilter.name" /></th>
+					<th><spring:message code="formFilter.description" /></th>
+					<th><spring:message code="formFilter.properties" /></th>
+					<th></th>
 				</tr>
-				<c:forEach var="property" items="${formfilter.formFilterProperties}">
+				<c:forEach var="filter" items="${formfilter.formFilterProperties}">
 				<tr>
-					<td>${property.filterName}</td>
-					<td>${property.filterDescription}</td>
+					<td>${filter.filterName}</td>
+					<td>${filter.filterDescription}</td>
 					<td>
-					<c:forTokens items="${property.properties}" delims="&" var="prop" varStatus="status">
+					<c:forTokens items="${filter.properties}" delims="&" var="prop" varStatus="status">
 					 ${prop}<br/>
 					</c:forTokens>
 					</td>
 					<td>
-					   <a href="#">Edit</a>|<a href="#">Delete</a>
+					   <a href="#"><spring:message code="edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}"><spring:message code="delete" /></a>
 					</td>					
 				</tr>
 				</c:forEach>
 			</table>
+			
 		</td>
 	</tr>
 </table>

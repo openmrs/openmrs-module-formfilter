@@ -23,16 +23,27 @@ public class AddFormFilterPropertyController {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	
-	
+	/** 
+	 *  
+	 * @param model
+	 * @param formFilterId
+	 */	
 	@RequestMapping(value = "/module/formfilter/addformproperty",method = RequestMethod.GET)
 	public void AddFormFilter(ModelMap model,@RequestParam("filterId") Integer formFilterId) {
 		
 		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
-		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));
-		
-			
+		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));			
 	}
 	
+	
+	/**
+	 * 
+	 * @param formFilterProperty
+	 * @param result
+	 * @param status
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty",method = RequestMethod.POST )
 	public String onSubmit(@ModelAttribute("formfilterproperty")FormFilterProperty formFilterProperty,BindingResult result, SessionStatus status,HttpServletRequest request){
 		
