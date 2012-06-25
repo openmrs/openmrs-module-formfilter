@@ -1,10 +1,12 @@
 package org.openmrs.module.formfilter.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
@@ -23,16 +25,38 @@ public class AddFormFilterPropertyController {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	
+		
 	/** 
 	 *  
 	 * @param model
 	 * @param formFilterId
 	 */	
 	@RequestMapping(value = "/module/formfilter/addformproperty",method = RequestMethod.GET)
-	public void AddFormFilter(ModelMap model,@RequestParam("filterId") Integer formFilterId) {
+	public void AddFormFilter(ModelMap model,@RequestParam("filterId") Integer formFilterId,
+	                          @RequestParam(value="filterPropertyId" ,required=false,defaultValue="0") int formFilterPropertyId) {
 		
 		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
-		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));			
+		
+		FormFilterProperty formFilterProperty;
+		Map map=new HashMap();
+		
+		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));
+		
+		if(formFilterPropertyId != 0){
+			formFilterProperty=formFilterService.getFormFilterProperty(formFilterPropertyId);
+		    for (String string : formFilterProperty.getProperties().split("&")) {
+		    	String str[]=string.split("=");
+		    	map.put(str[0], str[1]);	        
+	        }
+		}else{
+			formFilterProperty=new FormFilterProperty();
+		}	
+		
+		model.addAttribute("properties", map);		
+		model.addAttribute("formFilterProperty",formFilterProperty);
+		
+		
+				
 	}
 	
 	
@@ -59,10 +83,16 @@ public class AddFormFilterPropertyController {
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.AgeFormFilter");
         	formFilterProperty.setProperties("gender="+request.getParameter("gender"));
         }
-		
-		formFilterService.addFormFilterProperty(formFilterId, formFilterProperty);
+		if (formFilterProperty.getFormFilterPropertyId() == 0) {	
+			formFilterService.addFormFilterProperty(formFilterId, formFilterProperty);
+		} else {
+			formFilterService.updateFormFilterProperty(formFilterProperty);
+		}
 		
 		return "redirect:viewformfilter.form?formFilterId="+formFilterId;
+		
+		
+		
 	}
 	
 

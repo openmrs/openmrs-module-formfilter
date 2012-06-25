@@ -44,8 +44,11 @@ public interface FormFilterService extends OpenmrsService {
 	
 	public void addFormFilterProperty(int formFilterId,FormFilterProperty formFilterProperty);
 	
-	
 	public void purgeFormFilterProperty(int formFilterPropertyId);
+	
+	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
+	
+	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
 
 
 	

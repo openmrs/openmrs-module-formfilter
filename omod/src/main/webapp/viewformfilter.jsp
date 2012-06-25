@@ -14,16 +14,16 @@
 	</tr>
 
 	<tr class="boxHeader">
-	  <td> <spring:message code="formFilter.listOfAssignedFilters" /> </td>
+	  <td> <spring:message code="formfilter.listOfAssignedFilters" /> </td>
 	</tr>
 
 	<tr >
 	   <td class="box">	   
 		<table id="assignedFilters">
 				<tr>
-					<th><spring:message code="formFilter.name" /></th>
-					<th><spring:message code="formFilter.description" /></th>
-					<th><spring:message code="formFilter.properties" /></th>
+					<th><spring:message code="formfilter.name" /></th>
+					<th><spring:message code="formfilter.description" /></th>
+					<th><spring:message code="formfilter.properties" /></th>
 					<th></th>
 				</tr>
 				<c:forEach var="filter" items="${formfilter.formFilterProperties}">
@@ -36,7 +36,7 @@
 					</c:forTokens>
 					</td>
 					<td>
-					   <a href="#"><spring:message code="edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}"><spring:message code="delete" /></a>
+					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}"><spring:message code="formfilter.delete" /></a>
 					</td>					
 				</tr>
 				</c:forEach>

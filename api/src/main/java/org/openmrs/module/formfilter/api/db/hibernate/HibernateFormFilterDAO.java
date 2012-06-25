@@ -82,5 +82,12 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	    return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
     }
 
+	@Override
+    public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
+	    // TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(formFilterProperty);
+	    
+    }
+
 	
 }

@@ -37,5 +37,7 @@ public interface FormFilterDAO {
 	
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
+	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
+	
 	
 }

@@ -13,6 +13,8 @@
  */
 package org.openmrs.module.formfilter.api.impl;
 
+import java.util.UUID;
+
 import org.openmrs.Form;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
@@ -51,6 +53,7 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
     public void saveFormFilter(FormFilter formFilter) {
 	    // TODO Auto-generated method stub
 		
+		formFilter.setUuid(UUID.randomUUID().toString());
 		dao.saveFormFilter(formFilter);
     }
 
@@ -89,6 +92,7 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
     public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty) {
 	    // TODO Auto-generated method stub
     	FormFilter formFilter=dao.getFormFilter(formFilterId);
+    	formFilterProperty.setUuid(UUID.randomUUID().toString());
     	formFilter.getFormFilterProperties().add(formFilterProperty);
     	dao.saveFormFilter(formFilter);
     	
@@ -99,5 +103,18 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	public void purgeFormFilterProperty(int formFilterPropertyId) {
 	    // TODO Auto-generated method stub		
 	    dao.purgeFormFilter(formFilterPropertyId);
+    }
+
+	@Override
+    public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
+	    // TODO Auto-generated method stub
+	    return dao.getFormFilterProperty(formFilterPropertyId);
+	}
+
+	@Override
+    public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
+	    // TODO Auto-generated method stub
+		dao.updateFormFilterProperty(formFilterProperty);
+	    
     }
 }
