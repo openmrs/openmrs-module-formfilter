@@ -80,7 +80,7 @@ public class AddFormFilterPropertyController {
 			formFilterProperty.setProperties("minimumAge="+request.getParameter("minimumAge")+"&maximumAge="+request.getParameter("maximumAge"));	        
         }else if(propertyType.equalsIgnoreCase("GenderProperty")){
         	
-        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.AgeFormFilter");
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.GenderFormFilter");
         	formFilterProperty.setProperties("gender="+request.getParameter("gender"));
         }
 		if (formFilterProperty.getFormFilterPropertyId() == 0) {	

@@ -21,7 +21,16 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the web context -->
+	<bean id="formEntryUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="order"><value>1</value></property>
+    	<property name="mappings">
+            <props>
+            <prop key="**/personFormEntry.portlet">FormEntryFilterPortletController</prop>
+            </props>
+        </property>
+   	</bean>
 	
+	<bean id="FormEntryFilterPortletController" class="org.openmrs.module.formfilter.web.controller.PersonFormFilterEntryPortletController"></bean>
 	 
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>

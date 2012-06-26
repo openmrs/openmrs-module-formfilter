@@ -48,7 +48,7 @@ public class GenderFormFilter implements FormFilterHandler {
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    // TODO Auto-generated method stub
-		if(gender.equalsIgnoreCase("U") && p.getGender()== null)
+		if(getGender().equalsIgnoreCase("U") && p.getGender()== null)
 			return true;
 		
 		if (p.getGender().equalsIgnoreCase(gender))

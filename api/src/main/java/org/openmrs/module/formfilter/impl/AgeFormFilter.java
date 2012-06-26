@@ -24,6 +24,7 @@ public class AgeFormFilter implements FormFilterHandler {
 
             }
 		}
+		System.out.println(getMinimumAge()+"\t"+getMaximumAge());
 
 	}
 	
@@ -54,7 +55,8 @@ public class AgeFormFilter implements FormFilterHandler {
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    // TODO Auto-generated method stub
-	    if(p.getAge()>=minimumAge && p.getAge()<=maximumAge)
+    	System.out.println(p.getAge() +"\t"+minimumAge+"\t"+maximumAge);
+	    if((p.getAge()>=getMinimumAge()) && (p.getAge()<=getMaximumAge()))
 	    {
 	    	return true;
 	    }
