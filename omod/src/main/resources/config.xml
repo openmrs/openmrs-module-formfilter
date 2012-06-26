@@ -14,6 +14,12 @@
 	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
+	
+	<!-- AOP -->
+	<advice>
+		<point>org.openmrs.module.web.extension.FormEntryHandler</point>
+		<class>org.openmrs.module.formfilter.FilteringFormsAfterRetriving</class>
+	</advice>
 
 	
 	<!-- Module Activator -->
