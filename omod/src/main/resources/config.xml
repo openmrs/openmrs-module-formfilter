@@ -15,11 +15,6 @@
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
 	
-	<!-- AOP -->
-	<advice>
-		<point>org.openmrs.module.web.extension.FormEntryHandler</point>
-		<class>org.openmrs.module.formfilter.FilteringFormsAfterRetriving</class>
-	</advice>
 
 	
 	<!-- Module Activator -->

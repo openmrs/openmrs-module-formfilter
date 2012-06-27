@@ -1,6 +1,9 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
+<%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> --%>
+<%-- <%@ taglibprefix="c" uri="http://java.sun.com/jstl/core"%> --%>
+
 
 <h2>
 <spring:message code="formfilter.details" />
@@ -32,7 +35,8 @@
 					<td>${filter.filterDescription}</td>
 					<td>
 					<c:forTokens items="${filter.properties}" delims="&" var="prop" varStatus="status">
-					 ${prop}<br/>
+					 <c:set var="prop_detail" value="${fn:split(prop, '=')}" />
+					 <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>					 
 					</c:forTokens>
 					</td>
 					<td>

@@ -71,6 +71,7 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 			
 			formFilter=new FormFilter();
 			formFilter.setForm(form);
+			formFilter.setUuid(UUID.randomUUID().toString());
 			dao.saveFormFilter(formFilter);
 			formFilter = dao.getFormFilter(form);
 		}	     

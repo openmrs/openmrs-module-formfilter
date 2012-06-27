@@ -14,12 +14,19 @@
 package org.openmrs.module.formfilter.web.controller;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-
-import org.openmrs.api.FormService;
+import org.openmrs.Form;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.Extension;
+import org.openmrs.module.Extension.MEDIA_TYPE;
+import org.openmrs.module.ModuleFactory;
+import org.openmrs.module.web.FormEntryContext;
+import org.openmrs.module.web.extension.FormEntryHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,8 +43,24 @@ public class FormFilterManageController {
 	@RequestMapping(value = "/module/formfilter/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		
-		FormService formService = Context.getFormService();
-		model.addAttribute("formList", formService.getAllForms());
+		FormEntryContext fec = new FormEntryContext(Context.getAuthenticatedUser().getPerson());
+		List<Form> formList=new ArrayList<Form>();
+		
+		List<Extension> handlers = ModuleFactory.getExtensions("org.openmrs.module.web.extension.FormEntryHandler",
+		    MEDIA_TYPE.html);
+		if (handlers != null) {
+			for (Extension ext : handlers) {
+				FormEntryHandler handler = (FormEntryHandler) ext;
+				Collection<Form> toEnter = handler.getFormsModuleCanEnter(fec);
+				if (toEnter != null) {
+					for (Form form : toEnter) {
+						 formList.add(form);
+						
+					}
+				}
+			}
+		}
+		model.addAttribute("formList", formList);
 		
 
 	}

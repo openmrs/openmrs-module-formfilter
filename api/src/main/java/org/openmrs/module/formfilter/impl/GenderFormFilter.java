@@ -2,6 +2,8 @@ package org.openmrs.module.formfilter.impl;
 
 import java.lang.reflect.Field;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
@@ -9,6 +11,8 @@ import org.openmrs.module.formfilter.FormFilterHandler;
 
 public class GenderFormFilter implements FormFilterHandler {
 
+	protected Log log = LogFactory.getLog(getClass());
+	
 	public GenderFormFilter(){
 		
 	}
@@ -21,6 +25,7 @@ public class GenderFormFilter implements FormFilterHandler {
 	            Field field=this.getClass().getDeclaredField(str[0]);
 	            field.set(this, (Object)str[1]);
             }catch (Exception e) {        
+            	log.info(e); 
 
             }
 		}

@@ -13,28 +13,23 @@
  */
 package org.openmrs.module.formfilter.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.openmrs.web.controller.PersonFormEntryPortletController;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Form;
 import org.openmrs.Patient;
 import org.openmrs.Person;
-import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Extension;
-import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.Extension.MEDIA_TYPE;
+import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.FormFilterHandler;
 import org.openmrs.module.formfilter.FormFilterProperty;
@@ -42,6 +37,7 @@ import org.openmrs.module.formfilter.api.FormFilterService;
 import org.openmrs.module.web.FormEntryContext;
 import org.openmrs.module.web.extension.FormEntryHandler;
 import org.openmrs.util.OpenmrsUtil;
+import org.openmrs.web.controller.PersonFormEntryPortletController;
 
 /**
  *
@@ -79,7 +75,6 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 				Collection<Form> toEnter = handler.getFormsModuleCanEnter(fec);
 				if (toEnter != null) {
 					for (Form form : toEnter) {
-						System.out.println("--------"+form.getName()+"------------------");
 						if(filterForm(form, (Patient)model.get("patient"))){							
 							entryUrlMap.put(form, handler);
 						}
@@ -99,21 +94,19 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 		if(formFilter!=null)
 		{
 		for (FormFilterProperty formFilterProperty : formFilter.getFormFilterProperties()) {
-			System.out.println("\n Started Filtering "+formFilterProperty.getFilterName()+" \n\n");
-			try {
+		try {
 				FormFilterHandler filterHandler = (FormFilterHandler) Class.forName(formFilterProperty.getClassName()).getConstructor(String.class).newInstance(formFilterProperty.getProperties());
-				if (filterHandler.shouldDisplayForm(patient, Context.getAuthenticatedUser())==false)
-					System.out.println("\n Failed \n");
-					return false;
+					if (filterHandler.shouldDisplayForm(patient, Context.getAuthenticatedUser())==false){
+							return false;
+					}
 				}
 				catch (Exception e) {
 				// TODO Auto-generated catch block
 				log.info(e);
 				}     
-        }
-		}
+        	}
+		}		
 		
-		System.out.println("\n Passed \n");
 	    return true;
     }
 	

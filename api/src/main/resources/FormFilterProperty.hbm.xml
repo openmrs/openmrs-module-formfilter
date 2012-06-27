@@ -11,7 +11,7 @@
               
     
           
-     <property name="className" column="class_name" type="java.lang.String" length="50" />
+     <property name="className" column="class_name" type="java.lang.String" length="200" />
      
      <property name="properties" column="properties" type="java.lang.String" length="500" />
          

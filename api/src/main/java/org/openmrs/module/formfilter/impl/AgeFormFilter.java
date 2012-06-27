@@ -2,12 +2,16 @@ package org.openmrs.module.formfilter.impl;
 
 import java.lang.reflect.Field;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 
 public class AgeFormFilter implements FormFilterHandler {
+	
+	protected Log log = LogFactory.getLog(getClass());
 	
 	public AgeFormFilter()
 	{
@@ -19,12 +23,11 @@ public class AgeFormFilter implements FormFilterHandler {
 	        String str[]=string.split("=");
 	        try {
 	            Field field=this.getClass().getDeclaredField(str[0]);
-	            field.set(this, (Object)str[1]);
-            }catch (Exception e) {        
-
+	            field.set(this, (Object)Integer.parseInt(str[1]));
+            }catch (Exception e) {
+            	log.info(e);
             }
-		}
-		System.out.println(getMinimumAge()+"\t"+getMaximumAge());
+		}	
 
 	}
 	
@@ -55,12 +58,11 @@ public class AgeFormFilter implements FormFilterHandler {
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    // TODO Auto-generated method stub
-    	System.out.println(p.getAge() +"\t"+minimumAge+"\t"+maximumAge);
-	    if((p.getAge()>=getMinimumAge()) && (p.getAge()<=getMaximumAge()))
+    	
+	    if((p.getAge()>=minimumAge) && (p.getAge()<=maximumAge))
 	    {
 	    	return true;
-	    }
-		
+	    }		
 	    return false;
     }
 
