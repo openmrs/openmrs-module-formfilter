@@ -58,7 +58,7 @@
 </script>
 	
 	<div class="boxHeader">
-		<b>Forms</b>
+		<b><spring:message code="formfilter.forms" /></b>
 	</div>
 	
 	<div class="box" >

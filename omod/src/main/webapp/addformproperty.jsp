@@ -12,14 +12,7 @@
 			validate = false;
 		} else {
 			document.getElementById("filterName_error").innerHTML = "";
-		}
-
-		if (document.formfilter_form.filterDescription.value == "") {
-			document.getElementById("filterDescription_error").innerHTML = "<span class='error'>Cannot be empty</span>";
-			validate = false;
-		} else {
-			document.getElementById("filterDescription_error").innerHTML = "";
-		}
+		}		
 
 		if (document.formfilter_form.propertyType.value == "Select") {
 			document.getElementById("propertyType_error").innerHTML = "<span class='error'>Select a option</span>";
@@ -83,27 +76,27 @@
 		</tr>
 
 		<tr>
-			<td>Name</td>
+			<td><spring:message code="formfilter.name" /></td>
 			<td> 
 				<input type="text" name="filterName" value="${formFilterProperty.filterName}" />
 				<span id="filterName_error" ></span>			
 			</td>			
 		</tr>
 		<tr>
-			<td>Description</td>
+			<td><spring:message code="formfilter.description" /></td>
 			<td>
 				<textarea name="filterDescription" >${formFilterProperty.filterDescription}</textarea>
-				<span id="filterDescription_error" ></span>
+				
 			</td>
 		</tr>
 			
 		<tr>
-			<td>Select Property Type</td>
+			<td><spring:message code="formfilter.selectFilterType" /></td>
 			<td>
 				<select name="propertyType" id="propertyType" >
-					<option  >Select</option> 
-					<option value="AgeProperty">Age</option>
-					<option value="GenderProperty">Gender</option>
+					<option value="Select" ><spring:message code="formfilter.select" /></option> 
+					<option value="AgeProperty"><spring:message code="formfilter.age" /></option>
+					<option value="GenderProperty"><spring:message code="formfilter.gender" /></option>
 				</select>
 				<span id="propertyType_error" ></span>
 			</td>
@@ -111,11 +104,11 @@
 		
  
 		<tr id="AgeProperty" >
-		  <td>Age Range</td>
+		  <td><spring:message code="formfilter.ageRange" /></td>
 		  <td>
 		  <table>
-		  	<tr><td>Minimum Age:</td><td><input type="text" name="minimumAge" value="${properties.minimumAge}" /></td></tr>
-		  	<tr><td>Maximum Age:</td><td><input type="text" name="maximumAge" value="${properties.maximumAge}" /></td></tr>
+		  	<tr><td><spring:message code="formfilter.minimumAge" /></td><td><input type="text" name="minimumAge" value="${properties.minimumAge}" /></td></tr>
+		  	<tr><td><spring:message code="formfilter.maximumAge" /></td><td><input type="text" name="maximumAge" value="${properties.maximumAge}" /></td></tr>
 		  </table>
 		  <div id="age_error" ></div>
 		  </td>	  
@@ -123,11 +116,11 @@
 		
 
 		<tr id="GenderProperty" >
-			<td>Gender</td>
+			<td><spring:message code="formfilter.gender" /></td>
 			<td>
-			Male<input type="radio" name="gender" value="M" <c:if test="${properties.gender == 'M'}">checked="true"</c:if>   />
-			Female<input type="radio" name="gender" value="F" <c:if test="${properties.gender == 'F'}">checked="true"</c:if> />
-			Others<input type="radio" name="gender" value="U" <c:if test="${properties.gender == 'U'}">checked="true"</c:if> />
+			<input type="radio" name="gender" value="M" <c:if test="${properties.gender == 'M'}">checked="true"</c:if> /><spring:message code="formfilter.male" />
+			<input type="radio" name="gender" value="F" <c:if test="${properties.gender == 'F'}">checked="true"</c:if> /><spring:message code="formfilter.female" />
+			<input type="radio" name="gender" value="U" <c:if test="${properties.gender == 'U'}">checked="true"</c:if> /><spring:message code="formfilter.unknown" />
 			<span id="gender_error"  ></span>  
 			</td>
 		</tr>

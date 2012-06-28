@@ -27,6 +27,13 @@
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
 	</extension>
 	
+	<extension>
+		<point>org.openmrs.admin.forms.formHeader</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.FormFilterFormHeaderExt</class>
+	</extension>
+	
+	
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 		FormFilter.hbm.xml
