@@ -15,9 +15,6 @@ package org.openmrs.module.formfilter.extension.html;
 
 import java.util.Map;
 import java.util.TreeMap;
-
-import org.openmrs.api.APIException;
-import org.openmrs.api.context.Context;
 import org.openmrs.module.Extension;
 
 
@@ -38,12 +35,22 @@ public class FormFilterFormHeaderExt extends Extension {
 	    return Extension.MEDIA_TYPE.html;
     }
     
+    /**
+     * @see org.openmrs.module.Extension#initialize(java.util.Map)
+     */
     @Override
 	public void initialize(Map<String, String> parameters) {
 		formId = parameters.get("formId");
 	}
 	
-public Map<String, String> getLinks() {
+    
+    /**
+     * 
+     * Adds form filter link to form schema header.
+     * 
+     * @return map with links to be added
+     */
+    public Map<String, String> getLinks() {
 		
 		Map<String, String> map = new TreeMap<String, String>();
 		

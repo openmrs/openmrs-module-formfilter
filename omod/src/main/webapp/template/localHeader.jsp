@@ -9,8 +9,3 @@
 	
 	<!-- Add further links here -->
 </ul>
-<!--  
-<h2>
-	<spring:message code="formfilter.title" />
-</h2>
--->

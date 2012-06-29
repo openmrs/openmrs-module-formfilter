@@ -23,20 +23,37 @@ import org.openmrs.module.formfilter.api.FormFilterService;
  */
 public interface FormFilterDAO {
 	
-	/*
-	 * 
+	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilter(FormFilter)
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(Form)
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#addFormFilterProperty(int, FormFilterProperty)
 	 */
-		
 	public void saveFormFilter(FormFilter formFilter);
 	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(Form)
+	 */
 	public FormFilter getFormFilter(Form form);
 	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(int)
+	 */
 	public FormFilter getFormFilter(int formFilterId);
 	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#purgeFormFilterProperty(int)
+	 */
 	public void purgeFormFilter(int formFilterPropertyId);
 	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilterProperty(int)
+	 */
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(FormFilterProperty)
+	 */
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
 	
 	

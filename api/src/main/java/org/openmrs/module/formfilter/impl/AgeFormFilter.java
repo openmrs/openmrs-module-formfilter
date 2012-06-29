@@ -21,16 +21,26 @@ import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
-
+/**
+ * This class will provide patient age based form filter. 
+ */
 public class AgeFormFilter implements FormFilterHandler {
 	
 	protected Log log = LogFactory.getLog(getClass());
 	
+	/**
+	 * Default Constructor
+	 */
 	public AgeFormFilter()
 	{
 		
 	}
 	
+	/**
+	 * Constructor sets class field values.
+	 * @param properties ,string property from FormFilterProperty class in key=value based format 
+	 * Example: minimumAge=value&maximumAge=value  
+	 */
 	public AgeFormFilter(String properties){
 		for (String string : properties.split("&")) {
 	        String str[]=string.split("=");
@@ -48,26 +58,45 @@ public class AgeFormFilter implements FormFilterHandler {
 	
 	private int maximumAge;
 	
-		
+	
+	/**
+	 * @return minimumAge
+	 */
     public int getMinimumAge() {
     	return minimumAge;
     }
 
-	
+    /**
+	 * Sets maximumAge
+	 * 
+	 * @param maximumAge
+	 */
     public void setMinimumAge(int minimumAge) {
     	this.minimumAge = minimumAge;
     }
 
 	
+    /**
+	 * @return maximumAge
+	 */
     public int getMaximumAge() {
     	return maximumAge;
     }
 
-	
+	/**
+	 * Sets maximumAge
+	 * 
+	 * @param maximumAge
+	 */
     public void setMaximumAge(int maximumAge) {
     	this.maximumAge = maximumAge;
     }
 	
+    /**
+     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
+     * @return True , if patient age lies between minimumAge and maximumAge.
+     * @return False, if patient age does not between minimumAge and maximumAge.
+     */
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    // TODO Auto-generated method stub

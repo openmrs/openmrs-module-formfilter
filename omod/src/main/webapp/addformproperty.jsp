@@ -1,21 +1,21 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-<%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> --%>
-<%-- <%@ taglibprefix="c" uri="http://java.sun.com/jstl/core"%> --%>
 
 <script type="text/javascript">
+
+	/*Javascript to validate form*/
 	function validate_form() {
 		validate = true;
 		if (document.formfilter_form.filterName.value == "") {
-			document.getElementById("filterName_error").innerHTML = "<span class='error'>Cannot be empty</span>";
+			document.getElementById("filterName_error").innerHTML = "<span class='error'><spring:message code='formfilter.cannotBeEmpty' /></span>";
 			validate = false;
 		} else {
 			document.getElementById("filterName_error").innerHTML = "";
 		}		
 
 		if (document.formfilter_form.propertyType.value == "Select") {
-			document.getElementById("propertyType_error").innerHTML = "<span class='error'>Select a option</span>";
+			document.getElementById("propertyType_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
 			validate = false;
 		} else {
 			document.getElementById("propertyType_error").innerHTML = "";
@@ -30,7 +30,7 @@
 				      }
 				
 				if (genderValue == "") {
-					document.getElementById("gender_error").innerHTML = "<span class='error'>Choose a option</span>";
+					document.getElementById("gender_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAOption' /></span>";
 					validate = false;
 				} else {
 					document.getElementById("gender_error").innerHTML = "";
@@ -40,14 +40,14 @@
 			if (document.formfilter_form.propertyType.value == "AgeProperty") {
 				
 				if (!document.formfilter_form.maximumAge.value.match("^[0-9]+") || !document.formfilter_form.minimumAge.value.match("^[0-9]+")) {
-					document.getElementById("age_error").innerHTML = "<span class='error'>Cannot be empty and only numbers allowed</span>";
+					document.getElementById("age_error").innerHTML = "<span class='error'><spring:message code='formfilter.cannotBeEmptyAndOnlyNumbers' /></span>";
 					validate = false;
 				} else {
 
 					if (document.formfilter_form.minimumAge.value <= document.formfilter_form.maximumAge.value) {
 						document.getElementById("age_error").innerHTML = "";
 					} else {
-						document.getElementById("age_error").innerHTML = "<span class='error'>Minimum age should be less than Maximum age value</span>";
+						document.getElementById("age_error").innerHTML = "<span class='error'><spring:message code='formfilter.minimumAgeLessThanMaximumAge' /></span>";
 						validate = false;
 
 					}

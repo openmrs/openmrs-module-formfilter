@@ -32,14 +32,19 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * The main controller.
- */
+
 @Controller
 public class FormFilterManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+
 	
+	/**
+	 * 
+	 * Handles request to show forms list.
+	 * 
+	 * @param model
+	 */
 	@RequestMapping(value = "/module/formfilter/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		
@@ -62,7 +67,6 @@ public class FormFilterManageController {
 		}
 		model.addAttribute("formList", formList);
 		
-
 	}
 	
 }

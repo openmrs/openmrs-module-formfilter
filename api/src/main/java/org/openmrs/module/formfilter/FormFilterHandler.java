@@ -16,11 +16,19 @@ package org.openmrs.module.formfilter;
 import org.openmrs.Patient;
 import org.openmrs.User;
 
-
+/**
+ * This interface helps to create form filters.
+ * @author goutham
+ */
 public interface FormFilterHandler {
 	
 	
-	
+	/**
+	 * This method holds the logic to return true or false for given 
+	 * Patient and User. 
+	 *  
+	 * @return True/False ,if filter properties satisfy provided condition.
+	 */
 	public boolean shouldDisplayForm(Patient p, User u);
 	
 

@@ -46,6 +46,10 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	    return sessionFactory;
     }
     
+    /**
+     * 
+     * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
+     */
     public void saveFormFilter(FormFilter formFilter) throws DAOException{
     	
     	sessionFactory.getCurrentSession().saveOrUpdate(formFilter);
@@ -54,6 +58,10 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 
 	
 
+    /**
+     * 
+     * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilter(org.openmrs.Form)
+     */
 	@Override
     public FormFilter getFormFilter(Form form) {
 	    // TODO Auto-generated method stub
@@ -62,12 +70,20 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	    return (FormFilter) criteria.list().get(0);
     }
 
+	/**
+	 * 
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilter(int)
+	 */
 	@Override
     public FormFilter getFormFilter(int formFilterId) {
 	    // TODO Auto-generated method stub
 	    return (FormFilter) sessionFactory.getCurrentSession().get(FormFilter.class, formFilterId);
     }
 
+	/**
+	 * 
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#purgeFormFilter(int)
+	 */
 	@Override
     public void purgeFormFilter(int formFilterPropertyId) {
 	    // TODO Auto-generated method stub
@@ -76,16 +92,24 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	    
     }
 
+	/**
+	 * 
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilterProperty(int)
+	 */
 	@Override
     public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
 	    // TODO Auto-generated method stub
 	    return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
     }
 
+	/**
+	 * 
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
+	 */
 	@Override
     public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
 	    // TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(formFilterProperty);
+		sessionFactory.getCurrentSession().update(formFilterProperty);
 	    
     }
 

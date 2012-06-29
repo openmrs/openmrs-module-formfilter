@@ -13,101 +13,80 @@
  */
 package org.openmrs.module.formfilter.web.controller;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Form;
 import org.openmrs.Patient;
-import org.openmrs.Person;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.Extension;
-import org.openmrs.module.Extension.MEDIA_TYPE;
-import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.FormFilterHandler;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
-import org.openmrs.module.web.FormEntryContext;
 import org.openmrs.module.web.extension.FormEntryHandler;
-import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.web.controller.PersonFormEntryPortletController;
 
 /**
- *
+ * Extends PersonFormEntryProtletController to manipulate the form list based on assigned filters to
+ * it.
  */
-public class PersonFormFilterEntryPortletController extends PersonFormEntryPortletController  {
+public class PersonFormFilterEntryPortletController extends PersonFormEntryPortletController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	@Override
 	protected void populateModel(HttpServletRequest request, Map<String, Object> model) {
 		
-		if (model.containsKey("formToEntryUrlMap")) {
-			return;
-		}
-		Person person = (Person) model.get("person");
-		if (person == null)
-			throw new IllegalArgumentException("This portlet may only be used in the context of a Person");
-		FormEntryContext fec = new FormEntryContext(person);
-		Map<Form, FormEntryHandler> entryUrlMap = new TreeMap<Form, FormEntryHandler>(new Comparator<Form>() {
-			
-			public int compare(Form left, Form right) {
-				int temp = left.getName().toLowerCase().compareTo(right.getName().toLowerCase());
-				if (temp == 0)
-					temp = OpenmrsUtil.compareWithNullAsLowest(left.getVersion(), right.getVersion());
-				if (temp == 0)
-					temp = OpenmrsUtil.compareWithNullAsGreatest(left.getId(), right.getId());
-				return temp;
-			}
-		});
-		List<Extension> handlers = ModuleFactory.getExtensions("org.openmrs.module.web.extension.FormEntryHandler",
-		    MEDIA_TYPE.html);
-		if (handlers != null) {
-			for (Extension ext : handlers) {
-				FormEntryHandler handler = (FormEntryHandler) ext;
-				Collection<Form> toEnter = handler.getFormsModuleCanEnter(fec);
-				if (toEnter != null) {
-					for (Form form : toEnter) {
-						if(filterForm(form, (Patient)model.get("patient"))){							
-							entryUrlMap.put(form, handler);
-						}
-					}
-				}
+		super.populateModel(request, model);
+		
+		//Code to remove forms from formToEntryUrlMap based on assigned filters. 
+		Map<Form, FormEntryHandler> entryUrlMap = (Map<Form, FormEntryHandler>) model.get("formToEntryUrlMap");
+		
+		for (Iterator<Form> iterator = entryUrlMap.keySet().iterator(); iterator.hasNext();) {
+			Form form = (Form) iterator.next();
+			if (filterForm(form, (Patient) model.get("patient")) == false) {
+				iterator.remove();
 			}
 		}
+		
 		model.put("formToEntryUrlMap", entryUrlMap);
-		model.put("anyUpdatedFormEntryModules", handlers != null && handlers.size() > 0);
+		
 	}
 	
-	private boolean filterForm(Form form,Patient patient) {
+	/**
+	 * Functions checks whether a form can be listed under form entry tab of patient dashboard.
+	 * Logic of filtering is based upon "ANDING".
+	 * 
+	 * @param form
+	 * @param patient
+	 * @return True, if all assigned filters return true or if no filters are assigned to a form.
+	 * @return False, if any one filter fails condition.
+	 */
+	private boolean filterForm(Form form, Patient patient) {
 		
-		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
-		FormFilter formFilter=formFilterService.getFormFilter(form);
+		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
+		FormFilter formFilter = formFilterService.getFormFilter(form);
 		
-		if(formFilter!=null)
-		{
-		for (FormFilterProperty formFilterProperty : formFilter.getFormFilterProperties()) {
-		try {
-				FormFilterHandler filterHandler = (FormFilterHandler) Class.forName(formFilterProperty.getClassName()).getConstructor(String.class).newInstance(formFilterProperty.getProperties());
-					if (filterHandler.shouldDisplayForm(patient, Context.getAuthenticatedUser())==false){
-							return false;
+		if (formFilter != null) {
+			for (FormFilterProperty formFilterProperty : formFilter.getFormFilterProperties()) {
+				try 
+				{
+					FormFilterHandler filterHandler = (FormFilterHandler) Class.forName(formFilterProperty.getClassName())
+					        .getConstructor(String.class).newInstance(formFilterProperty.getProperties());
+					if (filterHandler.shouldDisplayForm(patient, Context.getAuthenticatedUser()) == false) {
+						return false;
 					}
 				}
 				catch (Exception e) {
-				// TODO Auto-generated catch block
-				log.info(e);
-				}     
-        	}
-		}		
+					log.info(e);
+				}
+			}
+		}
 		
-	    return true;
-    }
+		return true;
+	}
 	
 }

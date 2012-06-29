@@ -17,13 +17,11 @@ import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 
 /**
- *This class holds property values related to formFilter class.
+ *This class holds filter property values related to {@link FormFilter}.
  */
 public class FormFilterProperty extends BaseOpenmrsObject implements Serializable   {
 
-	/**
-     * 
-     */
+	
     private static final long serialVersionUID = 1L;
 
 

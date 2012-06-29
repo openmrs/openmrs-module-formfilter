@@ -32,6 +32,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+/**
+ * Controller handling requests to add or edit filter.
+ */
 @Controller
 public class AddFormFilterPropertyController {
 	
@@ -39,11 +42,13 @@ public class AddFormFilterPropertyController {
 	
 	
 		
-	/** 
+	/**
+	 * Handles request related to adding Form filter.
 	 *  
 	 * @param model
 	 * @param formFilterId
-	 */	
+	 * @param formFilterPropertyId if , 0 adds new property or else returns respective property. 
+	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty",method = RequestMethod.GET)
 	public void AddFormFilter(ModelMap model,@RequestParam("filterId") Integer formFilterId,
 	                          @RequestParam(value="filterPropertyId" ,required=false,defaultValue="0") int formFilterPropertyId) {
@@ -51,10 +56,13 @@ public class AddFormFilterPropertyController {
 		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
 		
 		FormFilterProperty formFilterProperty;
-		Map map=new HashMap();
+		Map<String,String> map=new HashMap<String ,String>();
 		
 		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));
 		
+		//If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
+		//page as edit option or else pass new object to add a new filter. 
+
 		if(formFilterPropertyId != 0){
 			formFilterProperty=formFilterService.getFormFilterProperty(formFilterPropertyId);
 		    for (String string : formFilterProperty.getProperties().split("&")) {
@@ -75,11 +83,11 @@ public class AddFormFilterPropertyController {
 	
 	/**
 	 * 
+	 * Handles request to save or update a filter to db.
+	 * 
 	 * @param formFilterProperty
-	 * @param result
-	 * @param status
 	 * @param request
-	 * @return
+	 * @return to viewformfilter page to see list of all assigned filter's to a form.
 	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty",method = RequestMethod.POST )
 	public String onSubmit(@ModelAttribute("formfilterproperty")FormFilterProperty formFilterProperty,BindingResult result, SessionStatus status,HttpServletRequest request){
@@ -88,14 +96,17 @@ public class AddFormFilterPropertyController {
 		int formFilterId=Integer.parseInt(request.getParameter("formFilterId"));
 		FormFilterService formFilterService =(FormFilterService)Context.getService(FormFilterService.class);
 		
+		//Based on selected propertyType option in form , className and properties of formFilterPropertyType
+		//object are set manually.
 		if (propertyType.equalsIgnoreCase("AgeProperty")) {			
 			formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.AgeFormFilter");
 			formFilterProperty.setProperties("minimumAge="+request.getParameter("minimumAge")+"&maximumAge="+request.getParameter("maximumAge"));	        
-        }else if(propertyType.equalsIgnoreCase("GenderProperty")){
-        	
+        }else if(propertyType.equalsIgnoreCase("GenderProperty")){        	
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.GenderFormFilter");
         	formFilterProperty.setProperties("gender="+request.getParameter("gender"));
         }
+		
+		//if id of formFilterProperty object is 0 , add filter as new or else update it.
 		if (formFilterProperty.getFormFilterPropertyId() == 0) {	
 			formFilterService.addFormFilterProperty(formFilterId, formFilterProperty);
 		} else {
@@ -103,8 +114,7 @@ public class AddFormFilterPropertyController {
 		}
 		
 		return "redirect:viewformfilter.form?formFilterId="+formFilterId;
-		
-		
+			
 		
 	}
 	

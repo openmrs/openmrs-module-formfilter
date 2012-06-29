@@ -21,15 +21,25 @@ import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
-
+/**
+ * This class provides gender based form filter.
+ */
 public class GenderFormFilter implements FormFilterHandler {
 
 	protected Log log = LogFactory.getLog(getClass());
 	
+	/**
+	 * Default Constructor
+	 */
 	public GenderFormFilter(){
 		
 	}
 	
+	/**
+	 * Constructor sets this class field values.
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 * Example: gender=U  
+	 */
 	public GenderFormFilter(String properties){
 		
 		for (String string : properties.split("&")) {
@@ -48,21 +58,29 @@ public class GenderFormFilter implements FormFilterHandler {
 	
 	private String gender;
 	
-	
+	/**
+	 * @return gender value
+	 */
     public String getGender() {
     	return gender;
     }
 
-	
+	/**
+	 * Sets gender value
+	 * 
+	 * @param gender
+	 */
     public void setGender(String gender) {
     	this.gender = gender;
     }
-
-
-
-
-
-
+    
+    /**
+     *  
+     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
+     * 
+     * @return true , if patient gender value match with this.gender
+     * @return false, if patient gender value does not match with this.gender 
+     */
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    // TODO Auto-generated method stub

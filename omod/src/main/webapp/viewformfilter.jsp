@@ -1,8 +1,6 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-<%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> --%>
-<%-- <%@ taglibprefix="c" uri="http://java.sun.com/jstl/core"%> --%>
 
 
 <h2>

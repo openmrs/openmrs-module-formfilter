@@ -32,6 +32,15 @@ public class ViewFormFilterController  {
 
 	protected final Log log = LogFactory.getLog(getClass());
 	
+	/**
+	 * Returns Form Filter Object with assigned filters to it.
+	 * If form filter does not exists for a form , it create's and returns FormFilter object to web page. 
+	 * Returns Form Filter for a given form Id or form filter Id.
+	 * 
+	 * @param model
+	 * @param formId
+	 * @param formFilterId
+	 */
 	@RequestMapping(value = "/module/formfilter/viewformfilter", method = RequestMethod.GET)
 	public void editFormFilter(ModelMap model,
 	                           @RequestParam(value="formId", required =false ,defaultValue="0") Integer formId,
@@ -49,7 +58,16 @@ public class ViewFormFilterController  {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * Handles request in deleting(permanently) a filter with respective to a form.
+	 * 
+	 * @param model
+	 * @param httpSession
+	 * @param formFilterPropertyId
+	 * @param formFilterId
+	 * @return to formfilter
+	 */
 	@RequestMapping(value = "/module/formfilter/deleteFilter", method = RequestMethod.GET)
 	public String deleteFormFilterProperty(ModelMap model,HttpSession httpSession,
 	                           @RequestParam(value="formFilterPropertyId") int formFilterPropertyId,
