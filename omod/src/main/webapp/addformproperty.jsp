@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-
+<openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 <script type="text/javascript">
 
 	/*Javascript to validate form*/
@@ -53,6 +53,33 @@
 					}
 				}
 			}
+			
+			if (document.formfilter_form.propertyType.value == "DateProperty") {
+				
+				if (!document.formfilter_form.date.value.match("^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$")) {
+					document.getElementById("date_error").innerHTML = "<span class='error'><spring:message code='formfilter.wrongDateFormat' /></span>";
+					validate = false;
+				} else {
+					document.getElementById("date_error").innerHTML = "";
+					var showValue="";
+					 var radioButtons = document.getElementsByName("show");
+					      for (var x = 0; x < radioButtons.length; x ++) {
+					         if (radioButtons[x].checked) {
+					           showValue=radioButtons[x].value;
+					         }
+					      }
+					
+					if (showValue == "") {
+						document.getElementById("show_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAOption' /></span>";
+						validate = false;
+					} else {
+						document.getElementById("show_error").innerHTML = "";
+					}
+				
+				
+				}
+			}
+			
 		}
 
 		return validate;
@@ -97,6 +124,7 @@
 					<option value="Select" ><spring:message code="formfilter.select" /></option> 
 					<option value="AgeProperty"><spring:message code="formfilter.age" /></option>
 					<option value="GenderProperty"><spring:message code="formfilter.gender" /></option>
+					<option value="DateProperty"><spring:message code="formfilter.date" /></option>
 				</select>
 				<span id="propertyType_error" ></span>
 			</td>
@@ -123,6 +151,31 @@
 			<input type="radio" name="gender" value="U" <c:if test="${properties.gender == 'U'}">checked="true"</c:if> /><spring:message code="formfilter.unknown" />
 			<span id="gender_error"  ></span>  
 			</td>
+		</tr>
+		
+		<tr id="DateProperty">
+			<td><spring:message code="formfilter.select" /></td>
+			<td>
+				<table>
+					<tr>
+						<td><spring:message code="formfilter.date" /></td>
+						<td>:</td>
+						<td>
+							<input type="text" name="date" size="10" value="${properties.date}" onClick="showCalendar(this)" id="date" />(<spring:message code="general.format"/>: <openmrs:datePattern />)
+							<span id="date_error"  ></span>				
+						</td>
+					</tr>
+					<tr>
+						<td><spring:message code="formfilter.show" /></td>
+						<td>:</td>
+						<td>
+						<input type="radio" id="before" value="before" name="show"  <c:if test="${properties.show == 'before'}">checked="true"</c:if> /><spring:message code="formfilter.before" />
+						<input type="radio" id="after" value="after" name="show" <c:if test="${properties.show == 'after'}">checked="true"</c:if> /><spring:message code="formfilter.after" />						
+						</td>
+					</tr>
+				</table>
+				<div id="show_error"></div>
+				</td>
 		</tr>
 		
 		<tr>
@@ -162,8 +215,17 @@
 		  		temp='AgeProperty';
 		  		$j('#propertyType').val("GenderProperty");
 			</c:otherwise>
-		</c:choose>	
+		</c:choose>
 		
+		<c:choose>
+			<c:when test="${empty properties.date }" >
+				$j('#DateProperty').hide();
+			</c:when>
+			<c:otherwise>
+		  		temp='DateProperty';
+		  		$j('#propertyType').val("DateProperty");
+			</c:otherwise>
+		</c:choose>			
 
 	});
 

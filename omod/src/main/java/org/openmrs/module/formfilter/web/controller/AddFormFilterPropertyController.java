@@ -104,6 +104,9 @@ public class AddFormFilterPropertyController {
         }else if(propertyType.equalsIgnoreCase("GenderProperty")){        	
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.GenderFormFilter");
         	formFilterProperty.setProperties("gender="+request.getParameter("gender"));
+        }else if(propertyType.equalsIgnoreCase("DateProperty")){        	
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.DateFormFilter");
+        	formFilterProperty.setProperties("date="+request.getParameter("date")+"&show="+request.getParameter("show"));
         }
 		
 		//if id of formFilterProperty object is 0 , add filter as new or else update it.
