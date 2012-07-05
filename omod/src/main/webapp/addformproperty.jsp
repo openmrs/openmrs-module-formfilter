@@ -80,6 +80,29 @@
 				}
 			}
 			
+			
+			if (document.formfilter_form.propertyType.value == "RoleProperty") {
+				
+				if (document.formfilter_form.role.value == "") {
+					document.getElementById("role_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+					validate = false;
+				} else {
+					document.getElementById("role_error").innerHTML = "";
+				}
+			}
+			
+			if (document.formfilter_form.propertyType.value == "PrivilegeProperty") {
+				
+				if (document.formfilter_form.privilege.value == "") {
+					document.getElementById("privilege_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+					validate = false;
+				} else {
+					document.getElementById("privilege_error").innerHTML = "";
+				}
+			}
+			
+			
+			
 		}
 
 		return validate;
@@ -125,6 +148,8 @@
 					<option value="AgeProperty"><spring:message code="formfilter.age" /></option>
 					<option value="GenderProperty"><spring:message code="formfilter.gender" /></option>
 					<option value="DateProperty"><spring:message code="formfilter.date" /></option>
+					<option value="RoleProperty"><spring:message code="formfilter.role" /></option>
+					<option value="PrivilegeProperty"><spring:message code="formfilter.privilege" /></option>
 				</select>
 				<span id="propertyType_error" ></span>
 			</td>
@@ -178,6 +203,32 @@
 				</td>
 		</tr>
 		
+		<tr id="RoleProperty">
+		  <td><spring:message code="formfilter.role" /></td>
+		  <td>
+		  <select id="role" name="role" >
+		     <option> </option>
+		     <c:forEach var="item" items="${roles}">
+		       <option value="${item.role}" <c:if test="${properties.role == item.role}"> selected="selected"</c:if>  >${item.role}</option>
+		     </c:forEach>
+		  </select>
+		  <span id="role_error"  ></span>		  
+		  </td>
+		</tr>
+		
+		<tr id="PrivilegeProperty" >
+		  <td><spring:message code="formfilter.privilege" /></td>
+		  <td>
+		  <select id="privilege" name="privilege" >
+		  <option></option>
+		     <c:forEach var="item" items="${privileges}">
+		       <option value="${item.privilege}" <c:if test="${properties.privilege == item.privilege}"> selected="selected"</c:if>  >${item.privilege}</option>
+		     </c:forEach>
+		  </select>
+		  <span id="privilege_error"  ></span>		  
+		  </td>
+		</tr>
+		
 		<tr>
 			<td><input type="submit"  value="Save" /></td>
 			<td><input type="button"  value="Cancel" onclick="location.href='viewformfilter.form?formFilterId=${formFilter.formFilterId}'" /></td>
@@ -218,14 +269,34 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${empty properties.date }" >
+			<c:when test="${empty properties.date}" >
 				$j('#DateProperty').hide();
 			</c:when>
 			<c:otherwise>
 		  		temp='DateProperty';
 		  		$j('#propertyType').val("DateProperty");
 			</c:otherwise>
-		</c:choose>			
+		</c:choose>
+		
+		<c:choose>
+			<c:when test="${empty properties.role}" >
+				$j('#RoleProperty').hide();
+			</c:when>
+			<c:otherwise>
+		  		temp='RoleProperty';
+		  		$j('#propertyType').val("RoleProperty");
+			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+			<c:when test="${empty properties.privilege}" >
+				$j('#PrivilegeProperty').hide();
+			</c:when>
+			<c:otherwise>
+		  		temp='PrivilegeProperty';
+		  		$j('#propertyType').val("PrivilegeProperty");
+			</c:otherwise>
+		</c:choose>
 
 	});
 

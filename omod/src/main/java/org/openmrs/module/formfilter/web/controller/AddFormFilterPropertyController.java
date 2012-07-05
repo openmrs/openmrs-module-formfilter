@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Role;
+import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
@@ -60,8 +62,15 @@ public class AddFormFilterPropertyController {
 		
 		model.addAttribute("formFilter",formFilterService.getFormFilter(formFilterId));
 		
-		//If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
-		//page as edit option or else pass new object to add a new filter. 
+		//Adding list of available roles and privileges.
+		UserService userService=Context.getUserService();
+		model.addAttribute("roles",userService.getAllRoles());
+		model.addAttribute("privileges", userService.getAllPrivileges());
+		
+		
+		
+		/*If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
+		  page as edit filter option or else pass new object to add a new filter.*/ 
 
 		if(formFilterPropertyId != 0){
 			formFilterProperty=formFilterService.getFormFilterProperty(formFilterPropertyId);
@@ -107,6 +116,12 @@ public class AddFormFilterPropertyController {
         }else if(propertyType.equalsIgnoreCase("DateProperty")){        	
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.DateFormFilter");
         	formFilterProperty.setProperties("date="+request.getParameter("date")+"&show="+request.getParameter("show"));
+        }else if(propertyType.equalsIgnoreCase("RoleProperty")){        	
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.RoleFormFilter");
+        	formFilterProperty.setProperties("role="+request.getParameter("role"));
+        }else if(propertyType.equalsIgnoreCase("PrivilegeProperty")){        	
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.PrivilegeFormFilter");
+        	formFilterProperty.setProperties("privilege="+request.getParameter("privilege"));
         }
 		
 		//if id of formFilterProperty object is 0 , add filter as new or else update it.

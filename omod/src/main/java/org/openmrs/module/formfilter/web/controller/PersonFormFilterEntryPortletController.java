@@ -37,9 +37,14 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
+	
+	/**
+	 * 
+	 * @see org.openmrs.web.controller.PersonFormEntryPortletController#populateModel(javax.servlet.http.HttpServletRequest, java.util.Map)
+	 */
 	@Override
 	protected void populateModel(HttpServletRequest request, Map<String, Object> model) {
-		
+		//Uses PersonFormEntryPortletController#populateModel and retrieves form list. 		
 		super.populateModel(request, model);
 		
 		//Code to remove forms from formToEntryUrlMap based on assigned filters. 
