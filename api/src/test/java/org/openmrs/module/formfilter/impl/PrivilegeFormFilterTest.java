@@ -27,21 +27,31 @@ import org.openmrs.User;
 public class PrivilegeFormFilterTest {
 	
 	/**
-	 * Tests the functionality based on user privilege.	
+	 * Testing the condition to show a form
 	 */
 	@Test
 	public void testShouldDisplayForm()
 	{
-		PrivilegeFormFilter roleFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
+		PrivilegeFormFilter privilegeFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
 		
 		User user=new User();
 		Role role=new Role("Anonymous");
 		role.addPrivilege(new Privilege("Manage Concept Classes"));
 		user.addRole(role);
 		
-		Assert.assertTrue("Assigned filter privilege  does not match users privileges.",roleFormFilter.shouldDisplayForm(new Patient(), user));
-		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",roleFormFilter.shouldDisplayForm(new Patient(), new User()));		
+		Assert.assertTrue("Assigned filter privilege  does not match users privileges.",privilegeFormFilter.shouldDisplayForm(new Patient(), user));
+				
 	
+	}
+	
+	/**
+	 * Testing the condition to not show a form.
+	 */
+	@Test
+	public void shouldNotDisplayForm()
+	{
+		PrivilegeFormFilter privilegeFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
+		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",privilegeFormFilter.shouldDisplayForm(new Patient(), new User()));
 	}
 	
 

@@ -26,7 +26,7 @@ import org.openmrs.User;
 public class RoleFormFilterTest {
 
 	/**
-	 * Tests the functionality based on user roles
+	 * Testing the condition to show a form
 	 */
 	@Test
 	public void testShouldDisplayForm(){
@@ -34,8 +34,19 @@ public class RoleFormFilterTest {
 		User user=new User();
 		user.addRole(new Role("Anonymous"));
 		Assert.assertTrue("Filter role  does not match user roles.",roleFormFilter.shouldDisplayForm(new Patient(), user));
-		Assert.assertFalse("Filter role matches even user has no roles",roleFormFilter.shouldDisplayForm(new Patient(), new User()));		
+				
 		
 	}
+	
+	/**
+	 * Testing the condition to not show a form.
+	 */
+	@Test
+	public void shouldNotDisplayForm()
+	{
+		RoleFormFilter roleFormFilter=new RoleFormFilter("role=Anonymous");
+		Assert.assertFalse("Filter role matches even user has no roles",roleFormFilter.shouldDisplayForm(new Patient(), new User()));
+	}
+	
 	
 }
