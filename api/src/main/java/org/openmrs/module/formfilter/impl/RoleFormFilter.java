@@ -18,6 +18,7 @@ import java.lang.reflect.Field;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.Role;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
@@ -70,7 +71,7 @@ public class RoleFormFilter implements FormFilterHandler {
 	@Override
     public boolean shouldDisplayForm(Patient p, User u) {
 	    
-		if(u.hasRole(role))
+		if(u.getAllRoles().contains(new Role(role)))
 		{
 			return true;
 		}

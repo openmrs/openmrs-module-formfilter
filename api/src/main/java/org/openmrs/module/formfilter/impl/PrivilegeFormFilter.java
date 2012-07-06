@@ -18,6 +18,8 @@ import java.lang.reflect.Field;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.Privilege;
+import org.openmrs.Role;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
@@ -69,10 +71,11 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	@Override
     public boolean shouldDisplayForm(Patient p, User u) {
 
-		if(u.hasPrivilege(privilege))
-		{
-			return true;
-		}
+		for (Role role : u.getAllRoles()) {
+	        if (role.getPrivileges().contains(new Privilege(privilege))) {
+	        	return true;
+            }
+        }	
 		
 	    return false;
     }
