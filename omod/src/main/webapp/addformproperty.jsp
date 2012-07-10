@@ -101,6 +101,16 @@
 				}
 			}
 			
+			if (document.formfilter_form.propertyType.value == "CohortProperty") {
+				
+				if (document.formfilter_form.cohort.value == "") {
+					document.getElementById("cohort_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+					validate = false;
+				} else {
+					document.getElementById("cohort_error").innerHTML = "";
+				}
+			}
+			
 			
 			
 		}
@@ -150,6 +160,7 @@
 					<option value="DateProperty"><spring:message code="formfilter.date" /></option>
 					<option value="RoleProperty"><spring:message code="formfilter.role" /></option>
 					<option value="PrivilegeProperty"><spring:message code="formfilter.privilege" /></option>
+					<option value="CohortProperty"><spring:message code="formfilter.cohort" /></option>
 				</select>
 				<span id="propertyType_error" ></span>
 			</td>
@@ -229,6 +240,20 @@
 		  </td>
 		</tr>
 		
+		<tr id="CohortProperty" >
+		  <td><spring:message code="formfilter.cohort" /></td>
+		  <td>
+		  <select id="cohort" name="cohort" >
+		  <option></option>
+		     <c:forEach var="item" items="${cohorts}">
+		       <option value="${item.cohortId}" <c:if test="${properties.cohortId == item.cohortId}"> selected="selected"</c:if>  >${item.name}</option>
+		     </c:forEach>
+		  </select>
+		  <span id="cohort_error"  ></span>		  
+		  </td>
+		</tr>
+		
+		
 		<tr>
 			<td><input type="submit"  value="Save" /></td>
 			<td><input type="button"  value="Cancel" onclick="location.href='viewformfilter.form?formFilterId=${formFilter.formFilterId}'" /></td>
@@ -296,6 +321,16 @@
 		  		temp='PrivilegeProperty';
 		  		$j('#propertyType').val("PrivilegeProperty");
 			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+		<c:when test="${empty properties.cohortId}" >
+			$j('#CohortProperty').hide();
+		</c:when>
+		<c:otherwise>
+	  		temp='CohortProperty';
+	  		$j('#propertyType').val("CohortProperty");
+		</c:otherwise>
 		</c:choose>
 
 	});

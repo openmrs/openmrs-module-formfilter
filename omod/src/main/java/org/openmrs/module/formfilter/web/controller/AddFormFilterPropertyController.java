@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Role;
+import org.openmrs.api.CohortService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
@@ -67,6 +67,9 @@ public class AddFormFilterPropertyController {
 		model.addAttribute("roles",userService.getAllRoles());
 		model.addAttribute("privileges", userService.getAllPrivileges());
 		
+		//Adding cohort list. 
+		CohortService cohortService=Context.getCohortService();
+		model.addAttribute("cohorts", cohortService.getAllCohorts());
 		
 		
 		/*If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
@@ -122,6 +125,9 @@ public class AddFormFilterPropertyController {
         }else if(propertyType.equalsIgnoreCase("PrivilegeProperty")){        	
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.PrivilegeFormFilter");
         	formFilterProperty.setProperties("privilege="+request.getParameter("privilege"));
+        }else if(propertyType.equalsIgnoreCase("CohortProperty")){        	
+        	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.CohortFormFilter");
+        	formFilterProperty.setProperties("cohortId="+request.getParameter("cohort"));
         }
 		
 		//if id of formFilterProperty object is 0 , add filter as new or else update it.
