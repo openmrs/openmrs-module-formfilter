@@ -28,7 +28,7 @@ public class GenderFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void testShouldDisplayForm()
+	public void shouldDisplayForm()
 	{
 		GenderFormFilter genderFormFilter=new GenderFormFilter("gender=M");
 		

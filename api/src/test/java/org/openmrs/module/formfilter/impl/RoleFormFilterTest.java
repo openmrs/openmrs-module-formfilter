@@ -29,7 +29,7 @@ public class RoleFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void testShouldDisplayForm(){
+	public void shouldDisplayForm(){
 		RoleFormFilter roleFormFilter=new RoleFormFilter("role=Anonymous");
 		User user=new User();
 		user.addRole(new Role("Anonymous"));

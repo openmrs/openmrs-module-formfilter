@@ -86,6 +86,9 @@ public class DateFormFilter implements FormFilterHandler {
      * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
      * @return True , if current date fall before/after the specified filter date.
      * @return False, if current date does not fall before/after the specified filter date.
+     * 
+     * @should display form when current date is before/after mentioned filter date.
+     * @should not display form when current date is not before/after mentioned filter date.
      */
 	@Override
     public boolean shouldDisplayForm(Patient p, User u) {

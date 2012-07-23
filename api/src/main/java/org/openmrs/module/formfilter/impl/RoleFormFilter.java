@@ -30,13 +30,19 @@ public class RoleFormFilter implements FormFilterHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	
-	//Constructors 
-	
+	/**
+	 * Default Constructor.	
+	 */
 	public RoleFormFilter()
 	{
 		
 	}
 	
+	/**
+	 * Constructor sets this class field values.
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 * Example: role=Developer  
+	 */
 	public RoleFormFilter(String properties){
 			
 		String str[]=properties.split("=");
@@ -63,10 +69,13 @@ public class RoleFormFilter implements FormFilterHandler {
     }
 
     /**
-     * @return True ,if user has specified role.
-     * False,if user does not have specified role. 
      * 
      * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
+     * @return True ,if user has mentioned role.
+     * @return False,if user does not have mentioned role.
+     * 
+     * @should display form when user has mentioned role.
+     * @should not display form when user does not have mentioned role.     
      */
 	@Override
     public boolean shouldDisplayForm(Patient p, User u) {

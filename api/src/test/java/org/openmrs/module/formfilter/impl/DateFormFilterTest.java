@@ -28,7 +28,7 @@ public class DateFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void testShouldDisplayForm()
+	public void shouldDisplayForm()
 	{
 		DateFormFilter dateFormFilter=new DateFormFilter("date=01/01/2000&show=after");
 				

@@ -30,12 +30,18 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 
 	protected Log log = LogFactory.getLog(getClass());
 	
-	//Constructors
-	
+	/**
+	 * Default Constructor.	
+	 */
 	public PrivilegeFormFilter(){
 		
 	}
 	
+	/**
+	 * Constructor sets this class field values.
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 * Example: privilege=Add Form  
+	 */
 	public PrivilegeFormFilter(String properties){
 		String str[] = properties.split("=");
 		try {
@@ -62,11 +68,14 @@ public class PrivilegeFormFilter implements FormFilterHandler {
     	this.privilege = privilege;
     }
 
-    /**
-     * @return True ,if user has specified privilege.
-     * False,if user does not have specified privilege. 
+    /**      
      * 
      * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
+     * @return True ,if user has specified privilege.
+     * @return False,if user does not have specified privilege.
+     * 
+     * @should display form when user has mentioned privilege.
+     * @should not display form when user does not have mentioned privilege.  
      */
 	@Override
     public boolean shouldDisplayForm(Patient p, User u) {

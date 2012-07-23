@@ -96,6 +96,9 @@ public class AgeFormFilter implements FormFilterHandler {
      * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
      * @return True , if patient age lies between minimumAge and maximumAge.
      * @return False, if patient age does not between minimumAge and maximumAge.
+     * 
+     * @should display form when patient age lies between filter minimum and maximum age values.
+     * @should not display form when patient age does not lie between filter minimum and maximum age values.
      */
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {

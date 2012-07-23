@@ -77,9 +77,11 @@ public class GenderFormFilter implements FormFilterHandler {
     /**
      *  
      * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * 
      * @return true , if patient gender value match with this.gender
-     * @return false, if patient gender value does not match with this.gender 
+     * @return false, if patient gender value does not match with this.gender
+     * 
+     *  @should display form when filter gender match with patient gender.
+     *  @should not display form when filter gender does not match with patient gender.
      */
     @Override
     public boolean shouldDisplayForm(Patient p, User u) {

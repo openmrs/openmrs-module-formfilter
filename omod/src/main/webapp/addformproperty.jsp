@@ -246,7 +246,7 @@
 		  <select id="cohort" name="cohort" >
 		  <option></option>
 		     <c:forEach var="item" items="${cohorts}">
-		       <option value="${item.cohortId}" <c:if test="${properties.cohortId == item.cohortId}"> selected="selected"</c:if>  >${item.name}</option>
+		       <option value="${item.name}" <c:if test="${properties.cohort == item.name}"> selected="selected"</c:if>  >${item.name}</option>
 		     </c:forEach>
 		  </select>
 		  <span id="cohort_error"  ></span>		  
@@ -324,7 +324,7 @@
 		</c:choose>
 		
 		<c:choose>
-		<c:when test="${empty properties.cohortId}" >
+		<c:when test="${empty properties.cohort}" >
 			$j('#CohortProperty').hide();
 		</c:when>
 		<c:otherwise>

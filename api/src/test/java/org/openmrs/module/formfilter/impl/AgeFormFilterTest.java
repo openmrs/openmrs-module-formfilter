@@ -30,7 +30,7 @@ public class AgeFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void testShouldDisplayForm()
+	public void shouldDisplayForm()
 	{
 		AgeFormFilter ageFormFilter=new AgeFormFilter("minimumAge=10&maximumAge=30");
 		

@@ -127,7 +127,7 @@ public class AddFormFilterPropertyController {
         	formFilterProperty.setProperties("privilege="+request.getParameter("privilege"));
         }else if(propertyType.equalsIgnoreCase("CohortProperty")){        	
         	formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.CohortFormFilter");
-        	formFilterProperty.setProperties("cohortId="+request.getParameter("cohort"));
+        	formFilterProperty.setProperties("cohort="+request.getParameter("cohort"));
         }
 		
 		//if id of formFilterProperty object is 0 , add filter as new or else update it.

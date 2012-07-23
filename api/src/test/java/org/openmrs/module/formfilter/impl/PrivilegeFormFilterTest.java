@@ -30,7 +30,7 @@ public class PrivilegeFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void testShouldDisplayForm()
+	public void shouldDisplayForm()
 	{
 		PrivilegeFormFilter privilegeFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
 		

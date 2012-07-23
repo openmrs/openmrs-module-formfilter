@@ -32,10 +32,44 @@
 					<td>${filter.filterName}</td>
 					<td>${filter.filterDescription}</td>
 					<td>
+					
 					<c:forTokens items="${filter.properties}" delims="&" var="prop" varStatus="status">
-					 <c:set var="prop_detail" value="${fn:split(prop, '=')}" />
-					 <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>					 
+					
+					<c:set var="prop_detail" value="${fn:split(prop, '=')}" />
+									
+					<c:choose>
+							<c:when test="${prop_detail[0] == 'minimumAge' || prop_detail[0]=='maximumAge' }">
+								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
+							</c:when>
+							
+							<c:when test="${prop_detail[0]== 'gender' }" >
+								<spring:message code="formfilter.${prop_detail[0]}" /> = <spring:message code="formfilter.${prop_detail[1]}" /><br/>
+							</c:when>
+							
+							<c:when test="${prop_detail[0]=='date' || prop_detail[0]=='show' }" >
+								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
+							</c:when>
+							
+							<c:when test="${prop_detail[0]=='role'}" >
+							    <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>								
+							</c:when>
+							
+							<c:when test="${prop_detail[0]=='privilege'}" >
+								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
+							</c:when>
+							
+							<c:when test="${prop_detail[0]=='cohort'}" >
+							    <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
+							</c:when>
+							<c:otherwise>
+					  		
+							</c:otherwise>
+					</c:choose>
+									
+									
 					</c:forTokens>
+					
+					
 					</td>
 					<td>
 					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}"><spring:message code="formfilter.delete" /></a>

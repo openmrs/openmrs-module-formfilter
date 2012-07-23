@@ -22,42 +22,39 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
  * This test validates CohortFormFilter class.
+ * 
  * @author Goutham.Vasireddi
  */
-
 public class CohortFormFilterTest extends BaseModuleContextSensitiveTest {
-
+	
 	@Before
-	public void loadDataSet() throws Exception{
+	public void loadDataSet() throws Exception {
 		executeDataSet("org/openmrs/module/formfilter/test/include/cohortTestDataSyncCreateTest.xml");
 	}
 	
-	
 	/**
 	 * Testing the condition to show a form
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void testShouldDisplayForm() 
-	{	
-		CohortFormFilter genderFormFilter=new CohortFormFilter("cohortId=1");		
-		Patient patient=new Patient(3);							
-		Assert.assertTrue("Patient is defined in mentioned cohort.",genderFormFilter.shouldDisplayForm(patient, new User()));			
-	
+	public void shouldDisplayForm() {
+		CohortFormFilter cohortFormFilter = new CohortFormFilter("cohort=male cohort");
+		Patient patient = new Patient(3);
+		Assert.assertTrue("Patient is defined in mentioned cohort.", cohortFormFilter.shouldDisplayForm(patient, new User()));
+		
 	}
 	
 	/**
 	 * Testing the condition to not show a form.
 	 */
 	@Test
-	public void shouldNotDisplayForm()
-	{
-		CohortFormFilter genderFormFilter=new CohortFormFilter("cohortId=1");
-		Patient patient=new Patient(2);				
-		Assert.assertFalse("Patient is not defined in mentioned cohort.",genderFormFilter.shouldDisplayForm(patient, new User()));			
-	
+	public void shouldNotDisplayForm() {
+		CohortFormFilter cohortFormFilter = new CohortFormFilter("cohort=male cohort");
+		Patient patient = new Patient(2);
+		Assert.assertFalse("Patient is not defined in mentioned cohort.",
+		    cohortFormFilter.shouldDisplayForm(patient, new User()));
+		
 	}
-
-	
 	
 }
