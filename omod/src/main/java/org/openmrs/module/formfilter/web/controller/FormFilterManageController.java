@@ -13,7 +13,6 @@
  */
 package org.openmrs.module.formfilter.web.controller;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,15 +31,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
 public class FormFilterManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-
 	
 	/**
-	 * 
 	 * Handles request to show forms list.
 	 * 
 	 * @param model
@@ -49,7 +45,7 @@ public class FormFilterManageController {
 	public void manage(ModelMap model) {
 		
 		FormEntryContext fec = new FormEntryContext(Context.getAuthenticatedUser().getPerson());
-		List<Form> formList=new ArrayList<Form>();
+		List<Form> formList = new ArrayList<Form>();
 		
 		List<Extension> handlers = ModuleFactory.getExtensions("org.openmrs.module.web.extension.FormEntryHandler",
 		    MEDIA_TYPE.html);
@@ -59,7 +55,7 @@ public class FormFilterManageController {
 				Collection<Form> toEnter = handler.getFormsModuleCanEnter(fec);
 				if (toEnter != null) {
 					for (Form form : toEnter) {
-						 formList.add(form);
+						formList.add(form);
 						
 					}
 				}

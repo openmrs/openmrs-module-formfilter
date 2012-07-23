@@ -21,71 +21,72 @@ import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.api.CohortService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.formfilter.FormFilterHandler;;
+import org.openmrs.module.formfilter.FormFilterHandler;
+
+;
 
 /**
  * Form Filter based on patient defined in cohort.
  */
 public class CohortFormFilter implements FormFilterHandler {
-
+	
 	protected Log log = LogFactory.getLog(getClass());
 	
 	/**
 	 * Default Constructor.
 	 */
-	public CohortFormFilter(){
+	public CohortFormFilter() {
 		
 	}
 	
 	/**
 	 * Constructor sets class field values.
-	 * @param properties ,string property from FormFilterProperty class in key=value based format 
-	 * Example: cohort=Male Cohort  
+	 * 
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 *            Example: cohort=Male Cohort
 	 */
-	public CohortFormFilter(String properties){
+	public CohortFormFilter(String properties) {
 		for (String string : properties.split("&")) {
-	        String str[]=string.split("=");
-	        try {
-	            Field field=this.getClass().getDeclaredField(str[0]);
-	            field.set(this, (Object)str[1]);
-            }catch (Exception e) {
-            	log.info(e);
-            }
-		}	
-
+			String str[] = string.split("=");
+			try {
+				Field field = this.getClass().getDeclaredField(str[0]);
+				field.set(this, (Object) str[1]);
+			}
+			catch (Exception e) {
+				log.info(e);
+			}
+		}
+		
 	}
 	
 	private String cohort;
 	
-		
-    public String getCohort() {
-    	return cohort;
-    }
-
+	public String getCohort() {
+		return cohort;
+	}
 	
-    public void setCohort(String cohortName) {
-    	this.cohort = cohortName;
-    }
-
-    /**
-     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * @param p , patient on whos dashboard forms are listed.
-     * @param u , user viewing the list on patient dashboard.
-     * @return True if the patient is defined in filter cohort otherwise False.
-     * 
-     * @should display form when patient is defined in mentioned cohort.
-     * @should not display form when patient is not defined in mentioned cohort.
-     */
+	public void setCohort(String cohortName) {
+		this.cohort = cohortName;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
+	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
+	 * @return True if the patient is defined in filter cohort otherwise False.
+	 * @should display form when patient is defined in mentioned cohort.
+	 * @should not display form when patient is not defined in mentioned cohort.
+	 */
 	@Override
-    public boolean shouldDisplayForm(Patient p, User u) {
-	    // TODO Auto-generated method stub
-		CohortService cohortService=Context.getCohortService();
-		Cohort assignedCohort=cohortService.getCohort(cohort);
-		if(assignedCohort.contains(p))
-		{
+	public boolean shouldDisplayForm(Patient p, User u) {
+		// TODO Auto-generated method stub
+		CohortService cohortService = Context.getCohortService();
+		Cohort assignedCohort = cohortService.getCohort(cohort);
+		if (assignedCohort.contains(p)) {
 			return true;
-		}		
-	    return false;
-    }
-
+		}
+		return false;
+	}
+	
 }

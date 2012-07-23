@@ -17,16 +17,13 @@ import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 
 /**
- *This class holds filter property values related to {@link FormFilter}.
+ * This class holds filter property values related to {@link FormFilter}.
  */
-public class FormFilterProperty extends BaseOpenmrsObject implements Serializable   {
-
+public class FormFilterProperty extends BaseOpenmrsObject implements Serializable {
 	
-    private static final long serialVersionUID = 1L;
-
-
+	private static final long serialVersionUID = 1L;
+	
 	private int formFilterPropertyId;
-	
 	
 	private String className;
 	
@@ -36,72 +33,56 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	private String filterDescription;
 	
+	public int getFormFilterPropertyId() {
+		return formFilterPropertyId;
+	}
 	
+	public void setFormFilterPropertyId(int formFilterPropertyId) {
+		this.formFilterPropertyId = formFilterPropertyId;
+	}
 	
-
+	public String getClassName() {
+		return className;
+	}
 	
-    public int getFormFilterPropertyId() {
-    	return formFilterPropertyId;
-    }
-
+	public void setClassName(String className) {
+		this.className = className;
+	}
 	
-    public void setFormFilterPropertyId(int formFilterPropertyId) {
-    	this.formFilterPropertyId = formFilterPropertyId;
-    }
-
+	public String getProperties() {
+		return properties;
+	}
 	
-    public String getClassName() {
-    	return className;
-    }
-
+	public void setProperties(String properties) {
+		this.properties = properties;
+	}
 	
-    public void setClassName(String className) {
-    	this.className = className;
-    }
-
+	public String getFilterName() {
+		return filterName;
+	}
 	
-    public String getProperties() {
-    	return properties;
-    }
-
+	public void setFilterName(String filterName) {
+		this.filterName = filterName;
+	}
 	
-    public void setProperties(String properties) {
-    	this.properties = properties;
-    }
-
+	public String getFilterDescription() {
+		return filterDescription;
+	}
 	
-    public String getFilterName() {
-    	return filterName;
-    }
-
+	public void setFilterDescription(String filterDescription) {
+		this.filterDescription = filterDescription;
+	}
 	
-    public void setFilterName(String filterName) {
-    	this.filterName = filterName;
-    }
-
-	
-    public String getFilterDescription() {
-    	return filterDescription;
-    }
-
-	
-    public void setFilterDescription(String filterDescription) {
-    	this.filterDescription = filterDescription;
-    }
-
 	@Override
-    public Integer getId() {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
-
-	@Override
-    public void setId(Integer arg0) {
-	    // TODO Auto-generated method stub
-	    
-    }
-
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-    	
+	@Override
+	public void setId(Integer arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

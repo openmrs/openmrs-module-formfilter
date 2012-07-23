@@ -15,12 +15,10 @@ package org.openmrs.module.formfilter.api.impl;
 
 import java.util.UUID;
 
-import org.openmrs.Form;
-import org.openmrs.api.FormService;
-import org.openmrs.api.context.Context;
-import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Form;
+import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
@@ -36,111 +34,103 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	private FormFilterDAO dao;
 	
 	/**
-     * @param dao the dao to set
-     */
-    public void setDao(FormFilterDAO dao) {
-	    this.dao = dao;
-    }
-    
-    /**
-     * @return the dao
-     */
-    public FormFilterDAO getDao() {
-	    return dao;
-    }
-
-    
-    /**
-     * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
-     */
+	 * @param dao the dao to set
+	 */
+	public void setDao(FormFilterDAO dao) {
+		this.dao = dao;
+	}
+	
+	/**
+	 * @return the dao
+	 */
+	public FormFilterDAO getDao() {
+		return dao;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
+	 */
 	@Override
-    public void saveFormFilter(FormFilter formFilter) {
-	    // TODO Auto-generated method stub
+	public void saveFormFilter(FormFilter formFilter) {
+		// TODO Auto-generated method stub
 		
 		formFilter.setUuid(UUID.randomUUID().toString());
 		dao.saveFormFilter(formFilter);
-    }
-
+	}
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(org.openmrs.Form)
 	 */
 	@Override
-    public FormFilter getFormFilter(Form form) {
-	    // TODO Auto-generated method stub
+	public FormFilter getFormFilter(Form form) {
+		// TODO Auto-generated method stub
 		
 		FormFilter formFilter;
 		try {
 			formFilter = dao.getFormFilter(form);
-		    
+			
 		}
 		catch (IndexOutOfBoundsException e) {
 			// TODO: handle exception
 			
-			formFilter=new FormFilter();
+			formFilter = new FormFilter();
 			formFilter.setForm(form);
 			formFilter.setUuid(UUID.randomUUID().toString());
 			dao.saveFormFilter(formFilter);
 			formFilter = dao.getFormFilter(form);
-		}	     
-				
-	    return formFilter;
-    }
-
+		}
+		
+		return formFilter;
+	}
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(int)
 	 */
 	@Override
-    public FormFilter getFormFilter(int formFilterId) {
-	    // TODO Auto-generated method stub
-	    return dao.getFormFilter(formFilterId);
-    }
-
+	public FormFilter getFormFilter(int formFilterId) {
+		// TODO Auto-generated method stub
+		return dao.getFormFilter(formFilterId);
+	}
 	
 	/**
-     * @see org.openmrs.module.formfilter.api.FormFilterService#AddFormFilterProperty(int, org.openmrs.module.formfilter.FormFilterProperty)
-     */
-    @Override
-    public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty) {
-	    // TODO Auto-generated method stub
-    	FormFilter formFilter=dao.getFormFilter(formFilterId);
-    	formFilterProperty.setUuid(UUID.randomUUID().toString());
-    	formFilter.getFormFilterProperties().add(formFilterProperty);
-    	dao.saveFormFilter(formFilter);
-    	
-	    
-    }
-
-    /**
-     * 
-     * @see org.openmrs.module.formfilter.api.FormFilterService#purgeFormFilterProperty(int)
-     */
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#AddFormFilterProperty(int,
+	 *      org.openmrs.module.formfilter.FormFilterProperty)
+	 */
+	@Override
+	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty) {
+		// TODO Auto-generated method stub
+		FormFilter formFilter = dao.getFormFilter(formFilterId);
+		formFilterProperty.setUuid(UUID.randomUUID().toString());
+		formFilter.getFormFilterProperties().add(formFilterProperty);
+		dao.saveFormFilter(formFilter);
+		
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#purgeFormFilterProperty(int)
+	 */
 	@Override
 	public void purgeFormFilterProperty(int formFilterPropertyId) {
-	    // TODO Auto-generated method stub		
-	    dao.purgeFormFilter(formFilterPropertyId);
-    }
-
+		// TODO Auto-generated method stub		
+		dao.purgeFormFilter(formFilterPropertyId);
+	}
 	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilterProperty(int)
 	 */
 	@Override
-    public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
-	    // TODO Auto-generated method stub
-	    return dao.getFormFilterProperty(formFilterPropertyId);
+	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
+		// TODO Auto-generated method stub
+		return dao.getFormFilterProperty(formFilterPropertyId);
 	}
-
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
 	 */
 	@Override
-    public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
-	    // TODO Auto-generated method stub
+	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
+		// TODO Auto-generated method stub
 		dao.updateFormFilterProperty(formFilterProperty);
-	    
-    }
+		
+	}
 }

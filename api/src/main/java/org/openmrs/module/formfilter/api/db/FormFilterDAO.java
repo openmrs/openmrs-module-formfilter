@@ -19,15 +19,15 @@ import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
 
 /**
- *  Database methods for {@link FormFilterService}.
+ * Database methods for {@link FormFilterService}.
  */
 public interface FormFilterDAO {
-	
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilter(FormFilter)
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(Form)
-	 * @see org.openmrs.module.formfilter.api.FormFilterService#addFormFilterProperty(int, FormFilterProperty)
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#addFormFilterProperty(int,
+	 *      FormFilterProperty)
 	 */
 	public void saveFormFilter(FormFilter formFilter);
 	
@@ -55,6 +55,5 @@ public interface FormFilterDAO {
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(FormFilterProperty)
 	 */
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
-	
 	
 }

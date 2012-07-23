@@ -22,6 +22,7 @@ import org.openmrs.User;
 
 /**
  * This test validates AgeFormFilter class.
+ * 
  * @author Goutham.Vasireddi
  */
 public class AgeFormFilterTest {
@@ -30,30 +31,27 @@ public class AgeFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void shouldDisplayForm()
-	{
-		AgeFormFilter ageFormFilter=new AgeFormFilter("minimumAge=10&maximumAge=30");
+	public void shouldDisplayForm() {
+		AgeFormFilter ageFormFilter = new AgeFormFilter("minimumAge=10&maximumAge=30");
 		
-		Patient patient=new Patient();
-		patient.setBirthdateFromAge(20, new Date());		
-			
-		Assert.assertTrue("Patient age should lie between specified minimum age and maximum age.",ageFormFilter.shouldDisplayForm(patient, new User()));			
-	
+		Patient patient = new Patient();
+		patient.setBirthdateFromAge(20, new Date());
+		
+		Assert.assertTrue("Patient age should lie between specified minimum age and maximum age.",
+		    ageFormFilter.shouldDisplayForm(patient, new User()));
+		
 	}
 	
 	/**
 	 * Testing the condition to not show a form.
 	 */
 	@Test
-	public void shouldNotDisplayForm()
-	{
-		AgeFormFilter ageFormFilter=new AgeFormFilter("minimumAge=10&maximumAge=30");
-		Patient patient=new Patient();
+	public void shouldNotDisplayForm() {
+		AgeFormFilter ageFormFilter = new AgeFormFilter("minimumAge=10&maximumAge=30");
+		Patient patient = new Patient();
 		patient.setBirthdateFromAge(2, new Date());
-		Assert.assertFalse("Patient age does not lie between specified minimum age and maximum age.",ageFormFilter.shouldDisplayForm(patient, new User()));
+		Assert.assertFalse("Patient age does not lie between specified minimum age and maximum age.",
+		    ageFormFilter.shouldDisplayForm(patient, new User()));
 	}
-
 	
-
-
 }

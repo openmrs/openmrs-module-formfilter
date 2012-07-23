@@ -33,84 +33,77 @@ public class DateFormFilter implements FormFilterHandler {
 	/**
 	 * Default Constructor
 	 */
-	public DateFormFilter(){
+	public DateFormFilter() {
 		
 	}
 	
 	/**
 	 * Constructor sets this class field values.
+	 * 
 	 * @param properties ,string property from FormFilterProperty class in key=value based format
-	 * Example: date=20/10/2012&show=before  
+	 *            Example: date=20/10/2012&show=before
 	 */
-	public DateFormFilter(String properties){
+	public DateFormFilter(String properties) {
 		
 		for (String string : properties.split("&")) {
-	        String str[]=string.split("=");
-	        try {
-	            Field field=this.getClass().getDeclaredField(str[0]);
-	            field.set(this, (Object)str[1]);
-            }catch (Exception e) {        
-            	log.error("Error while setting filter properties:",e);
-            }
+			String str[] = string.split("=");
+			try {
+				Field field = this.getClass().getDeclaredField(str[0]);
+				field.set(this, (Object) str[1]);
+			}
+			catch (Exception e) {
+				log.error("Error while setting filter properties:", e);
+			}
 		}
 	}
 	
-
 	private String date;
 	
 	private String show;
-		
-    public String getDate() {
-    	return date;
-    }
-
-
 	
-    public void setDate(String date) {
-    	this.date = date;
-    }
-
-
+	public String getDate() {
+		return date;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public String getShow() {
-    	return show;
-    }
-
+		return show;
+	}
 	
-    public void setShow(String show) {
-    	this.show = show;
-    }
-
-
-
-    /**
-     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * @return True , if current date fall before/after the specified filter date.
-     * @return False, if current date does not fall before/after the specified filter date.
-     * 
-     * @should display form when current date is before/after mentioned filter date.
-     * @should not display form when current date is not before/after mentioned filter date.
-     */
+	public void setShow(String show) {
+		this.show = show;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
+	 *      org.openmrs.User)
+	 * @return True , if current date fall before/after the specified filter date.
+	 * @return False, if current date does not fall before/after the specified filter date.
+	 * @should display form when current date is before/after mentioned filter date.
+	 * @should not display form when current date is not before/after mentioned filter date.
+	 */
 	@Override
-    public boolean shouldDisplayForm(Patient p, User u) {
-		SimpleDateFormat odf=new SimpleDateFormat("dd/MM/yyyy");
-		Date filterDate=new Date();
+	public boolean shouldDisplayForm(Patient p, User u) {
+		SimpleDateFormat odf = new SimpleDateFormat("dd/MM/yyyy");
+		Date filterDate = new Date();
 		
 		try {
-	        filterDate=odf.parse(date);
-        }
-        catch (Exception e) {
-	        // TODO Auto-generated catch block
-	        log.error(e);
-        }
+			filterDate = odf.parse(date);
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
 		
-        if(show.equalsIgnoreCase("before") &&  new Date().before(filterDate) )
-		{
+		if (show.equalsIgnoreCase("before") && new Date().before(filterDate)) {
 			return true;
-		}else if(show.equalsIgnoreCase("after") && new Date().after(filterDate))
-		{
+		} else if (show.equalsIgnoreCase("after") && new Date().after(filterDate)) {
 			return true;
-		}				
+		}
 		return false;
-    }
-
+	}
+	
 }

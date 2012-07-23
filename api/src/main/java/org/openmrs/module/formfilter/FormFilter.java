@@ -18,68 +18,54 @@ import java.util.Set;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
 
-
-
 /**
- * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
+ * It is a model class. It should extend either {@link BaseOpenmrsObject} or
+ * {@link BaseOpenmrsMetadata}.
  */
 public class FormFilter extends BaseOpenmrsObject implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 	
 	private int formFilterId;
 	
-	private Form form;	
-    
-    private Set<FormFilterProperty> formFilterProperties;
-
+	private Form form;
 	
-    public int getFormFilterId() {
-    	return formFilterId;
-    }
-
+	private Set<FormFilterProperty> formFilterProperties;
 	
-    public void setFormFilterId(int formFilterId) {
-    	this.formFilterId = formFilterId;
-    }
-
+	public int getFormFilterId() {
+		return formFilterId;
+	}
 	
-    public Form getForm() {
-    	return form;
-    }
-
+	public void setFormFilterId(int formFilterId) {
+		this.formFilterId = formFilterId;
+	}
 	
-    public void setForm(Form form) {
-    	this.form = form;
-    }
-
+	public Form getForm() {
+		return form;
+	}
 	
-    public Set<FormFilterProperty> getFormFilterProperties() {
-    	return formFilterProperties;
-    }
-
+	public void setForm(Form form) {
+		this.form = form;
+	}
 	
-    public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
-    	this.formFilterProperties = formFilterProperties;
-    }
-
-
+	public Set<FormFilterProperty> getFormFilterProperties() {
+		return formFilterProperties;
+	}
+	
+	public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
+		this.formFilterProperties = formFilterProperties;
+	}
+	
 	@Override
-    public Integer getId() {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
-
-
-	@Override
-    public void setId(Integer arg0) {
-	    // TODO Auto-generated method stub
-	    
-    }
-    
-         
-    
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-
+	@Override
+	public void setId(Integer arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

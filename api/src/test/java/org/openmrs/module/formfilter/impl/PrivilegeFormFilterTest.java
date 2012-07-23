@@ -22,6 +22,7 @@ import org.openmrs.User;
 
 /**
  * This test validates PrivilegeFormFilter class.
+ * 
  * @author Goutham.Vasireddi
  */
 public class PrivilegeFormFilterTest {
@@ -30,29 +31,27 @@ public class PrivilegeFormFilterTest {
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void shouldDisplayForm()
-	{
-		PrivilegeFormFilter privilegeFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
+	public void shouldDisplayForm() {
+		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
 		
-		User user=new User();
-		Role role=new Role("Anonymous");
+		User user = new User();
+		Role role = new Role("Anonymous");
 		role.addPrivilege(new Privilege("Manage Concept Classes"));
 		user.addRole(role);
 		
-		Assert.assertTrue("Assigned filter privilege  does not match users privileges.",privilegeFormFilter.shouldDisplayForm(new Patient(), user));
-				
-	
+		Assert.assertTrue("Assigned filter privilege  does not match users privileges.",
+		    privilegeFormFilter.shouldDisplayForm(new Patient(), user));
+		
 	}
 	
 	/**
 	 * Testing the condition to not show a form.
 	 */
 	@Test
-	public void shouldNotDisplayForm()
-	{
-		PrivilegeFormFilter privilegeFormFilter=new PrivilegeFormFilter("privilege=Manage Concept Classes");
-		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",privilegeFormFilter.shouldDisplayForm(new Patient(), new User()));
+	public void shouldNotDisplayForm() {
+		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
+		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",
+		    privilegeFormFilter.shouldDisplayForm(new Patient(), new User()));
 	}
 	
-
 }

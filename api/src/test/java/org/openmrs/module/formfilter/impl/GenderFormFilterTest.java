@@ -20,38 +20,38 @@ import org.openmrs.User;
 
 /**
  * This test validates GenderFormFilter class.
+ * 
  * @author Goutham.Vasireddi
  */
 public class GenderFormFilterTest {
-
+	
 	/**
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void shouldDisplayForm()
-	{
-		GenderFormFilter genderFormFilter=new GenderFormFilter("gender=M");
+	public void shouldDisplayForm() {
+		GenderFormFilter genderFormFilter = new GenderFormFilter("gender=M");
 		
-		Patient patient=new Patient();
+		Patient patient = new Patient();
 		patient.setGender("M");
-			
-		Assert.assertTrue("Patient gender matches with filter gender.",genderFormFilter.shouldDisplayForm(patient, new User()));			
-	
+		
+		Assert.assertTrue("Patient gender matches with filter gender.",
+		    genderFormFilter.shouldDisplayForm(patient, new User()));
+		
 	}
 	
 	/**
 	 * Testing the condition to not show a form.
 	 */
 	@Test
-	public void shouldNotDisplayForm()
-	{
-		GenderFormFilter genderFormFilter=new GenderFormFilter("gender=F");
+	public void shouldNotDisplayForm() {
+		GenderFormFilter genderFormFilter = new GenderFormFilter("gender=F");
 		
-		Patient patient=new Patient();
+		Patient patient = new Patient();
 		patient.setGender("M");
-			
-		Assert.assertFalse("Patient gender does not matches with filter gender.",genderFormFilter.shouldDisplayForm(patient, new User()));
+		
+		Assert.assertFalse("Patient gender does not matches with filter gender.",
+		    genderFormFilter.shouldDisplayForm(patient, new User()));
 	}
-
 	
 }

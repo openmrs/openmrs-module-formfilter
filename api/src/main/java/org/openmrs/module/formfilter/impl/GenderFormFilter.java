@@ -25,34 +25,35 @@ import org.openmrs.module.formfilter.FormFilterHandler;
  * This class provides gender based form filter.
  */
 public class GenderFormFilter implements FormFilterHandler {
-
+	
 	protected Log log = LogFactory.getLog(getClass());
 	
 	/**
 	 * Default Constructor
 	 */
-	public GenderFormFilter(){
+	public GenderFormFilter() {
 		
 	}
 	
 	/**
 	 * Constructor sets this class field values.
+	 * 
 	 * @param properties ,string property from FormFilterProperty class in key=value based format
-	 * Example: gender=U  
+	 *            Example: gender=U
 	 */
-	public GenderFormFilter(String properties){
+	public GenderFormFilter(String properties) {
 		
 		for (String string : properties.split("&")) {
-	        String str[]=string.split("=");
-	        try {
-	            Field field=this.getClass().getDeclaredField(str[0]);
-	            field.set(this, (Object)str[1]);
-            }catch (Exception e) {        
-            	log.info(e); 
-
-            }
+			String str[] = string.split("=");
+			try {
+				Field field = this.getClass().getDeclaredField(str[0]);
+				field.set(this, (Object) str[1]);
+			}
+			catch (Exception e) {
+				log.info(e);
+				
+			}
 		}
-
 		
 	}
 	
@@ -61,38 +62,37 @@ public class GenderFormFilter implements FormFilterHandler {
 	/**
 	 * @return gender value
 	 */
-    public String getGender() {
-    	return gender;
-    }
-
+	public String getGender() {
+		return gender;
+	}
+	
 	/**
 	 * Sets gender value
 	 * 
 	 * @param gender
 	 */
-    public void setGender(String gender) {
-    	this.gender = gender;
-    }
-    
-    /**
-     *  
-     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * @return true , if patient gender value match with this.gender
-     * @return false, if patient gender value does not match with this.gender
-     * 
-     *  @should display form when filter gender match with patient gender.
-     *  @should not display form when filter gender does not match with patient gender.
-     */
-    @Override
-    public boolean shouldDisplayForm(Patient p, User u) {
-	    // TODO Auto-generated method stub
-		if(getGender().equalsIgnoreCase("U") && p.getGender()== null)
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
+	 *      org.openmrs.User)
+	 * @return true , if patient gender value match with this.gender
+	 * @return false, if patient gender value does not match with this.gender
+	 * @should display form when filter gender match with patient gender.
+	 * @should not display form when filter gender does not match with patient gender.
+	 */
+	@Override
+	public boolean shouldDisplayForm(Patient p, User u) {
+		// TODO Auto-generated method stub
+		if (getGender().equalsIgnoreCase("U") && p.getGender() == null)
 			return true;
 		
 		if (p.getGender().equalsIgnoreCase(gender))
-	        return true;
-        
-	    return false;
-    }
-
+			return true;
+		
+		return false;
+	}
+	
 }

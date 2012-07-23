@@ -20,34 +20,33 @@ import org.openmrs.User;
 
 /**
  * This test validates DateFormFilter class.
+ * 
  * @author Goutham.Vasireddi
  */
 public class DateFormFilterTest {
-
+	
 	/**
 	 * Testing the condition to show a form
 	 */
 	@Test
-	public void shouldDisplayForm()
-	{
-		DateFormFilter dateFormFilter=new DateFormFilter("date=01/01/2000&show=after");
-				
-		Assert.assertTrue("Todays date should be after filter date.",dateFormFilter.shouldDisplayForm(new Patient(), new User()));			
-	
+	public void shouldDisplayForm() {
+		DateFormFilter dateFormFilter = new DateFormFilter("date=01/01/2000&show=after");
+		
+		Assert.assertTrue("Todays date should be after filter date.",
+		    dateFormFilter.shouldDisplayForm(new Patient(), new User()));
+		
 	}
 	
 	/**
 	 * Testing the condition to not show a form.
 	 */
 	@Test
-	public void shouldNotDisplayForm()
-	{
-		DateFormFilter dateFormFilter=new DateFormFilter("date=01/01/2000&show=before");
+	public void shouldNotDisplayForm() {
+		DateFormFilter dateFormFilter = new DateFormFilter("date=01/01/2000&show=before");
 		
-		Assert.assertFalse("Todays date is after the filter date.",dateFormFilter.shouldDisplayForm(new Patient(), new User()));			
-
+		Assert.assertFalse("Todays date is after the filter date.",
+		    dateFormFilter.shouldDisplayForm(new Patient(), new User()));
+		
 	}
-
-
 	
 }

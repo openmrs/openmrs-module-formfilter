@@ -22,7 +22,7 @@ import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
- * This class will provide patient age based form filter. 
+ * This class will provide patient age based form filter.
  */
 public class AgeFormFilter implements FormFilterHandler {
 	
@@ -31,84 +31,83 @@ public class AgeFormFilter implements FormFilterHandler {
 	/**
 	 * Default Constructor
 	 */
-	public AgeFormFilter()
-	{
+	public AgeFormFilter() {
 		
 	}
 	
 	/**
 	 * Constructor sets class field values.
-	 * @param properties ,string property from FormFilterProperty class in key=value based format 
-	 * Example: minimumAge=value&maximumAge=value  
+	 * 
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 *            Example: minimumAge=value&maximumAge=value
 	 */
-	public AgeFormFilter(String properties){
+	public AgeFormFilter(String properties) {
 		for (String string : properties.split("&")) {
-	        String str[]=string.split("=");
-	        try {
-	            Field field=this.getClass().getDeclaredField(str[0]);
-	            field.set(this, (Object)Integer.parseInt(str[1]));
-            }catch (Exception e) {
-            	log.info(e);
-            }
-		}	
-
+			String str[] = string.split("=");
+			try {
+				Field field = this.getClass().getDeclaredField(str[0]);
+				field.set(this, (Object) Integer.parseInt(str[1]));
+			}
+			catch (Exception e) {
+				log.info(e);
+			}
+		}
+		
 	}
 	
 	private int minimumAge;
 	
 	private int maximumAge;
 	
-	
 	/**
 	 * @return minimumAge
 	 */
-    public int getMinimumAge() {
-    	return minimumAge;
-    }
-
-    /**
-	 * Sets maximumAge
-	 * 
-	 * @param maximumAge
-	 */
-    public void setMinimumAge(int minimumAge) {
-    	this.minimumAge = minimumAge;
-    }
-
+	public int getMinimumAge() {
+		return minimumAge;
+	}
 	
-    /**
-	 * @return maximumAge
-	 */
-    public int getMaximumAge() {
-    	return maximumAge;
-    }
-
 	/**
 	 * Sets maximumAge
 	 * 
 	 * @param maximumAge
 	 */
-    public void setMaximumAge(int maximumAge) {
-    	this.maximumAge = maximumAge;
-    }
+	public void setMinimumAge(int minimumAge) {
+		this.minimumAge = minimumAge;
+	}
 	
-    /**
-     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * @return True , if patient age lies between minimumAge and maximumAge.
-     * @return False, if patient age does not between minimumAge and maximumAge.
-     * 
-     * @should display form when patient age lies between filter minimum and maximum age values.
-     * @should not display form when patient age does not lie between filter minimum and maximum age values.
-     */
-    @Override
-    public boolean shouldDisplayForm(Patient p, User u) {
-	    // TODO Auto-generated method stub
-    	
-	    if((p.getAge()>=minimumAge) && (p.getAge()<=maximumAge))
-	    {
-	    	return true;
-	    }		
-	    return false;
-    }
-
+	/**
+	 * @return maximumAge
+	 */
+	public int getMaximumAge() {
+		return maximumAge;
+	}
+	
+	/**
+	 * Sets maximumAge
+	 * 
+	 * @param maximumAge
+	 */
+	public void setMaximumAge(int maximumAge) {
+		this.maximumAge = maximumAge;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
+	 *      org.openmrs.User)
+	 * @return True , if patient age lies between minimumAge and maximumAge.
+	 * @return False, if patient age does not between minimumAge and maximumAge.
+	 * @should display form when patient age lies between filter minimum and maximum age values.
+	 * @should not display form when patient age does not lie between filter minimum and maximum age
+	 *         values.
+	 */
+	@Override
+	public boolean shouldDisplayForm(Patient p, User u) {
+		// TODO Auto-generated method stub
+		
+		if ((p.getAge() >= minimumAge) && (p.getAge() <= maximumAge)) {
+			return true;
+		}
+		return false;
+	}
+	
 }

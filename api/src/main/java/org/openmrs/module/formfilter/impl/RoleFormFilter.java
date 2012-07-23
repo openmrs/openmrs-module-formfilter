@@ -26,66 +26,62 @@ import org.openmrs.module.formfilter.FormFilterHandler;
  * Form filtering based on User roles.
  */
 public class RoleFormFilter implements FormFilterHandler {
-
+	
 	protected Log log = LogFactory.getLog(getClass());
 	
-	
 	/**
-	 * Default Constructor.	
+	 * Default Constructor.
 	 */
-	public RoleFormFilter()
-	{
+	public RoleFormFilter() {
 		
 	}
 	
 	/**
 	 * Constructor sets this class field values.
+	 * 
 	 * @param properties ,string property from FormFilterProperty class in key=value based format
-	 * Example: role=Developer  
+	 *            Example: role=Developer
 	 */
-	public RoleFormFilter(String properties){
-			
-		String str[]=properties.split("=");
-	    try {
-	          Field field=this.getClass().getDeclaredField(str[0]);
-	          field.set(this, (Object)str[1]);
-            }catch (Exception e) {
-            	log.info(e);
-            }
+	public RoleFormFilter(String properties) {
+		
+		String str[] = properties.split("=");
+		try {
+			Field field = this.getClass().getDeclaredField(str[0]);
+			field.set(this, (Object) str[1]);
+		}
+		catch (Exception e) {
+			log.info(e);
+		}
 	}
 	
 	//fields
 	
 	private String role;
 	
-		
-    public String getRole() {
-    	return role;
-    }
-
+	public String getRole() {
+		return role;
+	}
 	
-    public void setRole(String role) {
-    	this.role = role;
-    }
-
-    /**
-     * 
-     * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient, org.openmrs.User)
-     * @return True ,if user has mentioned role.
-     * @return False,if user does not have mentioned role.
-     * 
-     * @should display form when user has mentioned role.
-     * @should not display form when user does not have mentioned role.     
-     */
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
+	 *      org.openmrs.User)
+	 * @return True ,if user has mentioned role.
+	 * @return False,if user does not have mentioned role.
+	 * @should display form when user has mentioned role.
+	 * @should not display form when user does not have mentioned role.
+	 */
 	@Override
-    public boolean shouldDisplayForm(Patient p, User u) {
-	    
-		if(u.getAllRoles().contains(new Role(role)))
-		{
+	public boolean shouldDisplayForm(Patient p, User u) {
+		
+		if (u.getAllRoles().contains(new Role(role))) {
 			return true;
 		}
 		
-	    return false;
-    }
-
+		return false;
+	}
+	
 }

@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface FormFilterService extends OpenmrsService {
-     
+	
 	/**
 	 * Insert or update given form filter.
 	 * 
@@ -39,11 +39,9 @@ public interface FormFilterService extends OpenmrsService {
 	 */
 	public void saveFormFilter(FormFilter formFilter);
 	
-	
-	/** 	
-	 * Gets form filter based on form. If no form filter
-	 * is present ,will create one and return respective 
-	 * FormFilter  
+	/**
+	 * Gets form filter based on form. If no form filter is present ,will create one and return
+	 * respective FormFilter
 	 * 
 	 * @param Form
 	 * @return FormFilter
@@ -51,33 +49,29 @@ public interface FormFilterService extends OpenmrsService {
 	public FormFilter getFormFilter(Form form);
 	
 	/**
-	 * 
 	 * Get form filter based on form filter id
 	 * 
-	 * @param formFilterId 
+	 * @param formFilterId
 	 * @return FormFilter
 	 */
 	public FormFilter getFormFilter(int formFilterId);
 	
 	/**
-	 * 
-	 * Adds a new FormFilterProperty to database with respective to 
-	 * given FormFilter 
+	 * Adds a new FormFilterProperty to database with respective to given FormFilter
 	 * 
 	 * @param formFilterId , id of FormFilter to which it need to be added.
 	 * @param formFilterProperty
 	 */
-	public void addFormFilterProperty(int formFilterId,FormFilterProperty formFilterProperty);
+	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty);
 	
 	/**
-	 * Deletes Form Filter Property from database. 
+	 * Deletes Form Filter Property from database.
 	 * 
 	 * @param formFilterPropertyId
 	 */
 	public void purgeFormFilterProperty(int formFilterPropertyId);
 	
 	/**
-	 * 
 	 * Returns formFilterProperty based on its id.
 	 * 
 	 * @param formFilterPropertyId
@@ -86,14 +80,10 @@ public interface FormFilterService extends OpenmrsService {
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**
-	 * 
 	 * Updates existing FormFilterProperty
 	 * 
-	 * @param formFilterProperty 
+	 * @param formFilterProperty
 	 */
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
-
-
-	
 	
 }

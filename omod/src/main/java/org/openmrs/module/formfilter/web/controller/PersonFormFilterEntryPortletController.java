@@ -37,10 +37,9 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	
 	/**
-	 * 
-	 * @see org.openmrs.web.controller.PersonFormEntryPortletController#populateModel(javax.servlet.http.HttpServletRequest, java.util.Map)
+	 * @see org.openmrs.web.controller.PersonFormEntryPortletController#populateModel(javax.servlet.http.HttpServletRequest,
+	 *      java.util.Map)
 	 */
 	@Override
 	protected void populateModel(HttpServletRequest request, Map<String, Object> model) {
@@ -77,8 +76,7 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 		
 		if (formFilter != null) {
 			for (FormFilterProperty formFilterProperty : formFilter.getFormFilterProperties()) {
-				try 
-				{
+				try {
 					FormFilterHandler filterHandler = (FormFilterHandler) Class.forName(formFilterProperty.getClassName())
 					        .getConstructor(String.class).newInstance(formFilterProperty.getProperties());
 					if (filterHandler.shouldDisplayForm(patient, Context.getAuthenticatedUser()) == false) {

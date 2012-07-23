@@ -25,93 +25,88 @@ import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.db.FormFilterDAO;
 
 /**
- * It is a default implementation of  {@link FormFilterDAO}.
+ * It is a default implementation of {@link FormFilterDAO}.
  */
 public class HibernateFormFilterDAO implements FormFilterDAO {
+	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;
 	
 	/**
-     * @param sessionFactory the sessionFactory to set
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
-    }
-    
-	/**
-     * @return the sessionFactory
-     */
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
-    
-    /**
-     * 
-     * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
-     */
-    public void saveFormFilter(FormFilter formFilter) throws DAOException{
-    	
-    	sessionFactory.getCurrentSession().saveOrUpdate(formFilter);
-    	
-    }
-
+	 * @param sessionFactory the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
-
-    /**
-     * 
-     * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilter(org.openmrs.Form)
-     */
-	@Override
-    public FormFilter getFormFilter(Form form) {
-	    // TODO Auto-generated method stub
-		Criteria criteria=	sessionFactory.getCurrentSession().createCriteria(FormFilter.class);
-		criteria.add(Restrictions.eq("form.formId", form.getFormId()));	
-	    return (FormFilter) criteria.list().get(0);
-    }
-
 	/**
-	 * 
+	 * @return the sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
+	 */
+	public void saveFormFilter(FormFilter formFilter) throws DAOException {
+		
+		sessionFactory.getCurrentSession().saveOrUpdate(formFilter);
+		
+	}
+	
+	/**
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilter(org.openmrs.Form)
+	 */
+	@Override
+	public FormFilter getFormFilter(Form form) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(FormFilter.class);
+		criteria.add(Restrictions.eq("form.formId", form.getFormId()));
+		return (FormFilter) criteria.list().get(0);
+	}
+	
+	/**
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilter(int)
 	 */
 	@Override
-    public FormFilter getFormFilter(int formFilterId) {
-	    // TODO Auto-generated method stub
-	    return (FormFilter) sessionFactory.getCurrentSession().get(FormFilter.class, formFilterId);
-    }
-
+	public FormFilter getFormFilter(int formFilterId) {
+		// TODO Auto-generated method stub
+		return (FormFilter) sessionFactory.getCurrentSession().get(FormFilter.class, formFilterId);
+	}
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#purgeFormFilter(int)
 	 */
 	@Override
-    public void purgeFormFilter(int formFilterPropertyId) {
-	    // TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().createQuery("delete from FormFilterProperty formFilterProperty where formFilterPropertyId ="+formFilterPropertyId).executeUpdate();
+	public void purgeFormFilter(int formFilterPropertyId) {
+		// TODO Auto-generated method stub
+		sessionFactory
+		        .getCurrentSession()
+		        .createQuery(
+		            "delete from FormFilterProperty formFilterProperty where formFilterPropertyId =" + formFilterPropertyId)
+		        .executeUpdate();
 		
-	    
-    }
-
+	}
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#getFormFilterProperty(int)
 	 */
 	@Override
-    public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
-	    // TODO Auto-generated method stub
-	    return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
-    }
-
+	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
+		// TODO Auto-generated method stub
+		return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
+	}
+	
 	/**
-	 * 
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
 	 */
 	@Override
-    public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
-	    // TODO Auto-generated method stub
+	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
+		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(formFilterProperty);
-	    
-    }
-
+		
+	}
 	
 }

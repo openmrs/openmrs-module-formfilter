@@ -19,9 +19,9 @@ import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
- * Tests {@link ${FormFilterService}}.
+ * Tests {@link $ FormFilterService} .
  */
-public class  FormFilterServiceTest extends BaseModuleContextSensitiveTest {
+public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldSetupContext() {
