@@ -31,6 +31,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * Controller returns the list of forms. Ignores filters. 
+ */
 @Controller
 public class FormFilterManageController {
 	

@@ -23,16 +23,34 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * object id.
+	 */
 	private int formFilterPropertyId;
 	
+	/**
+	 * Full classified name of filter type.
+	 * Example: org.openmrs.module.formfilter.impl.AgeFormFilter 
+	 */
 	private String className;
 	
+	/**
+	 * Filter properties are stored in form of key value pair.
+	 * Example: minimumAge=10&maximumAge=30
+	 */
 	private String properties;
 	
+	/**
+	 * Filter name
+	 */
 	private String filterName;
 	
+	/**
+	 * Filter Description
+	 */
 	private String filterDescription;
 	
+	//Getters and Setters 
 	public int getFormFilterPropertyId() {
 		return formFilterPropertyId;
 	}

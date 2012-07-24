@@ -122,14 +122,14 @@
 
 
 <h2>
-<spring:message code="formfilter.formFilter" />
+<spring:message code="formfilter.addFilter" />
 </h2>
 
 
 <form method="POST" name="formfilter_form" id="formfilter_form" onsubmit="return validate_form();">
 	<table>
 		<tr>
-			<td>${formFilter.form.name}			
+			<td><h3>${formFilter.form.name}</h3>			
 			<input type="hidden" name="formFilterId" value="${formFilter.formFilterId}" />
 			<input type="hidden" name="formFilterPropertyId" value="${formFilterProperty.formFilterPropertyId}" />
 			</td>

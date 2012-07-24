@@ -2,6 +2,20 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
+<script language="JavaScript" type="text/javascript"> 
+ 
+function confirmFilterDelete(filterName) { 
+	if (confirm("You are deleting "+filterName)+" filter.") 
+	{
+		return true; 
+	} else {
+		return false;
+	}	 
+ } 
+
+</script> 
+
+
 
 <h2>
 <spring:message code="formfilter.details" />
@@ -72,7 +86,7 @@
 					
 					</td>
 					<td>
-					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}"><spring:message code="formfilter.delete" /></a>
+					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}" onClick="return confirmFilterDelete('${filter.filterName}');"><spring:message code="formfilter.delete" /></a>
 					</td>					
 				</tr>
 				</c:forEach>

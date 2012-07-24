@@ -19,18 +19,30 @@ import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
 
 /**
- * It is a model class. It should extend either {@link BaseOpenmrsObject} or
- * {@link BaseOpenmrsMetadata}.
+ * Its form filter object , each form has single form filter object. 
  */
 public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	
+	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Object id.
+	 */
 	private int formFilterId;
 	
+	/**
+	 * Form details.
+	 */
 	private Form form;
 	
+	/**
+	 * List of assigned filters to form.
+	 */
 	private Set<FormFilterProperty> formFilterProperties;
+	
+	
+	//Getters and Setters
 	
 	public int getFormFilterId() {
 		return formFilterId;
