@@ -23,10 +23,37 @@ import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
  * This class provides gender based form filter.
+ * 
+ * Form is shown on patient dashboard only if the patient gender matches with filter gender property value.  
  */
 public class GenderFormFilter implements FormFilterHandler {
 	
 	protected Log log = LogFactory.getLog(getClass());
+	
+	/**
+	 * Gender of patient.
+	 */
+	private String gender;
+	
+	//Getters and Setters
+	
+	/**
+	 * @return gender value
+	 */
+	public String getGender() {
+		return gender;
+	}
+	
+	/**
+	 * Sets gender value
+	 * 
+	 * @param gender
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	//Constructors
 	
 	/**
 	 * Default Constructor
@@ -57,23 +84,6 @@ public class GenderFormFilter implements FormFilterHandler {
 		
 	}
 	
-	private String gender;
-	
-	/**
-	 * @return gender value
-	 */
-	public String getGender() {
-		return gender;
-	}
-	
-	/**
-	 * Sets gender value
-	 * 
-	 * @param gender
-	 */
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
@@ -85,7 +95,6 @@ public class GenderFormFilter implements FormFilterHandler {
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-		// TODO Auto-generated method stub
 		if (getGender().equalsIgnoreCase("U") && p.getGender() == null)
 			return true;
 		

@@ -41,42 +41,82 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	 */
 	private Set<FormFilterProperty> formFilterProperties;
 	
+
+	//setters and getters 
 	
-	//Getters and Setters
+	/**
+	 * Getter for form filter id 
+	 * 
+	 * @return id 
+	 */
+    public int getFormFilterId() {
+    	return formFilterId;
+    }
+
+	/**
+	 * Setter form filter id.
+	 * 
+	 * @param formFilterId
+	 */
+    public void setFormFilterId(int formFilterId) {
+    	this.formFilterId = formFilterId;
+    }
+
+	/**
+	 * 
+	 * Getter for form.
+	 * 
+	 * @return form 
+	 */
+    public Form getForm() {
+    	return form;
+    }
+
+	/**
+	 * Setter for form.
+	 * 
+	 * @param form
+	 */
+    public void setForm(Form form) {
+    	this.form = form;
+    }
+
+	/**
+	 * 
+	 * Getter for form filter properties.
+	 * 
+	 * @return collection of assigned filters to form.
+	 */
+    public Set<FormFilterProperty> getFormFilterProperties() {
+    	return formFilterProperties;
+    }
+
 	
-	public int getFormFilterId() {
-		return formFilterId;
-	}
-	
-	public void setFormFilterId(int formFilterId) {
-		this.formFilterId = formFilterId;
-	}
-	
-	public Form getForm() {
-		return form;
-	}
-	
-	public void setForm(Form form) {
-		this.form = form;
-	}
-	
-	public Set<FormFilterProperty> getFormFilterProperties() {
-		return formFilterProperties;
-	}
-	
-	public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
-		this.formFilterProperties = formFilterProperties;
-	}
-	
+    /**
+     * 
+     * Getter for form filter properties.
+     * 
+     * @param collection of assigned filters to form.
+     */
+    public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
+    	this.formFilterProperties = formFilterProperties;
+    }
+
+    /**
+     * 
+     * @see org.openmrs.OpenmrsObject#getId()
+     */
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @see org.openmrs.OpenmrsObject#setId(java.lang.Integer)
+	 */
 	@Override
 	public void setId(Integer arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	

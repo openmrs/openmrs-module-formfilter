@@ -31,6 +31,9 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
+	/**
+	 * Data access object.
+	 */
 	private FormFilterDAO dao;
 	
 	/**
@@ -52,8 +55,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public void saveFormFilter(FormFilter formFilter) {
-		// TODO Auto-generated method stub
-		
 		formFilter.setUuid(UUID.randomUUID().toString());
 		dao.saveFormFilter(formFilter);
 	}
@@ -63,16 +64,12 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public FormFilter getFormFilter(Form form) {
-		// TODO Auto-generated method stub
-		
 		FormFilter formFilter;
 		try {
 			formFilter = dao.getFormFilter(form);
 			
 		}
 		catch (IndexOutOfBoundsException e) {
-			// TODO: handle exception
-			
 			formFilter = new FormFilter();
 			formFilter.setForm(form);
 			formFilter.setUuid(UUID.randomUUID().toString());
@@ -88,7 +85,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public FormFilter getFormFilter(int formFilterId) {
-		// TODO Auto-generated method stub
 		return dao.getFormFilter(formFilterId);
 	}
 	
@@ -98,7 +94,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty) {
-		// TODO Auto-generated method stub
 		FormFilter formFilter = dao.getFormFilter(formFilterId);
 		formFilterProperty.setUuid(UUID.randomUUID().toString());
 		formFilter.getFormFilterProperties().add(formFilterProperty);
@@ -111,7 +106,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public void purgeFormFilterProperty(int formFilterPropertyId) {
-		// TODO Auto-generated method stub		
 		dao.purgeFormFilter(formFilterPropertyId);
 	}
 	
@@ -120,7 +114,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
-		// TODO Auto-generated method stub
 		return dao.getFormFilterProperty(formFilterPropertyId);
 	}
 	
@@ -129,7 +122,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	 */
 	@Override
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
-		// TODO Auto-generated method stub
 		dao.updateFormFilterProperty(formFilterProperty);
 		
 	}

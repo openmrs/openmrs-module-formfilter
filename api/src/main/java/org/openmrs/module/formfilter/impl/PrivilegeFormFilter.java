@@ -25,10 +25,39 @@ import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
  * Form filter based on User privileges.
+ * Form is shown on patient dashboard only if the user has filter specific privilege.
  */
 public class PrivilegeFormFilter implements FormFilterHandler {
 	
 	protected Log log = LogFactory.getLog(getClass());
+	
+	/**
+	 * User privilege
+	 */
+	private String privilege;
+	
+	//Getters and Setters
+	
+	/**
+	 * Returns user required privilege
+	 * 
+	 * @return privilege name
+	 */
+	public String getPrivilege() {
+		return privilege;
+	}
+	
+	/**
+	 * 
+	 * Sets user required privilege.
+	 * 
+	 * @param privilege
+	 */
+	public void setPrivilege(String privilege) {
+		this.privilege = privilege;
+	}
+	
+	//Constructors	
 	
 	/**
 	 * Default Constructor.
@@ -52,16 +81,6 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 		catch (Exception e) {
 			log.info(e);
 		}
-	}
-	
-	private String privilege;
-	
-	public String getPrivilege() {
-		return privilege;
-	}
-	
-	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
 	}
 	
 	/**

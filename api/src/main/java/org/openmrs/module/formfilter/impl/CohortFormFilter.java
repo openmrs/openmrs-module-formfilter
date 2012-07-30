@@ -33,6 +33,35 @@ public class CohortFormFilter implements FormFilterHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	/**
+	 * Holds the cohort name in which the patient should be defined.
+	 */
+	private String cohort;
+	
+	//Getters and Setters
+	
+	/**
+	 * 
+	 * Returns cohort name.
+	 * 
+	 * @return cohort name type string.
+	 */
+	public String getCohort() {
+		return cohort;
+	}
+	
+	/**
+	 * 
+	 * Sets cohort name.
+	 * 
+	 * @param cohortName
+	 */
+	public void setCohort(String cohortName) {
+		this.cohort = cohortName;
+	}
+	
+	//Constructors
+	
+	/**
 	 * Default Constructor.
 	 */
 	public CohortFormFilter() {
@@ -59,16 +88,6 @@ public class CohortFormFilter implements FormFilterHandler {
 		
 	}
 	
-	private String cohort;
-	
-	public String getCohort() {
-		return cohort;
-	}
-	
-	public void setCohort(String cohortName) {
-		this.cohort = cohortName;
-	}
-	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
@@ -80,7 +99,6 @@ public class CohortFormFilter implements FormFilterHandler {
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-		// TODO Auto-generated method stub
 		CohortService cohortService = Context.getCohortService();
 		Cohort assignedCohort = cohortService.getCohort(cohort);
 		if (assignedCohort.contains(p)) {

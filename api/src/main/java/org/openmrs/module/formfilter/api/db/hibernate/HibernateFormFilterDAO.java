@@ -51,9 +51,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
 	 */
 	public void saveFormFilter(FormFilter formFilter) throws DAOException {
-		
 		sessionFactory.getCurrentSession().saveOrUpdate(formFilter);
-		
 	}
 	
 	/**
@@ -61,7 +59,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 */
 	@Override
 	public FormFilter getFormFilter(Form form) {
-		// TODO Auto-generated method stub
+
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(FormFilter.class);
 		criteria.add(Restrictions.eq("form.formId", form.getFormId()));
 		return (FormFilter) criteria.list().get(0);
@@ -72,7 +70,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 */
 	@Override
 	public FormFilter getFormFilter(int formFilterId) {
-		// TODO Auto-generated method stub
+
 		return (FormFilter) sessionFactory.getCurrentSession().get(FormFilter.class, formFilterId);
 	}
 	
@@ -81,7 +79,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 */
 	@Override
 	public void purgeFormFilter(int formFilterPropertyId) {
-		// TODO Auto-generated method stub
+
 		sessionFactory
 		        .getCurrentSession()
 		        .createQuery(
@@ -95,7 +93,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 */
 	@Override
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
-		// TODO Auto-generated method stub
+
 		return (FormFilterProperty) sessionFactory.getCurrentSession().get(FormFilterProperty.class, formFilterPropertyId);
 	}
 	
@@ -104,7 +102,7 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	 */
 	@Override
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
-		// TODO Auto-generated method stub
+		
 		sessionFactory.getCurrentSession().update(formFilterProperty);
 		
 	}

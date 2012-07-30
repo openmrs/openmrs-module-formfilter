@@ -31,7 +31,6 @@ public class FormFilterFormHeaderExt extends Extension {
      */
     @Override
     public MEDIA_TYPE getMediaType() {
-	    // TODO Auto-generated method stub
 	    return Extension.MEDIA_TYPE.html;
     }
     

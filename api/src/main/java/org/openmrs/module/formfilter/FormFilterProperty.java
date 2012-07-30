@@ -21,6 +21,7 @@ import org.openmrs.BaseOpenmrsObject;
  */
 public class FormFilterProperty extends BaseOpenmrsObject implements Serializable {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -40,66 +41,119 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	 */
 	private String properties;
 	
-	/**
-	 * Filter name
-	 */
+	/** Filter name. */
 	private String filterName;
 	
-	/**
-	 * Filter Description
-	 */
+	/** Filter Description. */
 	private String filterDescription;
 	
-	//Getters and Setters 
+	//Getters and Setters
+	
+	
+	/**
+	 * Gets the form filter property id.
+	 *
+	 * @return the form filter property id
+	 */
 	public int getFormFilterPropertyId() {
 		return formFilterPropertyId;
 	}
 	
+	
+	/**
+	 * Sets the form filter property id.
+	 *
+	 * @param formFilterPropertyId the new form filter property id
+	 */
 	public void setFormFilterPropertyId(int formFilterPropertyId) {
 		this.formFilterPropertyId = formFilterPropertyId;
 	}
 	
+	/**
+	 * Gets the class name.
+	 *
+	 * @return the class name
+	 */
 	public String getClassName() {
 		return className;
 	}
 	
+	/**
+	 * Sets the class name.
+	 *
+	 * @param className the new class name
+	 */
 	public void setClassName(String className) {
 		this.className = className;
 	}
 	
+	/**
+	 * Gets the properties.
+	 *
+	 * @return the properties
+	 */
 	public String getProperties() {
 		return properties;
 	}
 	
+	/**
+	 * Sets the properties.
+	 *
+	 * @param properties the new properties
+	 */
 	public void setProperties(String properties) {
 		this.properties = properties;
 	}
 	
+	/**
+	 * Gets the filter name.
+	 *
+	 * @return the filter name
+	 */
 	public String getFilterName() {
 		return filterName;
 	}
 	
+	/**
+	 * Sets the filter name.
+	 *
+	 * @param filterName the new filter name
+	 */
 	public void setFilterName(String filterName) {
 		this.filterName = filterName;
 	}
 	
+	/**
+	 * Gets the filter description.
+	 *
+	 * @return the filter description
+	 */
 	public String getFilterDescription() {
 		return filterDescription;
 	}
 	
+	/**
+	 * Sets the filter description.
+	 *
+	 * @param filterDescription the new filter description
+	 */
 	public void setFilterDescription(String filterDescription) {
 		this.filterDescription = filterDescription;
 	}
 	
+	/**
+	 * @see org.openmrs.OpenmrsObject#getId()
+	 */
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	/**
+	 * @see org.openmrs.OpenmrsObject#setId(java.lang.Integer)
+	 */
 	@Override
 	public void setId(Integer arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	

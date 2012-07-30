@@ -24,10 +24,42 @@ import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
  * Form filtering based on User roles.
+ * 
+ * Form is shown on patient dashboard only if the user role matches with filter mentioned role property value.
  */
 public class RoleFormFilter implements FormFilterHandler {
 	
 	protected Log log = LogFactory.getLog(getClass());
+	
+	//fields
+	
+	/**
+	 * User required role.
+	 */
+	private String role;
+	
+	//Getters and Setters
+	
+	/**
+	 * Returns user required role.
+	 * 
+	 * @return role name
+	 */
+	public String getRole() {
+		return role;
+	}
+	
+	/**
+	 * 
+	 * Sets user required role.
+	 * 
+	 * @param role name
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	//Constructors 
 	
 	/**
 	 * Default Constructor.
@@ -52,18 +84,6 @@ public class RoleFormFilter implements FormFilterHandler {
 		catch (Exception e) {
 			log.info(e);
 		}
-	}
-	
-	//fields
-	
-	private String role;
-	
-	public String getRole() {
-		return role;
-	}
-	
-	public void setRole(String role) {
-		this.role = role;
 	}
 	
 	/**

@@ -29,35 +29,16 @@ public class AgeFormFilter implements FormFilterHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * Default Constructor
+	 * This holds patient minimum age. 
 	 */
-	public AgeFormFilter() {
-		
-	}
-	
-	/**
-	 * Constructor sets class field values.
-	 * 
-	 * @param properties ,string property from FormFilterProperty class in key=value based format
-	 *            Example: minimumAge=value&maximumAge=value
-	 */
-	public AgeFormFilter(String properties) {
-		for (String string : properties.split("&")) {
-			String str[] = string.split("=");
-			try {
-				Field field = this.getClass().getDeclaredField(str[0]);
-				field.set(this, (Object) Integer.parseInt(str[1]));
-			}
-			catch (Exception e) {
-				log.info(e);
-			}
-		}
-		
-	}
-	
 	private int minimumAge;
 	
+	/**
+	 * This holds patient maximum age.
+	 */
 	private int maximumAge;
+	
+	//Getters and Setters
 	
 	/**
 	 * @return minimumAge
@@ -91,6 +72,35 @@ public class AgeFormFilter implements FormFilterHandler {
 		this.maximumAge = maximumAge;
 	}
 	
+	//Constructors
+	
+	/**
+	 * Default Constructor
+	 */
+	public AgeFormFilter() {
+		
+	}
+	
+	/**
+	 * Constructor sets class field values.
+	 * 
+	 * @param properties ,string property from FormFilterProperty class in key=value based format
+	 *            Example: minimumAge=value&maximumAge=value
+	 */
+	public AgeFormFilter(String properties) {
+		for (String string : properties.split("&")) {
+			String str[] = string.split("=");
+			try {
+				Field field = this.getClass().getDeclaredField(str[0]);
+				field.set(this, (Object) Integer.parseInt(str[1]));
+			}
+			catch (Exception e) {
+				log.info(e);
+			}
+		}
+		
+	}
+	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
@@ -102,7 +112,6 @@ public class AgeFormFilter implements FormFilterHandler {
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-		// TODO Auto-generated method stub
 		
 		if ((p.getAge() >= minimumAge) && (p.getAge() <= maximumAge)) {
 			return true;

@@ -1,29 +1,24 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
+<openmrs:htmlInclude file="/moduleResources/formfilter/jquery.easy-confirm-dialog.js" />
 
-<script language="JavaScript" type="text/javascript"> 
- 
-function confirmFilterDelete(filterName) { 
-	if (confirm("You are deleting "+filterName)+" filter.") 
-	{
-		return true; 
-	} else {
-		return false;
-	}	 
- } 
+
+<script > 
+$j(document).ready(function() {
+	$j(".delete").easyconfirm({locale: { title: 'Deleting Filter', button: ['No','Yes']}});
+	
+});
+
 
 </script> 
-
-
-
 <h2>
 <spring:message code="formfilter.details" />
 </h2>
 <table>
 	<tr>
 	  <td>
-	  	${formfilter.form.name}
+	  	<h3>${formfilter.form.name}</h3>
 		<a style="float:right"  href="addformproperty.form?filterId=${formfilter.formFilterId}"><spring:message code="formfilter.addFilter" /></a>
 	  </td>
 	</tr>
@@ -86,8 +81,8 @@ function confirmFilterDelete(filterName) {
 					
 					</td>
 					<td>
-					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}" onClick="return confirmFilterDelete('${filter.filterName}');"><spring:message code="formfilter.delete" /></a>
-					</td>					
+					   <a href="addformproperty.form?filterId=${formfilter.formFilterId}&filterPropertyId=${filter.formFilterPropertyId}"><spring:message code="formfilter.edit" /></a>|<a href="deleteFilter.form?formFilterPropertyId=${filter.formFilterPropertyId }&formFilterId=${formfilter.formFilterId}" class="delete" ><spring:message code="formfilter.delete" /></a>
+					</td>
 				</tr>
 				</c:forEach>
 			</table>

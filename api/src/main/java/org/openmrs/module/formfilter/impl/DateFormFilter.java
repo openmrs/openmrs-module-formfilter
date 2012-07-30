@@ -25,10 +25,71 @@ import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
  * This class will provide current date based form filter.
+ * 
+ * Filter date is compared with today date and shows form before/after as mentioned in filter
+ * parameter "show".
  */
 public class DateFormFilter implements FormFilterHandler {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+
+	/**
+	 * Filter date for reference to todays date.
+	 */
+	private String date;
+	
+	/**
+	 * show the form in form entry tab before/after.
+	 * Currently functional to two values {before , after}.
+	 */
+	private String show;
+	
+	//Getters and Setters
+	
+	/**
+	 * 
+	 * Returns date
+	 * 
+	 * @return date
+	 */
+	public String getDate() {
+		return date;
+	}
+	
+	
+	//Setter and Getters
+	
+	/**
+	 * 
+	 * Sets date.
+	 * 
+	 * @param date
+	 */
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	/**
+	 * 
+	 * Returns when to show form.
+	 * 
+	 * @return show, type string
+	 */
+	public String getShow() {
+		return show;
+	}
+	
+	/**
+	 * 
+	 * Sets when to show value.
+	 * 
+	 * @param show , type string
+	 */
+	public void setShow(String show) {
+		this.show = show;
+	}
+	
+	//Constructors
 	
 	/**
 	 * Default Constructor
@@ -57,25 +118,6 @@ public class DateFormFilter implements FormFilterHandler {
 		}
 	}
 	
-	private String date;
-	
-	private String show;
-	
-	public String getDate() {
-		return date;
-	}
-	
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
-	public String getShow() {
-		return show;
-	}
-	
-	public void setShow(String show) {
-		this.show = show;
-	}
 	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
@@ -94,7 +136,6 @@ public class DateFormFilter implements FormFilterHandler {
 			filterDate = odf.parse(date);
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			log.error(e);
 		}
 		
