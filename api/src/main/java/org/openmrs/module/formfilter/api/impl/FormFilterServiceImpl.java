@@ -61,6 +61,8 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(org.openmrs.Form)
+	 * 
+	 * @should should get FormFilter with form details.
 	 */
 	@Override
 	public FormFilter getFormFilter(Form form) {
@@ -82,6 +84,9 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(int)
+	 * 
+	 * @should should get FormFilter With formFilterId.
+	 * @should should not get FormFilter With formFilterId.
 	 */
 	@Override
 	public FormFilter getFormFilter(int formFilterId) {

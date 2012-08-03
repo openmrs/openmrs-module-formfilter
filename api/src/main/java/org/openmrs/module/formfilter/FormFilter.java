@@ -108,7 +108,7 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
      */
 	@Override
 	public Integer getId() {
-		return null;
+		return getFormFilterId();
 	}
 	
 	/**
@@ -116,8 +116,8 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	 * @see org.openmrs.OpenmrsObject#setId(java.lang.Integer)
 	 */
 	@Override
-	public void setId(Integer arg0) {
-		
+	public void setId(Integer id) {
+		setFormFilterId(id);
 	}
 	
 }

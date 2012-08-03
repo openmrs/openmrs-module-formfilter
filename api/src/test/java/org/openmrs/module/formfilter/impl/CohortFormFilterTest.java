@@ -29,7 +29,7 @@ public class CohortFormFilterTest extends BaseModuleContextSensitiveTest {
 	
 	@Before
 	public void loadDataSet() throws Exception {
-		executeDataSet("org/openmrs/module/formfilter/test/include/cohortTestDataSyncCreateTest.xml");
+		executeDataSet("cohortTestDataSyncCreateTest.xml");
 	}
 	
 	/**

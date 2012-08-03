@@ -13,8 +13,12 @@
  */
 package org.openmrs.module.formfilter.api;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.openmrs.Form;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -23,8 +27,51 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
  */
 public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	
+	/**
+	 * Creates sample data set in context for testing.
+	 * 
+	 * @throws Exception
+	 */
+	@Before
+	public void loadDataSet() throws Exception {
+		executeDataSet("formFilterTestDataSyncCreateTest.xml");
+	}
+	
+	/**
+	 * Tests whether form filter service loads success fully or not.
+	 */
 	@Test
 	public void shouldSetupContext() {
 		assertNotNull(Context.getService(FormFilterService.class));
 	}
+	
+	/**
+	 * Test condition to load formfilter with form as parameter.
+	 */
+	@Test
+	public void shouldGetFormFilterWithForm(){
+		FormFilterService filterService=Context.getService(FormFilterService.class);
+		Form form=new Form(1);
+		Assert.assertNotNull(filterService.getFormFilter(form));
+	}
+	
+	/**
+	 * Test condition to load formfilter with formFilterId as input parameter.
+	 */
+	@Test
+	public void shouldGetFormFilterWithFilterId(){
+		FormFilterService filterService=Context.getService(FormFilterService.class);
+		Assert.assertNotNull(filterService.getFormFilter(1));
+	}
+	
+	/**
+	 * Test condition to load formfilter with formFilterId as input parameter.
+	 */
+	@Test
+	public void shouldNotGetFormFilterWithFilterId(){
+		FormFilterService filterService=Context.getService(FormFilterService.class);
+		Assert.assertNull(filterService.getFormFilter(2));
+	}
+	
+	
 }
