@@ -36,53 +36,62 @@ public interface FormFilterService extends OpenmrsService {
 	 * Insert or update given form filter.
 	 * 
 	 * @param formFilter to save to db.
+	 * @should save the FormFilter
 	 */
 	public void saveFormFilter(FormFilter formFilter);
 	
 	/**
-	 * Gets form filter based on form. If no form filter is present ,will create one and return
-	 * respective FormFilter
+	 * Gets form filter based on form. If no form filter is present ,will create and return
+	 * respective FormFilter.
 	 * 
-	 * @param Form
+	 * @param Form details to returns its FormFilter
 	 * @return FormFilter
+	 * @should get FormFilter with given Form
 	 */
 	public FormFilter getFormFilter(Form form);
 	
 	/**
-	 * Get form filter based on form filter id
+	 * Get form filter based on form filter id.
 	 * 
-	 * @param formFilterId
+	 * @param formFilterId of FormFilter which needs to be returned
 	 * @return FormFilter
+	 * @should get FormFilter with given FilterId
+	 * @should not get FormFilter with given FilterId
 	 */
 	public FormFilter getFormFilter(int formFilterId);
 	
 	/**
-	 * Adds a new FormFilterProperty to database with respective to given FormFilter
+	 * Adds a new FormFilterProperty to database with respective to given FormFilter.
 	 * 
-	 * @param formFilterId , id of FormFilter to which it need to be added.
-	 * @param formFilterProperty
+	 * @param formFilterId of FormFilter to which FormFilterProperty need to be added
+	 * @param formFilterProperty with all filter details
+	 * @should add FormFilterProperty
 	 */
 	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty);
 	
 	/**
 	 * Deletes Form Filter Property from database.
 	 * 
-	 * @param formFilterPropertyId
+	 * @param formFilterPropertyId of FormFilterProperty which needs to be removed from database completely
+	 * @should purge FormFilterProperty with given id
 	 */
 	public void purgeFormFilterProperty(int formFilterPropertyId);
 	
 	/**
 	 * Returns formFilterProperty based on its id.
 	 * 
-	 * @param formFilterPropertyId
+	 * @param formFilterPropertyId of FormFilterProperty which is to be returned
 	 * @return FormFilterProperty
+	 * @should return FormFilterProperty with given id
+	 * @should not return FormFilterProperty with given id
 	 */
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**
-	 * Updates existing FormFilterProperty
+	 * Updates existing FormFilterProperty to database.
 	 * 
-	 * @param formFilterProperty
+	 * @param formFilterProperty which is to be updated to database
+	 * @should update FormFilterProperty
 	 */
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
 	

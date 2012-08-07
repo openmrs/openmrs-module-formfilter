@@ -20,8 +20,6 @@ import org.openmrs.User;
 
 /**
  * This test validates GenderFormFilter class.
- * 
- * @author Goutham.Vasireddi
  */
 public class GenderFormFilterTest {
 	

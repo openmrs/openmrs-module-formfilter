@@ -19,10 +19,8 @@ import org.openmrs.BaseOpenmrsObject;
 /**
  * This class holds filter property values related to {@link FormFilter}.
  */
+@SuppressWarnings("serial")
 public class FormFilterProperty extends BaseOpenmrsObject implements Serializable {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * object id.
@@ -30,14 +28,13 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	private int formFilterPropertyId;
 	
 	/**
-	 * Full classified name of filter type.
-	 * Example: org.openmrs.module.formfilter.impl.AgeFormFilter 
+	 * Full classified name of filter type. Example:
+	 * org.openmrs.module.formfilter.impl.AgeFormFilter
 	 */
 	private String className;
 	
 	/**
-	 * Filter properties are stored in form of key value pair.
-	 * Example: minimumAge=10&maximumAge=30
+	 * Filter properties are stored in form of key value pair. Example: minimumAge=10&maximumAge=30
 	 */
 	private String properties;
 	
@@ -49,20 +46,18 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	//Getters and Setters
 	
-	
 	/**
 	 * Gets the form filter property id.
-	 *
+	 * 
 	 * @return the form filter property id
 	 */
 	public int getFormFilterPropertyId() {
 		return formFilterPropertyId;
 	}
 	
-	
 	/**
 	 * Sets the form filter property id.
-	 *
+	 * 
 	 * @param formFilterPropertyId the new form filter property id
 	 */
 	public void setFormFilterPropertyId(int formFilterPropertyId) {
@@ -71,8 +66,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Gets the class name.
-	 *
-	 * @return the class name
+	 * 
+	 * @return the fully classified class name
 	 */
 	public String getClassName() {
 		return className;
@@ -80,8 +75,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Sets the class name.
-	 *
-	 * @param className the new class name
+	 * 
+	 * @param className to set the filter class name
 	 */
 	public void setClassName(String className) {
 		this.className = className;
@@ -89,8 +84,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Gets the properties.
-	 *
-	 * @return the properties
+	 * 
+	 * @return properties defined in a filter
 	 */
 	public String getProperties() {
 		return properties;
@@ -98,8 +93,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Sets the properties.
-	 *
-	 * @param properties the new properties
+	 * 
+	 * @param properties to set the filter properties
 	 */
 	public void setProperties(String properties) {
 		this.properties = properties;
@@ -107,7 +102,7 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Gets the filter name.
-	 *
+	 * 
 	 * @return the filter name
 	 */
 	public String getFilterName() {
@@ -116,8 +111,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Sets the filter name.
-	 *
-	 * @param filterName the new filter name
+	 * 
+	 * @param filterName to set the filter name
 	 */
 	public void setFilterName(String filterName) {
 		this.filterName = filterName;
@@ -125,7 +120,7 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Gets the filter description.
-	 *
+	 * 
 	 * @return the filter description
 	 */
 	public String getFilterDescription() {
@@ -134,8 +129,8 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	
 	/**
 	 * Sets the filter description.
-	 *
-	 * @param filterDescription the new filter description
+	 * 
+	 * @param filterDescription to set the filter description
 	 */
 	public void setFilterDescription(String filterDescription) {
 		this.filterDescription = filterDescription;
@@ -146,15 +141,15 @@ public class FormFilterProperty extends BaseOpenmrsObject implements Serializabl
 	 */
 	@Override
 	public Integer getId() {
-		return null;
+		return getFormFilterPropertyId();
 	}
 	
 	/**
 	 * @see org.openmrs.OpenmrsObject#setId(java.lang.Integer)
 	 */
 	@Override
-	public void setId(Integer arg0) {
-		
+	public void setId(Integer id) {
+		setFormFilterPropertyId(id);
 	}
 	
 }

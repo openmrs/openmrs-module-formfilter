@@ -21,8 +21,6 @@ import org.openmrs.User;
 
 /**
  * This test validates RoleFormFilter class.
- * 
- * @author Goutham.Vasireddi
  */
 public class RoleFormFilterTest {
 	

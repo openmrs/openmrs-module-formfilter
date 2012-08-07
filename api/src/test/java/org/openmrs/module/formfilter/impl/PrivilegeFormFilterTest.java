@@ -22,8 +22,6 @@ import org.openmrs.User;
 
 /**
  * This test validates PrivilegeFormFilter class.
- * 
- * @author Goutham.Vasireddi
  */
 public class PrivilegeFormFilterTest {
 	

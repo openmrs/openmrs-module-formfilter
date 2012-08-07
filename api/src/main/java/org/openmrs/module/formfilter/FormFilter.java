@@ -19,12 +19,10 @@ import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
 
 /**
- * Its form filter object , each form has single form filter object. 
+ * Its form filter object , each form has single form filter object.
  */
+@SuppressWarnings("serial")
 public class FormFilter extends BaseOpenmrsObject implements Serializable {
-	
-	
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Object id.
@@ -41,78 +39,71 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	 */
 	private Set<FormFilterProperty> formFilterProperties;
 	
-
 	//setters and getters 
 	
 	/**
-	 * Getter for form filter id 
+	 * Getter for form filter id
 	 * 
-	 * @return id 
+	 * @return formFilterId of FormFilter
 	 */
-    public int getFormFilterId() {
-    	return formFilterId;
-    }
-
+	public int getFormFilterId() {
+		return formFilterId;
+	}
+	
 	/**
 	 * Setter form filter id.
 	 * 
-	 * @param formFilterId
+	 * @param formFilterId to sets object id
 	 */
-    public void setFormFilterId(int formFilterId) {
-    	this.formFilterId = formFilterId;
-    }
-
+	public void setFormFilterId(int formFilterId) {
+		this.formFilterId = formFilterId;
+	}
+	
 	/**
-	 * 
 	 * Getter for form.
 	 * 
-	 * @return form 
+	 * @return form details of FormFilter
 	 */
-    public Form getForm() {
-    	return form;
-    }
-
+	public Form getForm() {
+		return form;
+	}
+	
 	/**
 	 * Setter for form.
 	 * 
-	 * @param form
+	 * @param form to set FormFilter form details
 	 */
-    public void setForm(Form form) {
-    	this.form = form;
-    }
-
+	public void setForm(Form form) {
+		this.form = form;
+	}
+	
 	/**
-	 * 
 	 * Getter for form filter properties.
 	 * 
-	 * @return collection of assigned filters to form.
+	 * @return collection of assigned filters to form
 	 */
-    public Set<FormFilterProperty> getFormFilterProperties() {
-    	return formFilterProperties;
-    }
-
+	public Set<FormFilterProperty> getFormFilterProperties() {
+		return formFilterProperties;
+	}
 	
-    /**
-     * 
-     * Getter for form filter properties.
-     * 
-     * @param collection of assigned filters to form.
-     */
-    public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
-    	this.formFilterProperties = formFilterProperties;
-    }
-
-    /**
-     * 
-     * @see org.openmrs.OpenmrsObject#getId()
-     */
+	/**
+	 * Getter for form filter properties.
+	 * 
+	 * @param FormFilterProperty collection to set FormFilter filter details
+	 */
+	public void setFormFilterProperties(Set<FormFilterProperty> formFilterProperties) {
+		this.formFilterProperties = formFilterProperties;
+	}
+	
+	/**
+	 * @see org.openmrs.OpenmrsObject#getId()
+	 */
 	@Override
 	public Integer getId() {
 		return getFormFilterId();
 	}
 	
 	/**
-	 * 
 	 * @see org.openmrs.OpenmrsObject#setId(java.lang.Integer)
 	 */
 	@Override

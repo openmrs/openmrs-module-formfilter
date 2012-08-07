@@ -52,8 +52,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
-	 * 
-	 * @should save form filter
 	 */
 	@Override
 	public void saveFormFilter(FormFilter formFilter) {
@@ -63,15 +61,12 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(org.openmrs.Form)
-	 * 
-	 * @should should get FormFilter with form details.
 	 */
 	@Override
 	public FormFilter getFormFilter(Form form) {
 		FormFilter formFilter;
 		try {
 			formFilter = dao.getFormFilter(form);
-			
 		}
 		catch (IndexOutOfBoundsException e) {
 			formFilter = new FormFilter();
@@ -86,9 +81,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(int)
-	 * 
-	 * @should should get FormFilter With formFilterId.
-	 * @should should not get FormFilter With formFilterId.
 	 */
 	@Override
 	public FormFilter getFormFilter(int formFilterId) {
@@ -98,8 +90,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#AddFormFilterProperty(int,
 	 *      org.openmrs.module.formfilter.FormFilterProperty)
-	 * 
-	 * @should add the formFilterProperty for mentioned formFilterId 
 	 */
 	@Override
 	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty) {
@@ -112,8 +102,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#purgeFormFilterProperty(int)
-	 * 
-	 * @should remove formFilterProperty assigned to a FormFilter.
 	 */
 	@Override
 	public void purgeFormFilterProperty(int formFilterPropertyId) {
@@ -122,9 +110,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilterProperty(int)
-	 * 
-	 * @should return FormFilterProperty
-	 * @should not return FormFilterProperty  
 	 */
 	@Override
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId) {
@@ -133,8 +118,6 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
-	 * 
-	 * @should update form filter property.
 	 */
 	@Override
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {

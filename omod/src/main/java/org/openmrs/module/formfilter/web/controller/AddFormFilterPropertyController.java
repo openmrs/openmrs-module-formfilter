@@ -50,7 +50,7 @@ public class AddFormFilterPropertyController {
 	 * @param formFilterPropertyId if , 0 adds new property or else returns respective property.
 	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty", method = RequestMethod.GET)
-	public void AddFormFilter(ModelMap model,
+	public void addFormFilter(ModelMap model,
 	                          @RequestParam("filterId") Integer formFilterId,
 	                          @RequestParam(value = "filterPropertyId", required = false, defaultValue = "0") int formFilterPropertyId) {
 		

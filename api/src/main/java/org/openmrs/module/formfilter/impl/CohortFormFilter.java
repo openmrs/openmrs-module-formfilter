@@ -23,7 +23,7 @@ import org.openmrs.api.CohortService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
-;
+
 
 /**
  * Form Filter based on patient defined in cohort.
@@ -43,7 +43,7 @@ public class CohortFormFilter implements FormFilterHandler {
 	 * 
 	 * Returns cohort name.
 	 * 
-	 * @return cohort name type string.
+	 * @return cohort name
 	 */
 	public String getCohort() {
 		return cohort;
@@ -53,7 +53,7 @@ public class CohortFormFilter implements FormFilterHandler {
 	 * 
 	 * Sets cohort name.
 	 * 
-	 * @param cohortName
+	 * @param cohortName , sets filter cohortName
 	 */
 	public void setCohort(String cohortName) {
 		this.cohort = cohortName;

@@ -28,31 +28,40 @@ public interface FormFilterDAO {
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(Form)
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#addFormFilterProperty(int,
 	 *      FormFilterProperty)
+	 * @param formFilter which is to be saved
 	 */
 	public void saveFormFilter(FormFilter formFilter);
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(Form)
+	 * @param form
+	 * @return FormFilter for given Form
 	 */
 	public FormFilter getFormFilter(Form form);
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilter(int)
+	 * @param formFilterId
+	 * @return FormFilter for given formFilterId
 	 */
 	public FormFilter getFormFilter(int formFilterId);
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#purgeFormFilterProperty(int)
+	 * @param formFilterPropertyId , FormFilterProperty will be removed with this id
 	 */
 	public void purgeFormFilter(int formFilterPropertyId);
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#getFormFilterProperty(int)
+	 * @param formFilterPropertyId
+	 * @return FormFilterProperty for given formFilterPropertyId
 	 */
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(FormFilterProperty)
+	 * @param FormFilterProperty which is to be updated to database.
 	 */
 	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
 	

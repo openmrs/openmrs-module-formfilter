@@ -22,9 +22,8 @@ import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
- * This class provides gender based form filter.
- * 
- * Form is shown on patient dashboard only if the patient gender matches with filter gender property value.  
+ * This class provides gender based form filter. Form is shown on patient dashboard only if the
+ * patient gender matches with filter gender property value.
  */
 public class GenderFormFilter implements FormFilterHandler {
 	
@@ -47,7 +46,7 @@ public class GenderFormFilter implements FormFilterHandler {
 	/**
 	 * Sets gender value
 	 * 
-	 * @param gender
+	 * @param gender , to set filter gender value
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -84,10 +83,11 @@ public class GenderFormFilter implements FormFilterHandler {
 		
 	}
 	
-	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
 	 * @return true , if patient gender value match with this.gender
 	 * @return false, if patient gender value does not match with this.gender
 	 * @should display form when filter gender match with patient gender.

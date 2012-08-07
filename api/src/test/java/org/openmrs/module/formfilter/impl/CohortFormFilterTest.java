@@ -22,8 +22,6 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
  * This test validates CohortFormFilter class.
- * 
- * @author Goutham.Vasireddi
  */
 public class CohortFormFilterTest extends BaseModuleContextSensitiveTest {
 	

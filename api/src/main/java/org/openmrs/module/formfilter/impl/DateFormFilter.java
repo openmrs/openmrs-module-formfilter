@@ -24,30 +24,27 @@ import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
- * This class will provide current date based form filter.
- * 
- * Filter date is compared with today date and shows form before/after as mentioned in filter
- * parameter "show".
+ * This class will provide current date based form filter. Filter date is compared with today date
+ * and shows form before/after as mentioned in filter parameter "show".
  */
 public class DateFormFilter implements FormFilterHandler {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-
+	
 	/**
 	 * Filter date for reference to todays date.
 	 */
 	private String date;
 	
 	/**
-	 * show the form in form entry tab before/after.
-	 * Currently functional to two values {before , after}.
+	 * show the form in form entry tab before/after. Currently functional to two values {before ,
+	 * after}.
 	 */
 	private String show;
 	
 	//Getters and Setters
 	
 	/**
-	 * 
 	 * Returns date
 	 * 
 	 * @return date
@@ -56,34 +53,28 @@ public class DateFormFilter implements FormFilterHandler {
 		return date;
 	}
 	
-	
-	//Setter and Getters
-	
 	/**
-	 * 
 	 * Sets date.
 	 * 
-	 * @param date
+	 * @param date , to set filter date
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 	
 	/**
-	 * 
 	 * Returns when to show form.
 	 * 
-	 * @return show, type string
+	 * @return show, filter property of when to show
 	 */
 	public String getShow() {
 		return show;
 	}
 	
 	/**
-	 * 
 	 * Sets when to show value.
 	 * 
-	 * @param show , type string
+	 * @param show , sets filter property of when to show
 	 */
 	public void setShow(String show) {
 		this.show = show;
@@ -118,10 +109,11 @@ public class DateFormFilter implements FormFilterHandler {
 		}
 	}
 	
-	
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
 	 * @return True , if current date fall before/after the specified filter date.
 	 * @return False, if current date does not fall before/after the specified filter date.
 	 * @should display form when current date is before/after mentioned filter date.

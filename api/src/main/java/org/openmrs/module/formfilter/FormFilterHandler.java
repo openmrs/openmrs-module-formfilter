@@ -18,14 +18,14 @@ import org.openmrs.User;
 
 /**
  * This interface helps to create form filters.
- * 
- * @author goutham
  */
 public interface FormFilterHandler {
 	
 	/**
 	 * This method holds the logic to return true or false for given Patient and User.
 	 * 
+	 * @param patient against which filter should be defined
+	 * @param user against which filter should be defined
 	 * @return True/False ,if filter properties satisfy provided condition.
 	 */
 	public boolean shouldDisplayForm(Patient p, User u);

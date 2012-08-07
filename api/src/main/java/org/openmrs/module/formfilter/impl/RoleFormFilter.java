@@ -23,9 +23,8 @@ import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
- * Form filtering based on User roles.
- * 
- * Form is shown on patient dashboard only if the user role matches with filter mentioned role property value.
+ * Form filtering based on User roles. Form is shown on patient dashboard only if the user role
+ * matches with filter mentioned role property value.
  */
 public class RoleFormFilter implements FormFilterHandler {
 	
@@ -50,10 +49,9 @@ public class RoleFormFilter implements FormFilterHandler {
 	}
 	
 	/**
-	 * 
 	 * Sets user required role.
 	 * 
-	 * @param role name
+	 * @param role to set filter role value
 	 */
 	public void setRole(String role) {
 		this.role = role;
@@ -89,6 +87,8 @@ public class RoleFormFilter implements FormFilterHandler {
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
 	 * @return True ,if user has mentioned role.
 	 * @return False,if user does not have mentioned role.
 	 * @should display form when user has mentioned role.

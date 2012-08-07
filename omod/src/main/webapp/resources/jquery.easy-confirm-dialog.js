@@ -15,18 +15,6 @@
 (function($) {
     $.easyconfirm = {};
     $.easyconfirm.locales = {};
-    $.easyconfirm.locales.enUS = {
-        title: 'Are you sure?',
-        text: 'Are you sure that you want to perform this action?',
-        button: ['Cancel', 'Confirm'],
-        closeText: 'close'
-    };
-    $.easyconfirm.locales.svSE = {
-        title: 'Är du säker?',
-        text: 'Är du säker på att du vill genomföra denna åtgärden?',
-        button: ['Avbryt', 'Bekräfta'],
-        closeText: 'stäng'
-    };
 
     $.fn.easyconfirm = function(options) {
 
@@ -89,7 +77,7 @@
 
             if ($target.attr('title') !== null && $target.attr('title').length > 0) 
                 locale.text = $target.attr('title');
-
+   
             var dialog = (options.dialog === undefined || typeof(options.dialog) != 'object') ? 
                 $('<div class="dialog confirm">' + locale.text + '</div>') : 
                 options.dialog;

@@ -6,7 +6,7 @@
 
 <script > 
 $j(document).ready(function() {
-	$j(".delete").easyconfirm({locale: { title: 'Deleting Filter', button: ['No','Yes']}});
+	$j(".delete").easyconfirm({locale: { title: '<spring:message code="formfilter.deletingFilter" />',text: '<spring:message code="formfilter.areYouSure" />' ,button: ['<spring:message code="formfilter.no" />','<spring:message code="formfilter.yes" />']}});
 	
 });
 

@@ -29,7 +29,7 @@ public class AgeFormFilter implements FormFilterHandler {
 	protected Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * This holds patient minimum age. 
+	 * This holds patient minimum age.
 	 */
 	private int minimumAge;
 	
@@ -41,7 +41,7 @@ public class AgeFormFilter implements FormFilterHandler {
 	//Getters and Setters
 	
 	/**
-	 * @return minimumAge
+	 * @return minimumAge of filter
 	 */
 	public int getMinimumAge() {
 		return minimumAge;
@@ -50,14 +50,14 @@ public class AgeFormFilter implements FormFilterHandler {
 	/**
 	 * Sets maximumAge
 	 * 
-	 * @param maximumAge
+	 * @param maximumAge ,sets filter maximumAge
 	 */
 	public void setMinimumAge(int minimumAge) {
 		this.minimumAge = minimumAge;
 	}
 	
 	/**
-	 * @return maximumAge
+	 * @return maximumAge of filter
 	 */
 	public int getMaximumAge() {
 		return maximumAge;
@@ -66,7 +66,7 @@ public class AgeFormFilter implements FormFilterHandler {
 	/**
 	 * Sets maximumAge
 	 * 
-	 * @param maximumAge
+	 * @param maximumAge , sets filter maximumAge
 	 */
 	public void setMaximumAge(int maximumAge) {
 		this.maximumAge = maximumAge;
@@ -104,6 +104,8 @@ public class AgeFormFilter implements FormFilterHandler {
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
 	 * @return True , if patient age lies between minimumAge and maximumAge.
 	 * @return False, if patient age does not between minimumAge and maximumAge.
 	 * @should display form when patient age lies between filter minimum and maximum age values.

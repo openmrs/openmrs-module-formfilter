@@ -1,4 +1,5 @@
 /**
+
  * The contents of this file are subject to the OpenMRS Public License
  * Version 1.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at
@@ -13,8 +14,6 @@
  */
 package org.openmrs.module.formfilter.api;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +22,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
+import org.openmrs.test.Verifies;
 
 /**
  * Tests {@link $ FormFilterService} .
@@ -36,7 +36,9 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	 */
 	@Before
 	public void loadDataSet() throws Exception {
+		initializeInMemoryDatabase();
 		executeDataSet("formFilterTestDataSyncCreateTest.xml");
+		authenticate();
 	}
 	
 	/**
@@ -44,31 +46,32 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	 */
 	@Test
 	public void shouldSetupContext() {
-		assertNotNull(Context.getService(FormFilterService.class));
+		Assert.assertNotNull(Context.getService(FormFilterService.class));
 	}
 	
 	/**
 	 * Tests formFilter service functionality to save a formFilter.
 	 */
 	@Test
-	public void shouldSaveFormFilter(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
-		FormFilter formFilter=new FormFilter();
+	@Verifies(value = "should save the FormFilter", method = "saveFormFilter(FormFilter)")
+	public void saveFormFilter_shouldSaveFormFilter() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
+		FormFilter formFilter = new FormFilter();
 		formFilter.setForm(Context.getFormService().getForm(2));
 		formFilter.setFormFilterId(4);
 		filterService.saveFormFilter(formFilter);
-		assertNotNull("Should save the formFilter",filterService.getFormFilter(4));
+		Assert.assertNotNull(filterService.getFormFilter(4));
 		
 	}
-	
 	
 	/**
 	 * Test condition to load formfilter with form as parameter.
 	 */
 	@Test
-	public void shouldGetFormFilterWithForm(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
-		Form form=new Form(1);
+	@Verifies(value = "should get FormFilter with given Form", method = "getFormFilter(Form)")
+	public void getFormFilter_shouldGetFormFilterWithGivenForm() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
+		Form form = new Form(1);
 		Assert.assertNotNull(filterService.getFormFilter(form));
 	}
 	
@@ -76,8 +79,9 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	 * Test condition to load formfilter with formFilterId as input parameter.
 	 */
 	@Test
-	public void shouldGetFormFilterWithFilterId(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
+	@Verifies(value = "should get FormFilter with given FilterId", method = "getFormFilter(FormFilterId)")
+	public void getFormFilter_shouldGetFormFilterWithGivenFilterId() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
 		Assert.assertNotNull(filterService.getFormFilter(1));
 	}
 	
@@ -85,54 +89,55 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	 * Test condition to load formfilter with formFilterId as input parameter.
 	 */
 	@Test
-	public void shouldNotGetFormFilterWithFilterId(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
+	@Verifies(value = "should not get FormFilter with given FilterId", method = "getFormFilter(FormFilterId)")
+	public void getFormFilter_shouldNotGetFormFilterWithGivenFilterId() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
 		Assert.assertNull(filterService.getFormFilter(2));
 	}
 	
-	
 	/**
-	 * Test formFilterService functionality to add a filter to Form. 
+	 * Test formFilterService functionality to add a filter to Form.
 	 */
 	@Test
-	public void shouldAddFormFilterProperty(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
-		FormFilterProperty filterProperty=new FormFilterProperty();
+	@Verifies(value = "should add FormFilterProperty", method = "addFormFilterProperty(FormFilterId,FilterProperty)")
+	public void addFormFilterProperty_shouldAddFormFilterProperty() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
+		FormFilterProperty filterProperty = new FormFilterProperty();
 		filterProperty.setClassName("org.openmrs.module.formfilter.impl.PrivilegeFormFilter");
 		filterProperty.setFilterName("Privilege Filter");
 		filterProperty.setProperties("privilege=Administrator");
 		filterService.addFormFilterProperty(1, filterProperty);
-		Assert.assertEquals("FormFilter should have mentioned number of fillter", filterService.getFormFilter(1).getFormFilterProperties().size() , 3);
-	
+		Assert.assertEquals(filterService.getFormFilter(1).getFormFilterProperties().size(), 3);
 	}
-	
 	
 	/**
 	 * Tests formFilterService functionality to remove a filter to a form.
 	 */
 	@Test
-	public void shouldPurgeFormFilterProperty(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
+	@Verifies(value = "should purge FormFilterProperty with given id", method = "purgeFormFilterProperty(FormFilterPropertyId)")
+	public void purgeFormFilterProperty_shouldPurgeFormFilterPropertyWithGivenId() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
 		filterService.purgeFormFilterProperty(2);
-		Assert.assertEquals(filterService.getFormFilter(1).getFormFilterProperties().size() , 1);
+		Assert.assertEquals(filterService.getFormFilter(1).getFormFilterProperties().size(), 1);
 	}
 	
-	
 	/**
-	 * Tests the FormFilterService functionality to return a FormFilterProperty. 
+	 * Tests the FormFilterService functionality to return a FormFilterProperty.
 	 */
 	@Test
-	public void shouldReturnFormFilterProperty(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
+	@Verifies(value = "should return FormFilterProperty with given id", method = "getFormFilterProperty(FormFilterPropertyId)")
+	public void getFormFilterProperty_shouldReturnFormFilterPropertyWithGivenId() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
 		Assert.assertNotNull(filterService.getFormFilterProperty(1));
 	}
 	
 	/**
-	 * Tests the FormFilterService functionality to return a FormFilterProperty. 
+	 * Tests the FormFilterService functionality to return a FormFilterProperty.
 	 */
 	@Test
-	public void shouldNotReturnFormFilterProperty(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
+	@Verifies(value = "should not return FormFilterProperty with given id", method = "getFormFilterProperty(FormFilterPropertyId)")
+	public void getFormFilterProperty_shouldNotReturnFormFilterPropertyWithGivenId() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
 		Assert.assertNull(filterService.getFormFilterProperty(10));
 	}
 	
@@ -140,14 +145,13 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 	 * Tests the FormFilterService functionality to update a FormFilterProperty
 	 */
 	@Test
-	public void shouldUpdateFormFilterProperty(){
-		FormFilterService filterService=Context.getService(FormFilterService.class);
-		FormFilterProperty formFilterProperty=filterService.getFormFilterProperty(1);
+	@Verifies(value = "should update FormFilterProperty", method = "updateFormFilterProperty(FormFilterProperty)")
+	public void updateFormFilterProperty_shouldUpdateFormFilterProperty() {
+		FormFilterService filterService = Context.getService(FormFilterService.class);
+		FormFilterProperty formFilterProperty = filterService.getFormFilterProperty(1);
 		formFilterProperty.setFilterName("New Filter");
 		filterService.updateFormFilterProperty(formFilterProperty);
-		
 		Assert.assertEquals(filterService.getFormFilterProperty(1).getFilterName(), "New Filter");
 	}
-	
 	
 }

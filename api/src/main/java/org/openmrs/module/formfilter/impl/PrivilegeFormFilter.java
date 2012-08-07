@@ -24,8 +24,8 @@ import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
- * Form filter based on User privileges.
- * Form is shown on patient dashboard only if the user has filter specific privilege.
+ * Form filter based on User privileges. Form is shown on patient dashboard only if the user has
+ * filter specific privilege.
  */
 public class PrivilegeFormFilter implements FormFilterHandler {
 	
@@ -48,10 +48,9 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	}
 	
 	/**
-	 * 
 	 * Sets user required privilege.
 	 * 
-	 * @param privilege
+	 * @param privilege , to set filter privilege value
 	 */
 	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
@@ -86,6 +85,8 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	/**
 	 * @see org.openmrs.module.formfilter.FormFilterHandler#shouldDisplayForm(org.openmrs.Patient,
 	 *      org.openmrs.User)
+	 * @param p , patient on whos dashboard forms are listed.
+	 * @param u , user viewing the list on patient dashboard.
 	 * @return True ,if user has specified privilege.
 	 * @return False,if user does not have specified privilege.
 	 * @should display form when user has mentioned privilege.
