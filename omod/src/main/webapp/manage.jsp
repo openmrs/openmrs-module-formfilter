@@ -4,6 +4,7 @@
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/css/dataTables.css" />
 <openmrs:htmlInclude file="/scripts/jquery/jquery-1.3.2.min.js" />
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/js/jquery.dataTables.min.js" />
+<openmrs:hasPrivilege privilege="Manage Forms">
 
 <%@ include file="template/localHeader.jsp"%>
 <h2>
@@ -101,5 +102,5 @@
 	</table>
 </div>
 
-
+</openmrs:hasPrivilege>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery.easy-confirm-dialog.js" />
+<openmrs:hasPrivilege privilege="Manage Forms">
 
 
 <script > 
@@ -92,5 +93,5 @@ $j(document).ready(function() {
 </table>
 
 
-
+</openmrs:hasPrivilege>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

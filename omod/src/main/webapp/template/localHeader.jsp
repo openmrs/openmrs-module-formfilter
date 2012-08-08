@@ -1,4 +1,5 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
+<openmrs:hasPrivilege privilege="Manage Forms">
 <ul id="menu">
 	<li class="first">
 	  <a href="${pageContext.request.contextPath}/admin"><spring:message code="admin.title.short" /></a>
@@ -9,3 +10,4 @@
 	
 	<!-- Add further links here -->
 </ul>
+</openmrs:hasPrivilege>

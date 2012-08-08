@@ -2,6 +2,8 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
+<openmrs:hasPrivilege privilege="Manage Forms"> 
+
 <script type="text/javascript">
 
 	/*Javascript to validate form*/
@@ -345,6 +347,6 @@
 	
 
 
-
+</openmrs:hasPrivilege>
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
