@@ -44,7 +44,7 @@ public class ViewFormFilterController {
 	 * @param formFilterId
 	 */
 	@RequestMapping(value = "/module/formfilter/viewformfilter", method = RequestMethod.GET)
-	public void editFormFilter(ModelMap model,
+	public void viewFormFilter(ModelMap model,
 	                           @RequestParam(value = "formId", required = false, defaultValue = "0") Integer formId,
 	                           @RequestParam(value = "formFilterId", required = false, defaultValue = "0") Integer formFilterId) {
 		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
