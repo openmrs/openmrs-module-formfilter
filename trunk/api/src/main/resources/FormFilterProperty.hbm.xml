@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping   >
+    <class name="org.openmrs.module.formfilter.FormFilterProperty" table="formfilter_filter_property" >
+     
+      <id column="filter_property_id" name="formFilterPropertyId" type="int" >
+         <generator class="native" ></generator>      
+      </id>
+              
+    
+          
+     <property name="className" column="class_name" type="java.lang.String" length="200" />
+     
+     <property name="properties" column="properties" type="java.lang.String" length="500" />
+         
+     
+     <property name="filterName" column="filter_name" type="java.lang.String" length="50" />
+     
+     <property name="filterDescription" column="filter_description" type="java.lang.String" length="500" />
+     
+     <property name="uuid" type="java.lang.String" length="38" unique="true" />
+     
+     </class>
+</hibernate-mapping>

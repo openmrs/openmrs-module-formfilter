@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+	<!-- See http://www.liquibase.org/manual/home#available_database_refactorings 
+		for a list of supported elements and attributes -->
+
+	<changeSet author="goutham" id="formfilter_form_filter-2012-06-27-12:02">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="formfilter_form_filter" />
+			</not>
+		</preConditions>
+		<comment>
+			Creating the formfilter_form_filter table.
+		</comment>
+		<createTable tableName="formfilter_form_filter">
+
+			<column name="form_filter_id" type="int(11)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+
+			<column name="form_id" type="int(11)">
+				<constraints nullable="false" unique="true" />
+			</column>
+
+			<column name="uuid" type="varchar(38)">
+				
+			</column>
+
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="fk_form_id"
+			referencedTableName="form" baseColumnNames="form_id" baseTableName="formfilter_form_filter"
+			referencedColumnNames="form_id" />	
+
+	</changeSet>
+
+	<changeSet author="goutham" id="formfilter_filter_property-2012-06-27-14:02">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="formfilter_filter_property" />
+			</not>
+		</preConditions>
+		<comment>
+			Creating the formfilter_filter_property table.
+		</comment>
+		<createTable tableName="formfilter_filter_property">
+
+			<column name="filter_property_id" type="int(11)" autoIncrement="true" >
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="class_name" type="varchar(200)"  >
+			 </column>
+			
+			<column name="properties" type="varchar(500)"  >			 
+			</column>
+
+			<column name="filter_name" type="varchar(50)" />
+
+			<column name="filter_description" type="varchar(500)" />
+
+			<column name="form_filter_id" type="int(11)" >
+
+			</column>
+
+			<column name="uuid" type="varchar(38)">
+				
+			</column>
+
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="fk_form_filter_id"
+			referencedTableName="formfilter_form_filter" baseColumnNames="form_filter_id"
+			baseTableName="formfilter_filter_property" referencedColumnNames="form_filter_id" />
+		
+
+	</changeSet>
+
+
+</databaseChangeLog>

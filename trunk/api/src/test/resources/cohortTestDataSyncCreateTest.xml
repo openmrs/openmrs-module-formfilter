@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset >
+  <cohort cohort_id="1" name="male cohort" description="Gender based cohort" creator="1" date_created="2012-07-10 13:25:05"
+    voided="0" uuid="94b35256-5bba-4a74-81a0-b16a6c95a52f" />
+  
+  <cohort_member cohort_id="1" patient_id="3" />  
+
+</dataset>
