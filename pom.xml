@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>formfilter</artifactId>
-	<version>0.9</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Form Filter Module</name>
 	<description>Helps in filtering forms on form entry tab of patient dashboard.</description>
@@ -22,9 +22,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/tags/0.9</connection>
-		<developerConnection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/tags/0.9</developerConnection>
-		<url>http://svn.openmrs.org/openmrs-modules/formfilter/tags/0.9</url>
+		<connection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/trunk</connection>
+		<developerConnection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/trunk</developerConnection>
+		<url>http://svn.openmrs.org/openmrs-modules/formfilter/trunk</url>
 	</scm>
 
 	<modules>
