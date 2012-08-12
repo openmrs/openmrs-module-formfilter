@@ -42,6 +42,8 @@ public class ViewFormFilterController {
 	 * @param model
 	 * @param formId
 	 * @param formFilterId
+	 * @should return FormFilter by form id
+	 * @should return FormFilter by form filter id
 	 */
 	@RequestMapping(value = "/module/formfilter/viewformfilter", method = RequestMethod.GET)
 	public void viewFormFilter(ModelMap model,
@@ -65,6 +67,7 @@ public class ViewFormFilterController {
 	 * @param formFilterPropertyId
 	 * @param formFilterId
 	 * @return to formfilter
+	 * @should delete FormFilterProperty by id
 	 */
 	@RequestMapping(value = "/module/formfilter/deleteFilter", method = RequestMethod.GET)
 	public String deleteFormFilterProperty(ModelMap model, HttpSession httpSession,

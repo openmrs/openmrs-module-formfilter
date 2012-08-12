@@ -117,11 +117,11 @@ public class FormFilterServiceImpl extends BaseOpenmrsService implements FormFil
 	}
 	
 	/**
-	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
 	 */
 	@Override
-	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
-		dao.updateFormFilterProperty(formFilterProperty);
+	public void saveFormFilterProperty(FormFilterProperty formFilterProperty) {
+		dao.saveFormFilterProperty(formFilterProperty);
 		
 	}
 }

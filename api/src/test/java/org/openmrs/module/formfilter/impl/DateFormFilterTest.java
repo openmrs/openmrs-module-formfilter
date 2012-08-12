@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openmrs.Patient;
 import org.openmrs.User;
+import org.openmrs.test.Verifies;
 
 /**
  * This test validates DateFormFilter class.
@@ -25,9 +26,12 @@ public class DateFormFilterTest {
 	
 	/**
 	 * Testing the condition to show a form
+	 * 
+	 * @see DateFormFilter#shouldDisplayForm(Patient, User)
 	 */
 	@Test
-	public void shouldDisplayForm() {
+	@Verifies(value="should display form when current date is before/after mentioned filter date",method="shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenCurrentDateIsBeforeOrAfterMentionedFilterDate() {
 		DateFormFilter dateFormFilter = new DateFormFilter("date=01/01/2000&show=after");
 		
 		Assert.assertTrue("Todays date should be after filter date.",
@@ -37,9 +41,12 @@ public class DateFormFilterTest {
 	
 	/**
 	 * Testing the condition to not show a form.
+	 * 
+	 * @see DateFormFilter#shouldDisplayForm(Patient, User)
 	 */
 	@Test
-	public void shouldNotDisplayForm() {
+	@Verifies(value="should not display form when current date is not before/after mentioned filter date",method="shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenCurrentDateIsNotBeforeOrAfterMentionedFilterDate() {
 		DateFormFilter dateFormFilter = new DateFormFilter("date=01/01/2000&show=before");
 		
 		Assert.assertFalse("Todays date is after the filter date.",

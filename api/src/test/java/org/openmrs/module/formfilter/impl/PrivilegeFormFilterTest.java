@@ -19,6 +19,7 @@ import org.openmrs.Patient;
 import org.openmrs.Privilege;
 import org.openmrs.Role;
 import org.openmrs.User;
+import org.openmrs.test.Verifies;
 
 /**
  * This test validates PrivilegeFormFilter class.
@@ -27,9 +28,12 @@ public class PrivilegeFormFilterTest {
 	
 	/**
 	 * Testing the condition to show a form
+	 * 
+	 * @see {@link PrivilegeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldDisplayForm() {
+	@Verifies(value = "should display form when user has mentioned privilege", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasMentionedPrivilege() {
 		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
 		
 		User user = new User();
@@ -44,9 +48,12 @@ public class PrivilegeFormFilterTest {
 	
 	/**
 	 * Testing the condition to not show a form.
+	 * 
+	 * @see {@link PrivilegeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldNotDisplayForm() {
+	@Verifies(value = "should not display form when user does not have mentioned privilege", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveMentionedPrivilege() {
 		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
 		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",
 		    privilegeFormFilter.shouldDisplayForm(new Patient(), new User()));

@@ -43,6 +43,7 @@ public class FormFilterManageController {
 	 * Handles request to show forms list.
 	 * 
 	 * @param model
+	 * @should return FormList
 	 */
 	@RequestMapping(value = "/module/formfilter/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {

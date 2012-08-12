@@ -60,9 +60,9 @@ public interface FormFilterDAO {
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**
-	 * @see org.openmrs.module.formfilter.api.FormFilterService#updateFormFilterProperty(FormFilterProperty)
+	 * @see org.openmrs.module.formfilter.api.FormFilterService#saveFormFilterProperty(FormFilterProperty)
 	 * @param FormFilterProperty which is to be updated to database.
 	 */
-	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
+	public void saveFormFilterProperty(FormFilterProperty formFilterProperty);
 	
 }

@@ -71,8 +71,8 @@ public class ViewFormFilterControllerTest extends
 	 * @see {@link ViewFormFilterController#deleteFormFilterProperty(ModelMap, javax.servlet.http.HttpSession, int, int)}
 	 */
 	@Test
-	@Verifies(value = "shouldDeleteFormFilterProperty",method="deleteFormFilterProperty(ModelMap, javax.servlet.http.HttpSession, int, int)")
-	public void deleteFormFilterProperty_shouldDeleteFormFilterProperty() {
+	@Verifies(value = "should delete FormFilterProperty by id",method="deleteFormFilterProperty(ModelMap, javax.servlet.http.HttpSession, int, int)")
+	public void deleteFormFilterProperty_shouldDeleteFormFilterPropertyById() {
 		FormFilterService formFilterService = Context
 				.getService(FormFilterService.class);
 		ViewFormFilterController controller = new ViewFormFilterController();

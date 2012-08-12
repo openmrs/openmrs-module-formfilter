@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.openmrs.Patient;
 import org.openmrs.Role;
 import org.openmrs.User;
+import org.openmrs.test.Verifies;
 
 /**
  * This test validates RoleFormFilter class.
@@ -26,9 +27,12 @@ public class RoleFormFilterTest {
 	
 	/**
 	 * Testing the condition to show a form
+	 * 
+	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldDisplayForm() {
+	@Verifies(value = "should display form when user has mentioned role", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasMentionedRole() {
 		RoleFormFilter roleFormFilter = new RoleFormFilter("role=Anonymous");
 		User user = new User();
 		user.addRole(new Role("Anonymous"));
@@ -38,9 +42,12 @@ public class RoleFormFilterTest {
 	
 	/**
 	 * Testing the condition to not show a form.
+	 * 
+	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldNotDisplayForm() {
+	@Verifies(value = "should not display form when user does not have mentioned role.", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveMentionedRole() {
 		RoleFormFilter roleFormFilter = new RoleFormFilter("role=Anonymous");
 		Assert.assertFalse("Filter role matches even user has no roles",
 		    roleFormFilter.shouldDisplayForm(new Patient(), new User()));

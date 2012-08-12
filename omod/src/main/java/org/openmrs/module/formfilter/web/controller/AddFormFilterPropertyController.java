@@ -48,6 +48,8 @@ public class AddFormFilterPropertyController {
 	 * @param model
 	 * @param formFilterId
 	 * @param formFilterPropertyId if , 0 adds new property or else returns respective property.
+	 * @should support add new filter functionality
+	 * @should support edit filter functionality
 	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty", method = RequestMethod.GET)
 	public void addFormFilter(ModelMap model,
@@ -94,6 +96,8 @@ public class AddFormFilterPropertyController {
 	 * @param formFilterProperty
 	 * @param request
 	 * @return to viewformfilter page to see list of all assigned filter's to a form.
+	 * @should add new FormFilterProperty
+	 * @should update FormFilterProperty
 	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty", method = RequestMethod.POST)
 	public String onSubmit(@ModelAttribute("formfilterproperty") FormFilterProperty formFilterProperty,
@@ -131,7 +135,7 @@ public class AddFormFilterPropertyController {
 		if (formFilterProperty.getFormFilterPropertyId() == 0) {
 			formFilterService.addFormFilterProperty(formFilterId, formFilterProperty);
 		} else {
-			formFilterService.updateFormFilterProperty(formFilterProperty);
+			formFilterService.saveFormFilterProperty(formFilterProperty);
 		}
 		
 		return "redirect:viewformfilter.form?formFilterId=" + formFilterId;

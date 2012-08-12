@@ -85,15 +85,6 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 		Assert.assertNotNull(filterService.getFormFilter(1));
 	}
 	
-	/**
-	 * Test condition to load formfilter with formFilterId as input parameter.
-	 */
-	@Test
-	@Verifies(value = "should not get FormFilter with given FilterId", method = "getFormFilter(FormFilterId)")
-	public void getFormFilter_shouldNotGetFormFilterWithGivenFilterId() {
-		FormFilterService filterService = Context.getService(FormFilterService.class);
-		Assert.assertNull(filterService.getFormFilter(2));
-	}
 	
 	/**
 	 * Test formFilterService functionality to add a filter to Form.
@@ -131,26 +122,17 @@ public class FormFilterServiceTest extends BaseModuleContextSensitiveTest {
 		Assert.assertNotNull(filterService.getFormFilterProperty(1));
 	}
 	
-	/**
-	 * Tests the FormFilterService functionality to return a FormFilterProperty.
-	 */
-	@Test
-	@Verifies(value = "should not return FormFilterProperty with given id", method = "getFormFilterProperty(FormFilterPropertyId)")
-	public void getFormFilterProperty_shouldNotReturnFormFilterPropertyWithGivenId() {
-		FormFilterService filterService = Context.getService(FormFilterService.class);
-		Assert.assertNull(filterService.getFormFilterProperty(10));
-	}
 	
 	/**
-	 * Tests the FormFilterService functionality to update a FormFilterProperty
+	 * Tests the FormFilterService functionality to save a FormFilterProperty
 	 */
 	@Test
-	@Verifies(value = "should update FormFilterProperty", method = "updateFormFilterProperty(FormFilterProperty)")
-	public void updateFormFilterProperty_shouldUpdateFormFilterProperty() {
+	@Verifies(value = "should save FormFilterProperty", method = "saveFormFilterProperty(FormFilterProperty)")
+	public void saveFormFilterProperty_shouldSaveFormFilterProperty() {
 		FormFilterService filterService = Context.getService(FormFilterService.class);
 		FormFilterProperty formFilterProperty = filterService.getFormFilterProperty(1);
 		formFilterProperty.setFilterName("New Filter");
-		filterService.updateFormFilterProperty(formFilterProperty);
+		filterService.saveFormFilterProperty(formFilterProperty);
 		Assert.assertEquals(filterService.getFormFilterProperty(1).getFilterName(), "New Filter");
 	}
 	

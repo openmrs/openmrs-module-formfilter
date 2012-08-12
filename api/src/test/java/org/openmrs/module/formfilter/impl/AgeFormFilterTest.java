@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openmrs.Patient;
 import org.openmrs.User;
+import org.openmrs.test.Verifies;
 
 /**
  * This test validates AgeFormFilter class.
@@ -27,9 +28,12 @@ public class AgeFormFilterTest {
 	
 	/**
 	 * Testing the condition to show a form
+	 * 
+	 * @see {@link AgeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldDisplayForm() {
+	@Verifies(value="display form when patient age lies between filter minimum and maximum age values",method="shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenPatientAgeLiesBetweenFilterMinimumAndMaximumAgeValues() {
 		AgeFormFilter ageFormFilter = new AgeFormFilter("minimumAge=10&maximumAge=30");
 		
 		Patient patient = new Patient();
@@ -42,9 +46,12 @@ public class AgeFormFilterTest {
 	
 	/**
 	 * Testing the condition to not show a form.
+	 * 
+	 * @see {@link AgeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldNotDisplayForm() {
+	@Verifies(value="should not display form when patient age does not lie between filter minimum and maximum age values",method="shouldDisplayForm(Patient,User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenPatientAgeDoesNotLieBetweenFilterMinimumAndMaximumAgeValues() {
 		AgeFormFilter ageFormFilter = new AgeFormFilter("minimumAge=10&maximumAge=30");
 		Patient patient = new Patient();
 		patient.setBirthdateFromAge(2, new Date());

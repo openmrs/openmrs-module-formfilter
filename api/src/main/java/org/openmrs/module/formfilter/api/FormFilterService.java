@@ -56,7 +56,6 @@ public interface FormFilterService extends OpenmrsService {
 	 * @param formFilterId of FormFilter which needs to be returned
 	 * @return FormFilter
 	 * @should get FormFilter with given FilterId
-	 * @should not get FormFilter with given FilterId
 	 */
 	public FormFilter getFormFilter(int formFilterId);
 	
@@ -83,16 +82,15 @@ public interface FormFilterService extends OpenmrsService {
 	 * @param formFilterPropertyId of FormFilterProperty which is to be returned
 	 * @return FormFilterProperty
 	 * @should return FormFilterProperty with given id
-	 * @should not return FormFilterProperty with given id
 	 */
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**
 	 * Updates existing FormFilterProperty to database.
 	 * 
-	 * @param formFilterProperty which is to be updated to database
-	 * @should update FormFilterProperty
+	 * @param formFilterProperty which is to be saved to database
+	 * @should save FormFilterProperty
 	 */
-	public void updateFormFilterProperty(FormFilterProperty formFilterProperty);
+	public void saveFormFilterProperty(FormFilterProperty formFilterProperty);
 	
 }

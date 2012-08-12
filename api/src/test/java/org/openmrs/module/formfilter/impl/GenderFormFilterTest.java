@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openmrs.Patient;
 import org.openmrs.User;
+import org.openmrs.test.Verifies;
 
 /**
  * This test validates GenderFormFilter class.
@@ -25,9 +26,12 @@ public class GenderFormFilterTest {
 	
 	/**
 	 * Testing the condition to show a form
+	 * 
+	 * @see {@link GenderFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldDisplayForm() {
+	@Verifies(value = "should display form when filter gender match with patient gender", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenFilterGenderMatchWithPatientGender() {
 		GenderFormFilter genderFormFilter = new GenderFormFilter("gender=M");
 		
 		Patient patient = new Patient();
@@ -40,9 +44,12 @@ public class GenderFormFilterTest {
 	
 	/**
 	 * Testing the condition to not show a form.
+	 * 
+	 * @see {@link GenderFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	public void shouldNotDisplayForm() {
+	@Verifies(value = "should not display form when filter gender does not match with patient gender", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenFilterGenderDoesNotMatchWithPatientGender() {
 		GenderFormFilter genderFormFilter = new GenderFormFilter("gender=F");
 		
 		Patient patient = new Patient();

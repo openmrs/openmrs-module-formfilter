@@ -98,12 +98,12 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	}
 	
 	/**
-	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#updateFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
+	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilterProperty(org.openmrs.module.formfilter.FormFilterProperty)
 	 */
 	@Override
-	public void updateFormFilterProperty(FormFilterProperty formFilterProperty) {
+	public void saveFormFilterProperty(FormFilterProperty formFilterProperty) {
 		
-		sessionFactory.getCurrentSession().update(formFilterProperty);
+		sessionFactory.getCurrentSession().saveOrUpdate(formFilterProperty);
 		
 	}
 	
