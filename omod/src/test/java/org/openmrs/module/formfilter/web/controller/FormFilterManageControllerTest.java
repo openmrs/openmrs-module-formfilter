@@ -50,8 +50,7 @@ public class FormFilterManageControllerTest extends BaseModuleWebContextSensitiv
 		FormFilterManageController controller = new FormFilterManageController();
 		ModelMap model = new ModelMap();
 		controller.manage(model);
-		
-		//Its returns 0 number of forms as FormFilterManageController looks for org.openmrs.module.web.extension.FormEntryHandler extensions. 
+		//TODO return form list using FormFilterManageController#manage 
 		Assert.assertEquals(0, ((List<Form>) model.get("formList")).size());
 	}
 	

@@ -56,7 +56,7 @@ public class PersonFormFilterEntryPortletControllerTest extends BaseModuleWebCon
 		model.addAttribute("patient", Context.getPatientService().getPatient(2));
 		model.addAttribute("person", Context.getPersonService().getPerson(2));
 		controller.populateModel(request, model);
-		//Its returns 0 number of forms as PersonFormFilterEntryPortletController looks for org.openmrs.module.web.extension.FormEntryHandler extensions.
+		//TODO return form list using PersonFormFilterEntryPortletController#populateModel
 		Assert.assertEquals(0, ((Map<Form, FormEntryHandler>) model.get("formToEntryUrlMap")).size());
 		
 	}

@@ -21,9 +21,10 @@ import org.openmrs.Form;
 /**
  * Its form filter object , each form has single form filter object.
  */
-@SuppressWarnings("serial")
 public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	
+	private static final long serialVersionUID = 536586875337316441L;
+
 	/**
 	 * Object id.
 	 */

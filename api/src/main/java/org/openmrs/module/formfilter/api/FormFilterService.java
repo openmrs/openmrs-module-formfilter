@@ -48,6 +48,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * @return FormFilter
 	 * @should get FormFilter with given Form
 	 */
+	@Transactional(readOnly = true)
 	public FormFilter getFormFilter(Form form);
 	
 	/**
@@ -57,6 +58,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * @return FormFilter
 	 * @should get FormFilter with given FilterId
 	 */
+	@Transactional(readOnly = true)
 	public FormFilter getFormFilter(int formFilterId);
 	
 	/**
@@ -83,6 +85,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * @return FormFilterProperty
 	 * @should return FormFilterProperty with given id
 	 */
+	@Transactional(readOnly = true)
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
 	
 	/**

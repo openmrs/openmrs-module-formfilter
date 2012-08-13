@@ -32,7 +32,7 @@
 				      }
 				
 				if (genderValue == "") {
-					document.getElementById("gender_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAOption' /></span>";
+					document.getElementById("gender_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAnOption' /></span>";
 					validate = false;
 				} else {
 					document.getElementById("gender_error").innerHTML = "";
@@ -72,7 +72,7 @@
 					      }
 					
 					if (showValue == "") {
-						document.getElementById("show_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAOption' /></span>";
+						document.getElementById("show_error").innerHTML = "<span class='error'><spring:message code='formfilter.chooseAnOption' /></span>";
 						validate = false;
 					} else {
 						document.getElementById("show_error").innerHTML = "";

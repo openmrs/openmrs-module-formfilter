@@ -19,9 +19,10 @@ import org.openmrs.BaseOpenmrsObject;
 /**
  * This class holds filter property values related to {@link FormFilter}.
  */
-@SuppressWarnings("serial")
 public class FormFilterProperty extends BaseOpenmrsObject implements Serializable {
 	
+	private static final long serialVersionUID = -1497949571769898337L;
+
 	/**
 	 * object id.
 	 */
