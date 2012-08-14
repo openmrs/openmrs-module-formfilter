@@ -54,7 +54,7 @@ public class AddFormFilterPropertyController {
 	@RequestMapping(value = "/module/formfilter/addformproperty", method = RequestMethod.GET)
 	public void addFormFilter(ModelMap model,
 	                          @RequestParam("filterId") Integer formFilterId,
-	                          @RequestParam(value = "filterPropertyId", required = false, defaultValue = "0") int formFilterPropertyId) {
+	                          @RequestParam(value = "filterPropertyId", required = false) String formFilterPropertyId) {
 		
 		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
 		
@@ -75,8 +75,8 @@ public class AddFormFilterPropertyController {
 		/*If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
 		  page as edit filter option or else pass new object to add a new filter.*/
 
-		if (formFilterPropertyId != 0) {
-			formFilterProperty = formFilterService.getFormFilterProperty(formFilterPropertyId);
+		if (formFilterPropertyId != null  ) {
+			formFilterProperty = formFilterService.getFormFilterProperty(Integer.parseInt(formFilterPropertyId));
 			for (String string : formFilterProperty.getProperties().split("&")) {
 				String str[] = string.split("=");
 				map.put(str[0], str[1]);

@@ -3,12 +3,13 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-	<artifactId>formfilter</artifactId>
+		<artifactId>formfilter</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>formfilter-api</artifactId>
 	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
 	<name>Form Filter Module API</name>
 	<description>API project for FormFilter</description>
 
@@ -32,32 +33,15 @@
 			<artifactId>openmrs-api</artifactId>
 			<type>jar</type>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
 			<type>jar</type>
 		</dependency>
-				
-		<dependency>
-			<groupId>org.openmrs.api</groupId>
-			<artifactId>openmrs-api</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
-			<type>pom</type>
-			<scope>test</scope>
+			<type>jar</type>
 		</dependency>
 				
 		<!-- End OpenMRS core -->
