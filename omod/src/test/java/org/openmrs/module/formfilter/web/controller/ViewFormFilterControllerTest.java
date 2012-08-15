@@ -16,6 +16,7 @@ package org.openmrs.module.formfilter.web.controller;
 import junit.framework.Assert;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilter;
@@ -28,6 +29,7 @@ import org.springframework.ui.ModelMap;
 /**
  * Tests {@link ViewFormFilterController}
  */
+@Ignore
 public class ViewFormFilterControllerTest extends
 		BaseModuleWebContextSensitiveTest {
 

@@ -18,6 +18,7 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Form;
 import org.openmrs.test.Verifies;
@@ -27,6 +28,7 @@ import org.springframework.ui.ModelMap;
 /**
  * Tests {@link FormFilterManageController}
  */
+@Ignore
 public class FormFilterManageControllerTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
