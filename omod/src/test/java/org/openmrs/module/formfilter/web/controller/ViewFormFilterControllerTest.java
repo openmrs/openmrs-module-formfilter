@@ -51,7 +51,7 @@ public class ViewFormFilterControllerTest extends
 	public void viewFormFilter_ShouldReturnFormFilterByFormId() {
 		ViewFormFilterController controller = new ViewFormFilterController();
 		ModelMap model = new ModelMap();
-		controller.viewFormFilter(model, 1, 0);
+		controller.viewFormFilter(model, "1", null);
 		Assert.assertNotNull(((FormFilter) model.get("formfilter")));
 	}
 
@@ -63,7 +63,7 @@ public class ViewFormFilterControllerTest extends
 	public void viewFormFilter_ShouldReturnFormFilterByFormFilterId() {
 		ViewFormFilterController controller = new ViewFormFilterController();
 		ModelMap model = new ModelMap();
-		controller.viewFormFilter(model, 0, 1);
+		controller.viewFormFilter(model, null, "1");
 		Assert.assertNotNull(((FormFilter) model.get("formfilter")));
 	}
 

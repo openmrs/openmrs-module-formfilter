@@ -54,7 +54,7 @@ public class AddFormFilterPropertyControllerTest extends BaseModuleWebContextSen
 		
 		AddFormFilterPropertyController controller = new AddFormFilterPropertyController();
 		ModelMap model = new ModelMap();
-		controller.addFormFilter(model, 1, 0);
+		controller.addFormFilter(model, 1, null);
 		Assert.assertNotNull(((FormFilter) model.get("formFilter")));
 		Assert.assertNull(((FormFilterProperty) model.get("formFilterProperty")).getFilterName());
 	}
@@ -68,7 +68,7 @@ public class AddFormFilterPropertyControllerTest extends BaseModuleWebContextSen
 		
 		AddFormFilterPropertyController controller = new AddFormFilterPropertyController();
 		ModelMap model = new ModelMap();
-		controller.addFormFilter(model, 1, 1);
+		controller.addFormFilter(model, 1, "1");
 		Assert.assertNotNull(((FormFilter) model.get("formFilter")));
 		Assert.assertNotNull(((FormFilterProperty) model.get("formFilterProperty")));
 	}

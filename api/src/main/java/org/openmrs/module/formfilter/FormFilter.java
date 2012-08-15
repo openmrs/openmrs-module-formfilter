@@ -14,7 +14,10 @@
 package org.openmrs.module.formfilter;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+
+
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
 
@@ -38,7 +41,7 @@ public class FormFilter extends BaseOpenmrsObject implements Serializable {
 	/**
 	 * List of assigned filters to form.
 	 */
-	private Set<FormFilterProperty> formFilterProperties;
+	private Set<FormFilterProperty> formFilterProperties=new HashSet<FormFilterProperty>();
 	
 	//setters and getters 
 	

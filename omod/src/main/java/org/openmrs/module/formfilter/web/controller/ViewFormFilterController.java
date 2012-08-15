@@ -52,7 +52,7 @@ public class ViewFormFilterController {
 		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
 		if (formId != null) {
 			FormService formService = Context.getFormService();
-			model.addAttribute("formfilter", formFilterService.getFormFilter(formService.getForm(formId)));
+			model.addAttribute("formfilter", formFilterService.getFormFilter(formService.getForm(Integer.parseInt(formId))));
 		} else {
 			model.addAttribute("formfilter", formFilterService.getFormFilter(Integer.parseInt(formFilterId)));
 		}
