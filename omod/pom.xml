@@ -55,14 +55,6 @@
 			<type>jar</type>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<version>1.7.4</version>
-			<classifier>tests</classifier>
-		</dependency>
-
-
 		
 		<!-- End OpenMRS core -->
 
