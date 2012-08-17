@@ -14,14 +14,17 @@
 package org.openmrs.module.formfilter.web.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.CohortService;
-import org.openmrs.api.UserService;
+import org.openmrs.Cohort;
+import org.openmrs.Privilege;
+import org.openmrs.Role;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.FormFilterService;
@@ -33,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * Controller handling requests to add or edit filter.
@@ -43,17 +47,61 @@ public class AddFormFilterPropertyController {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
+	 * Returns all roles.
+	 * 
+	 * @param request
+	 * @return Roles, list of all roles
+	 */
+	@ModelAttribute("allRoles")
+	public List<Role> getRoles(WebRequest request) {
+		List<Role> roles = Context.getUserService().getAllRoles();
+		if (roles == null)
+			roles = new Vector<Role>();
+		
+		return roles;
+	}
+	
+	/**
+	 * Returns all privileges.
+	 * 
+	 * @param request
+	 * @return Privileges, list of all privileges
+	 */
+	@ModelAttribute("allPrivileges")
+	public List<Privilege> getPrivileges(WebRequest request) {
+		List<Privilege> privileges = Context.getUserService().getAllPrivileges();
+		if (privileges == null)
+			privileges = new Vector<Privilege>();
+		
+		return privileges;
+	}
+	
+	/**
+	 * Returns all cohorts.
+	 * 
+	 * @param request
+	 * @return cohorts, list of all cohorts
+	 */
+	@ModelAttribute("allCohorts")
+	public List<Cohort> getCohorts(WebRequest request) {
+		List<Cohort> cohorts = Context.getCohortService().getAllCohorts();
+		if (cohorts == null)
+			cohorts = new Vector<Cohort>();
+		
+		return cohorts;
+	}
+	
+	/**
 	 * Handles request related to adding Form filter.
 	 * 
 	 * @param model
 	 * @param formFilterId
-	 * @param formFilterPropertyId if , 0 adds new property or else returns respective property.
+	 * @param formFilterPropertyId , if null adds new property or else returns respective property.
 	 * @should support add new filter functionality
 	 * @should support edit filter functionality
 	 */
 	@RequestMapping(value = "/module/formfilter/addformproperty", method = RequestMethod.GET)
-	public void addFormFilter(ModelMap model,
-	                          @RequestParam("filterId") Integer formFilterId,
+	public void addFormFilter(ModelMap model, @RequestParam("filterId") Integer formFilterId,
 	                          @RequestParam(value = "filterPropertyId", required = false) String formFilterPropertyId) {
 		
 		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
@@ -63,24 +111,36 @@ public class AddFormFilterPropertyController {
 		
 		model.addAttribute("formFilter", formFilterService.getFormFilter(formFilterId));
 		
-		//Adding list of available roles and privileges.
-		UserService userService = Context.getUserService();
-		model.addAttribute("roles", userService.getAllRoles());
-		model.addAttribute("privileges", userService.getAllPrivileges());
-		
-		//Adding cohort list. 
-		CohortService cohortService = Context.getCohortService();
-		model.addAttribute("cohorts", cohortService.getAllCohorts());
-		
-		/*If formFilterPropertyId is not equal to 0 , then will add formFilterProperty to show 
+		/*If formFilterPropertyId is not equal to null , then we will add formFilterProperty to show 
 		  page as edit filter option or else pass new object to add a new filter.*/
 
-		if (formFilterPropertyId != null  ) {
+		if (formFilterPropertyId != null) {
 			formFilterProperty = formFilterService.getFormFilterProperty(Integer.parseInt(formFilterPropertyId));
+			
 			for (String string : formFilterProperty.getProperties().split("&")) {
 				String str[] = string.split("=");
-				map.put(str[0], str[1]);
+				
+				if (formFilterProperty.getClassName().equalsIgnoreCase("org.openmrs.module.formfilter.impl.RoleFormFilter")) {
+					
+					List<Role> filterRoles = new Vector<Role>();
+					for (String roleString : str[1].split(",")) {						
+						filterRoles.add(new Role(roleString));
+					}
+					model.addAttribute("filterRoles", filterRoles);
+					map.put(str[0], str[0]);
+				} else if (formFilterProperty.getClassName().equalsIgnoreCase("org.openmrs.module.formfilter.impl.PrivilegeFormFilter")) {
+					
+					List<Privilege> filterPrivileges = new Vector<Privilege>();
+					for (String privilegeString : str[1].split(",")) {						
+						filterPrivileges.add(new Privilege(privilegeString));
+					}
+					model.addAttribute("filterPrivileges", filterPrivileges);
+					map.put(str[0], str[0]);
+				} else {
+					map.put(str[0], str[1]);
+				}
 			}
+			
 		} else {
 			formFilterProperty = new FormFilterProperty();
 		}
@@ -122,10 +182,20 @@ public class AddFormFilterPropertyController {
 			        + request.getParameter("show"));
 		} else if (propertyType.equalsIgnoreCase("RoleProperty")) {
 			formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.RoleFormFilter");
-			formFilterProperty.setProperties("role=" + request.getParameter("role"));
+			String roleArr[] = request.getParameterValues("roles");
+			String properties = "";
+			for (String string : roleArr) {
+				properties += string + ",";
+			}
+			formFilterProperty.setProperties("roles=" + properties);
 		} else if (propertyType.equalsIgnoreCase("PrivilegeProperty")) {
 			formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.PrivilegeFormFilter");
-			formFilterProperty.setProperties("privilege=" + request.getParameter("privilege"));
+			String privilegeArr[] = request.getParameterValues("privileges");
+			String properties = "";
+			for (String string : privilegeArr) {
+				properties += string + ",";
+			}
+			formFilterProperty.setProperties("privileges=" + properties);
 		} else if (propertyType.equalsIgnoreCase("CohortProperty")) {
 			formFilterProperty.setClassName("org.openmrs.module.formfilter.impl.CohortFormFilter");
 			formFilterProperty.setProperties("cohort=" + request.getParameter("cohort"));

@@ -18,7 +18,6 @@ import java.util.Set;
 import junit.framework.Assert;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilter;
@@ -32,7 +31,6 @@ import org.springframework.ui.ModelMap;
 /**
  * Tests the {@link AddFormFilterPropertyController}
  */
-@Ignore
 public class AddFormFilterPropertyControllerTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**

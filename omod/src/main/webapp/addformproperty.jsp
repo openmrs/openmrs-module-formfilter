@@ -17,7 +17,7 @@
 		}		
 
 		if (document.formfilter_form.propertyType.value == "Select") {
-			document.getElementById("propertyType_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+			document.getElementById("propertyType_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAnOption' /></span>";
 			validate = false;
 		} else {
 			document.getElementById("propertyType_error").innerHTML = "";
@@ -85,8 +85,16 @@
 			
 			if (document.formfilter_form.propertyType.value == "RoleProperty") {
 				
-				if (document.formfilter_form.role.value == "") {
-					document.getElementById("role_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+				var showValue="";
+				 var checkButtons = document.getElementsByName("roles");
+				      for (var x = 0; x < checkButtons.length; x ++) {
+				         if (checkButtons[x].checked) {
+				           showValue=checkButtons[x].value;
+				         }
+				      }
+				
+				if (showValue == "") {
+					document.getElementById("role_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAnOption' /></span>";
 					validate = false;
 				} else {
 					document.getElementById("role_error").innerHTML = "";
@@ -95,8 +103,16 @@
 			
 			if (document.formfilter_form.propertyType.value == "PrivilegeProperty") {
 				
-				if (document.formfilter_form.privilege.value == "") {
-					document.getElementById("privilege_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+				var showValue="";
+				 var checkButtons = document.getElementsByName("privileges");
+				      for (var x = 0; x < checkButtons.length; x ++) {
+				         if (checkButtons[x].checked) {
+				           showValue=checkButtons[x].value;
+				         }
+				      }
+				
+				if (showValue == "") {
+					document.getElementById("privilege_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAnOption' /></span>";
 					validate = false;
 				} else {
 					document.getElementById("privilege_error").innerHTML = "";
@@ -106,7 +122,7 @@
 			if (document.formfilter_form.propertyType.value == "CohortProperty") {
 				
 				if (document.formfilter_form.cohort.value == "") {
-					document.getElementById("cohort_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAOption' /></span>";
+					document.getElementById("cohort_error").innerHTML = "<span class='error'><spring:message code='formfilter.selectAnOption' /></span>";
 					validate = false;
 				} else {
 					document.getElementById("cohort_error").innerHTML = "";
@@ -217,37 +233,28 @@
 		</tr>
 		
 		<tr id="RoleProperty">
-		  <td><spring:message code="formfilter.role" /></td>
+		  <td><spring:message code="formfilter.roles" /></td>
 		  <td>
-		  <select id="role" name="role" >
-		     <option> </option>
-		     <c:forEach var="item" items="${roles}">
-		       <option value="${item.role}" <c:if test="${properties.role == item.role}"> selected="selected"</c:if>  >${item.role}</option>
-		     </c:forEach>
-		  </select>
 		  <span id="role_error"  ></span>		  
+		  	<openmrs:listPicker name="roles" allItems="${allRoles}"  currentItems="${filterRoles}" />		  		  		  
 		  </td>
 		</tr>
 		
 		<tr id="PrivilegeProperty" >
-		  <td><spring:message code="formfilter.privilege" /></td>
+		  <td><spring:message code="formfilter.privileges" /></td>
 		  <td>
-		  <select id="privilege" name="privilege" >
-		  <option></option>
-		     <c:forEach var="item" items="${privileges}">
-		       <option value="${item.privilege}" <c:if test="${properties.privilege == item.privilege}"> selected="selected"</c:if>  >${item.privilege}</option>
-		     </c:forEach>
-		  </select>
-		  <span id="privilege_error"  ></span>		  
+		    <span id="privilege_error"  ></span>
+		    <openmrs:listPicker name="privileges" allItems="${allPrivileges}"  currentItems="${filterPrivileges}" />		  
 		  </td>
 		</tr>
+
 		
 		<tr id="CohortProperty" >
 		  <td><spring:message code="formfilter.cohort" /></td>
 		  <td>
 		  <select id="cohort" name="cohort" >
 		  <option></option>
-		     <c:forEach var="item" items="${cohorts}">
+		     <c:forEach var="item" items="${allCohorts}">
 		       <option value="${item.name}" <c:if test="${properties.cohort == item.name}"> selected="selected"</c:if>  >${item.name}</option>
 		     </c:forEach>
 		  </select>
@@ -306,7 +313,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${empty properties.role}" >
+			<c:when test="${empty properties.roles}" >
 				$j('#RoleProperty').hide();
 			</c:when>
 			<c:otherwise>
@@ -316,7 +323,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${empty properties.privilege}" >
+			<c:when test="${empty properties.privileges}" >
 				$j('#PrivilegeProperty').hide();
 			</c:when>
 			<c:otherwise>

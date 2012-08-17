@@ -32,9 +32,9 @@ public class PrivilegeFormFilterTest {
 	 * @see {@link PrivilegeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should display form when user has mentioned privilege", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldDisplayFormWhenUserHasMentionedPrivilege() {
-		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
+	@Verifies(value = "should display form when user has any mentioned privileges", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasAnyMentionedPrivileges() {
+		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privileges=Manage Concept Classes,");
 		
 		User user = new User();
 		Role role = new Role("Anonymous");
@@ -52,9 +52,9 @@ public class PrivilegeFormFilterTest {
 	 * @see {@link PrivilegeFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should not display form when user does not have mentioned privilege", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveMentionedPrivilege() {
-		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privilege=Manage Concept Classes");
+	@Verifies(value = "should not display form when user does not have any mentioned privileges", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveAnyMentionedPrivileges() {
+		PrivilegeFormFilter privilegeFormFilter = new PrivilegeFormFilter("privileges=Manage Concept Classes,");
 		Assert.assertFalse("Assigned filter privilege matches even user has no privileges",
 		    privilegeFormFilter.shouldDisplayForm(new Patient(), new User()));
 	}

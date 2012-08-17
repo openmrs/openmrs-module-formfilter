@@ -18,8 +18,6 @@ import java.lang.reflect.Field;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
-import org.openmrs.Privilege;
-import org.openmrs.Role;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
@@ -34,26 +32,26 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	/**
 	 * User privilege
 	 */
-	private String privilege;
+	private String privileges;
 	
 	//Getters and Setters
 	
 	/**
-	 * Returns user required privilege
+	 * Returns user required privileges
 	 * 
-	 * @return privilege name
+	 * @return privileges, list of privileges separated by comma(,) 
 	 */
-	public String getPrivilege() {
-		return privilege;
+	public String getPrivileges() {
+		return privileges;
 	}
 	
 	/**
 	 * Sets user required privilege.
 	 * 
-	 * @param privilege , to set filter privilege value
+	 * @param privilege , to set filter privileges separated by comma(,)
 	 */
-	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
+	public void setPrivileges(String privileges) {
+		this.privileges = privileges;
 	}
 	
 	//Constructors	
@@ -69,7 +67,7 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	 * Constructor sets this class field values.
 	 * 
 	 * @param properties ,string property from FormFilterProperty class in key=value based format
-	 *            Example: privilege=Add Form
+	 *            Example: privileges=View Form,Manage Form
 	 */
 	public PrivilegeFormFilter(String properties) {
 		String str[] = properties.split("=");
@@ -87,20 +85,21 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	 *      org.openmrs.User)
 	 * @param p , patient on whos dashboard forms are listed.
 	 * @param u , user viewing the list on patient dashboard.
-	 * @return True ,if user has specified privilege.
-	 * @return False,if user does not have specified privilege.
-	 * @should display form when user has mentioned privilege.
-	 * @should not display form when user does not have mentioned privilege.
+	 * @return True ,if user has any of specified privileges.
+	 * @return False,if user does not have any  specified privileges.
+	 * @should display form when user has any mentioned privileges.
+	 * @should not display form when user does not have any mentioned privileges.
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-		
-		for (Role role : u.getAllRoles()) {
-			if (role.getPrivileges().contains(new Privilege(privilege))) {
-				return true;
-			}
+
+		String privilege[]=privileges.split(",");
+		for (String privilegeName : privilege) {
+		if (u.hasPrivilege(privilegeName.trim())) {
+			return true;
 		}
-		
+		}
+
 		return false;
 	}
 	

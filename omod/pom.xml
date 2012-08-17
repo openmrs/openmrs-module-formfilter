@@ -15,25 +15,20 @@
 
 	<dependencies>
 
-		<!-- 
-		Add other dependencies from parent's pom: 
-		<dependency> 
-			<groupId>org.other.library</groupId> 
-			<artifactId>library-name</artifactId> 
-		</dependency> 
-		-->
-		
+		<!-- Add other dependencies from parent's pom: <dependency> <groupId>org.other.library</groupId> 
+			<artifactId>library-name</artifactId> </dependency> -->
+
 		<!-- Begin OpenMRS modules -->
-		
+
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>${project.parent.artifactId}-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
-				
+
+
 		<!-- End OpenMRS modules -->
-		
+
 
 		<!-- Begin OpenMRS core -->
 
@@ -48,21 +43,29 @@
 			<artifactId>openmrs-web</artifactId>
 			<type>jar</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
 			<type>jar</type>
 		</dependency>
-		
-		
+
+		<dependency>
+			<groupId>org.openmrs.web</groupId>
+			<artifactId>openmrs-web</artifactId>
+			<version>1.7.3</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+
 		<!-- End OpenMRS core -->
 
 	</dependencies>
 
 	<build>
 		<finalName>${project.parent.artifactId}-${project.parent.version}</finalName>
-		
+
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -185,19 +188,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
-			 <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-surefire-plugin</artifactId>
-		        <version>2.9</version>
-		        <configuration>
-		          <excludes>
-		            <exclude>**/*.java</exclude>
-		          </excludes>
-		        </configuration>
-		      </plugin>
-			
 		</plugins>
 	</build>
 

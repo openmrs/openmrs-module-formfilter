@@ -18,7 +18,6 @@ import java.lang.reflect.Field;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
-import org.openmrs.Role;
 import org.openmrs.User;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
@@ -33,28 +32,28 @@ public class RoleFormFilter implements FormFilterHandler {
 	//fields
 	
 	/**
-	 * User required role.
+	 * User required roles.
 	 */
-	private String role;
+	private String roles;
 	
 	//Getters and Setters
 	
 	/**
-	 * Returns user required role.
+	 * Returns user required roles.
 	 * 
-	 * @return role name
+	 * @return roles , list separated by ','
 	 */
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 	
 	/**
-	 * Sets user required role.
+	 * Sets user required roles.
 	 * 
-	 * @param role to set filter role value
+	 * @param roles, set roles separated by ','
 	 */
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(String roles) {
+		this.roles = roles;
 	}
 	
 	//Constructors 
@@ -89,18 +88,20 @@ public class RoleFormFilter implements FormFilterHandler {
 	 *      org.openmrs.User)
 	 * @param p , patient on whos dashboard forms are listed.
 	 * @param u , user viewing the list on patient dashboard.
-	 * @return True ,if user has mentioned role.
-	 * @return False,if user does not have mentioned role.
-	 * @should display form when user has mentioned role.
-	 * @should not display form when user does not have mentioned role.
+	 * @return True ,if user has any mentioned roles.
+	 * @return False,if user does not have any mentioned roles.
+	 * @should display form when user has any mentioned roles.
+	 * @should not display form when user does not have any mentioned roles.
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-		
-		if (u.getAllRoles().contains(new Role(role))) {
-			return true;
-		}
-		
+
+		String role[]=roles.split(",");
+		for (String roleName : role) {
+			if (u.hasRole(roleName.trim())) {
+				return true;
+			}
+		}		
 		return false;
 	}
 	

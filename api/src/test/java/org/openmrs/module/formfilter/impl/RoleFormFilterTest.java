@@ -31,9 +31,9 @@ public class RoleFormFilterTest {
 	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should display form when user has mentioned role", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldDisplayFormWhenUserHasMentionedRole() {
-		RoleFormFilter roleFormFilter = new RoleFormFilter("role=Anonymous");
+	@Verifies(value = "should display form when user has any mentioned role", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasAnyMentionedRole() {
+		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Anonymous,");
 		User user = new User();
 		user.addRole(new Role("Anonymous"));
 		Assert.assertTrue("Filter role  does not match user roles.", roleFormFilter.shouldDisplayForm(new Patient(), user));
@@ -46,9 +46,9 @@ public class RoleFormFilterTest {
 	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should not display form when user does not have mentioned role.", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveMentionedRole() {
-		RoleFormFilter roleFormFilter = new RoleFormFilter("role=Anonymous");
+	@Verifies(value = "should not display form when user does not have any mentioned roles.", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveAnyMentionedRoles() {
+		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Anonymous,");
 		Assert.assertFalse("Filter role matches even user has no roles",
 		    roleFormFilter.shouldDisplayForm(new Patient(), new User()));
 	}

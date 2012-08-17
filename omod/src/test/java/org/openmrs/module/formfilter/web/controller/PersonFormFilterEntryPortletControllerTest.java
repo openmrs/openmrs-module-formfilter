@@ -18,7 +18,6 @@ import java.util.Map;
 import junit.framework.Assert;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Form;
 import org.openmrs.api.context.Context;
@@ -31,7 +30,6 @@ import org.springframework.ui.ModelMap;
 /**
  * Tests {@link PersonFormFilterEntryPortletController}
  */
-@Ignore
 public class PersonFormFilterEntryPortletControllerTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**

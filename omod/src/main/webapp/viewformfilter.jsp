@@ -60,11 +60,11 @@ $j(document).ready(function() {
 								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
 							</c:when>
 							
-							<c:when test="${prop_detail[0]=='role'}" >
+							<c:when test="${prop_detail[0]=='roles'}" >
 							    <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>								
 							</c:when>
 							
-							<c:when test="${prop_detail[0]=='privilege'}" >
+							<c:when test="${prop_detail[0]=='privileges'}" >
 								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
 							</c:when>
 							
