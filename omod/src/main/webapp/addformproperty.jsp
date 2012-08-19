@@ -2,9 +2,13 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
+<openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.css" />
+<openmrs:htmlInclude file="/moduleResources/formfilter/jquery-1.4.2.min.js" />
+<openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.min.js" />
 <openmrs:hasPrivilege privilege="Manage Forms"> 
 
 <script type="text/javascript">
+$j = jQuery.noConflict();
 
 	/*Javascript to validate form*/
 	function validate_form() {
@@ -272,7 +276,8 @@
 	</table>
 	
 </form>	
-<script>
+<script type="text/javascript">
+$j = jQuery.noConflict();
     /*This script holds the functionality of showing properties as user select from dropdown list#propertyType*/
     
     //Stores current visible row id.

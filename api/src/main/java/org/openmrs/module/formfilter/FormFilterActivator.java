@@ -15,55 +15,32 @@ package org.openmrs.module.formfilter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.ModuleActivator;
+import org.openmrs.module.Activator;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
-public class FormFilterActivator implements ModuleActivator {
+public class FormFilterActivator implements Activator {
 	
 	protected Log log = LogFactory.getLog(getClass());
-	
+
 	/**
-	 * @see ModuleActivator#willRefreshContext()
-	 */
-	public void willRefreshContext() {
-		log.info("Refreshing Form Filter Module");
-	}
-	
+     * @see org.openmrs.module.Activator#shutdown()
+     */
+    @Override
+    public void shutdown() {
+	    // TODO Auto-generated method stub
+	    
+    }
+
 	/**
-	 * @see ModuleActivator#contextRefreshed()
-	 */
-	public void contextRefreshed() {
-		log.info("Form Filter Module refreshed");
-	}
+     * @see org.openmrs.module.Activator#startup()
+     */
+    @Override
+    public void startup() {
+	    // TODO Auto-generated method stub
+	    
+    }
 	
-	/**
-	 * @see ModuleActivator#willStart()
-	 */
-	public void willStart() {
-		log.info("Starting Form Filter Module");
-	}
-	
-	/**
-	 * @see ModuleActivator#started()
-	 */
-	public void started() {
-		log.info("Form Filter Module started");
-	}
-	
-	/**
-	 * @see ModuleActivator#willStop()
-	 */
-	public void willStop() {
-		log.info("Stopping Form Filter Module");
-	}
-	
-	/**
-	 * @see ModuleActivator#stopped()
-	 */
-	public void stopped() {
-		log.info("Form Filter Module stopped");
-	}
-	
+		
 }
