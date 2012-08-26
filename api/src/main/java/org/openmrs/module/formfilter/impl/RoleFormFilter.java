@@ -18,7 +18,9 @@ import java.lang.reflect.Field;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.Role;
 import org.openmrs.User;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterHandler;
 
 /**
@@ -90,18 +92,31 @@ public class RoleFormFilter implements FormFilterHandler {
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return True ,if user has any mentioned roles.
 	 * @return False,if user does not have any mentioned roles.
-	 * @should display form when user has any mentioned roles.
-	 * @should not display form when user does not have any mentioned roles.
+	 * @should display form when user has specified mentioned role and when useRoleInheritanceComparison value is No
+	 * @should not display form when user does not have specified mentioned role and when useRoleInheritanceComparison value is No
+	 * @should not display form when user does not have any mentioned role and when useRoleInheritanceComparison value is Yes
+	 * @should display form when user has any mentioned role and when useRoleInheritanceComparison value is Yes
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
-
-		String role[]=roles.split(",");
-		for (String roleName : role) {
-			if (u.hasRole(roleName.trim())) {
-				return true;
+		
+		String role[] = roles.split(",");
+		if (Context.getAdministrationService().getGlobalProperty("formFilter.useRoleInheritanceComparison")
+		        .equalsIgnoreCase("yes")) {
+			for (String roleName : role) {
+				if (u.hasRole(roleName.trim())) {
+					return true;
+				}
 			}
-		}		
+		} else {
+			for (String roleName : role) {
+				for (Role userRole : u.getRoles()) {
+					if (roleName.trim().equalsIgnoreCase(userRole.getRole()))
+						return true;
+				}
+			}
+			
+		}
 		return false;
 	}
 	

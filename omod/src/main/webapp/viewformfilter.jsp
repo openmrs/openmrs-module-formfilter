@@ -66,11 +66,13 @@ $j(document).ready(function() {
 							</c:when>
 							
 							<c:when test="${prop_detail[0]=='roles'}" >
-							    <spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>								
+								<c:set var="roles" value="${fn:split(prop_detail[1], ',')}" />
+							    <spring:message code="formfilter.${prop_detail[0]}" /> = ${roles[0]}<c:forEach var="role" items="${roles}" begin="1" >, ${role}</c:forEach>.<br/>								
 							</c:when>
 							
 							<c:when test="${prop_detail[0]=='privileges'}" >
-								<spring:message code="formfilter.${prop_detail[0]}" /> = ${prop_detail[1]}<br/>
+								<c:set var="privileges" value="${fn:split(prop_detail[1], ',')}" />
+								<spring:message code="formfilter.${prop_detail[0]}" /> =  ${privileges[0]}<c:forEach var="privilege" items="${privileges}" begin="1" >, ${privilege}</c:forEach>.<br/>
 							</c:when>
 							
 							<c:when test="${prop_detail[0]=='cohort'}" >

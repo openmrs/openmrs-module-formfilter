@@ -32,6 +32,13 @@
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.FormFilterFormHeaderExt</class>
 	</extension>
 	
+	<!-- Global Property -->
+	<globalProperty>
+		<property>formFilter.useRoleInheritanceComparison</property>
+		<defaultValue>yes</defaultValue>
+		<description>Should we consider user role inheritance comparison ? (yes/no)</description>
+	</globalProperty>
+	
 	
 	
 	<!-- Maps hibernate file's, if present -->

@@ -3,11 +3,11 @@
 
 
 
- <form form_id="1" name="Pregnancy Form" version="1.0.0" published="0" creator="1" date_created="2012-07-04 01:35:04" retired="0" 
- uuid="850a170a-d947-483c-9f6c-d0a10d5861df" />
+ 	<form form_id="1" name="Pregnancy Form" version="1.0.0" published="0" creator="1" date_created="2012-07-04 01:35:04" retired="0" 
+	 uuid="850a170a-d947-483c-9f6c-d0a10d5861df" />
  
- <form form_id="2" name="Birth Form" version="1.1.0" published="0" creator="1" date_created="2012-07-04 01:35:04" retired="0" 
- uuid="850a170a-d947-483c-9f6c-e0b10d5861df" />
+ 	<form form_id="2" name="Birth Form" version="1.1.0" published="0" creator="1" date_created="2012-07-04 01:35:04" retired="0" 
+ 	uuid="850a170a-d947-483c-9f6c-e0b10d5861df" />
 
 	<formfilter_form_filter  form_filter_id="1" form_id="1" uuid="ebb9a22c-c208-402e-8740-5370aafb88b5" />
 
@@ -21,6 +21,18 @@
 		class_name="org.openmrs.module.formfilter.impl.GenderFormFilter"
 		properties="gender=F" filter_name="Gender" filter_description="patient gender based form filter."
 		form_filter_id="1" />
+
+	<global_property property="formFilter.useRoleInheritanceComparison" property_value="yes" description="Should we consider user role inheritance comparison ? (yes/no)" />
+	
+	<role role="Anonymous" description="Privileges for non-authenticated users."
+		uuid="7c9bbaaf-e755-4979-ad7f-1457fb80cf1e" />
+		
+	<role role="Provider"
+		description="All users with the 'Provider' role will appear as options in the default Infopath"
+		uuid="8d94f280-c2cc-11de-8d13-0010c6dffd0f" />
+		
+	<role_role parent_role="Provider" child_role="Anonymous" />
+	
 
 
 </dataset>

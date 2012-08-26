@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<global_property property="formFilter.useRoleInheritanceComparison"
+		property_value="no"
+		description="Should we consider user role inheritance comparison ? (yes/no)" />
+
+	<role role="Anonymous" description="Privileges for non-authenticated users."
+		uuid="7c9bbaaf-e755-4979-ad7f-1457fb80cf1e" />
+		
+	<role role="Provider"
+		description="All users with the 'Provider' role will appear as options in the default Infopath"
+		uuid="8d94f280-c2cc-11de-8d13-0010c6dffd0f" />
+		
+	<role_role parent_role="Provider" child_role="Anonymous" />
+
+
+
+</dataset>

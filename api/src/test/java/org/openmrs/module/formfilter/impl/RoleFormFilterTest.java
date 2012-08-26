@@ -16,41 +16,82 @@ package org.openmrs.module.formfilter.impl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openmrs.Patient;
-import org.openmrs.Role;
 import org.openmrs.User;
+import org.openmrs.api.context.Context;
+import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.Verifies;
 
 /**
  * This test validates RoleFormFilter class.
  */
-public class RoleFormFilterTest {
+public class RoleFormFilterTest extends BaseModuleContextSensitiveTest {
 	
 	/**
-	 * Testing the condition to show a form
+	 * Testing the condition to show a form when useRoleInheritanceComparison=yes
 	 * 
+	 * @throws Exception
 	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should display form when user has any mentioned role", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldDisplayFormWhenUserHasAnyMentionedRole() {
-		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Anonymous,");
+	@Verifies(value = "should display form when user has any mentioned role and when useRoleInheritanceComparison value is Yes", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasAnyMentionedRoleAndWhenUseRoleInheritanceComparisonValueIsNo() throws Exception {
+		authenticate();
+		executeDataSet("formFilterTestDataSyncCreateTest.xml");
+		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Provider,");
 		User user = new User();
-		user.addRole(new Role("Anonymous"));
-		Assert.assertTrue("Filter role  does not match user roles.", roleFormFilter.shouldDisplayForm(new Patient(), user));
+		user.addRole(Context.getUserService().getRole("Anonymous"));
+		Assert.assertTrue(roleFormFilter.shouldDisplayForm(new Patient(), user));
 		
 	}
 	
 	/**
-	 * Testing the condition to not show a form.
+	 * Testing the condition to not show a form when useRoleInheritanceComparison=yes
 	 * 
+	 * @throws Exception
 	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
 	 */
 	@Test
-	@Verifies(value = "should not display form when user does not have any mentioned roles.", method = "shouldDisplayForm(Patient, User)")
-	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveAnyMentionedRoles() {
+	@Verifies(value = "should not display form when user does not have any mentioned role and when useRoleInheritanceComparison value is Yes", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveAnyMentionedRoleAndWhenUseRoleInheritanceComparisonValueIsYes() throws Exception {
+		authenticate();
+		executeDataSet("formFilterTestDataSyncCreateTest.xml");
+		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Provider,");
+		Assert.assertFalse(roleFormFilter.shouldDisplayForm(new Patient(), new User()));
+	}
+	
+	/**
+	 * Testing the condition to not show a form when useRoleInheritanceComparison=no
+	 * 
+	 * @throws Exception
+	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
+	 */
+	@Test
+	@Verifies(value = "should not display form when user does not have specified mentioned role and when useRoleInheritanceComparison value is No", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldNotDisplayFormWhenUserDoesNotHaveSpecifiedMentionedRoleAndWhenUseRoleInheritanceComparisonValueIsNo() throws Exception {
+		authenticate();
+		executeDataSet("roleTestDataSyncCreateTest.xml");
 		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Anonymous,");
-		Assert.assertFalse("Filter role matches even user has no roles",
-		    roleFormFilter.shouldDisplayForm(new Patient(), new User()));
+		User user = new User();
+		user.addRole(Context.getUserService().getRole("Provider"));
+		Assert.assertFalse(roleFormFilter.shouldDisplayForm(new Patient(), user));
+	}
+	
+	/**
+	 * Testing the condition to show a form when useRoleInheritanceComparison=no
+	 * 
+	 * @throws Exception
+	 * @see {@link RoleFormFilter#shouldDisplayForm(Patient, User)}
+	 */
+	@Test
+	@Verifies(value = "should display form when user has specified mentioned role and when useRoleInheritanceComparison value is No", method = "shouldDisplayForm(Patient, User)")
+	public void shouldDisplayForm_shouldDisplayFormWhenUserHasSpecifiedMentionedRoleAndWhenUseRoleInheritanceComparisonValueIsNo() throws Exception {
+		authenticate();
+		executeDataSet("roleTestDataSyncCreateTest.xml");
+		RoleFormFilter roleFormFilter = new RoleFormFilter("roles=Anonymous,");
+		User user = new User();
+		user.addRole(Context.getUserService().getRole("Anonymous"));
+		Assert.assertTrue(roleFormFilter.shouldDisplayForm(new Patient(), user));
+		
 	}
 	
 }
