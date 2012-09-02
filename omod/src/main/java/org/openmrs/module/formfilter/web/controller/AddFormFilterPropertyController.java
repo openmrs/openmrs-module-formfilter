@@ -25,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.Cohort;
 import org.openmrs.Privilege;
 import org.openmrs.Role;
+import org.openmrs.api.UserService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.FormFilterUtil;
@@ -116,6 +117,7 @@ public class AddFormFilterPropertyController {
 	                          @RequestParam(value = "filterPropertyId", required = false) String formFilterPropertyId) {
 		
 		FormFilterService formFilterService = (FormFilterService) Context.getService(FormFilterService.class);
+		UserService userService=Context.getUserService();
 		
 		FormFilterProperty formFilterProperty;
 		Map<String, String> map = new HashMap<String, String>();
@@ -135,7 +137,7 @@ public class AddFormFilterPropertyController {
 					
 					List<Role> filterRoles = new Vector<Role>();
 					for (String roleString : str[1].split(",")) {						
-						filterRoles.add(new Role(roleString));
+						filterRoles.add(userService.getRole(roleString));
 					}
 					model.addAttribute("filterRoles", filterRoles);
 					map.put(str[0], str[0]);
@@ -143,7 +145,7 @@ public class AddFormFilterPropertyController {
 					
 					List<Privilege> filterPrivileges = new Vector<Privilege>();
 					for (String privilegeString : str[1].split(",")) {						
-						filterPrivileges.add(new Privilege(privilegeString));
+						filterPrivileges.add(userService.getPrivilege(privilegeString));
 					}
 					model.addAttribute("filterPrivileges", filterPrivileges);
 					map.put(str[0], str[0]);
