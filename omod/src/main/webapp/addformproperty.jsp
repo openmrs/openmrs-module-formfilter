@@ -2,9 +2,12 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
+
+<c:if test="${includeJquery}" >
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.css" />
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-1.4.2.min.js" />
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.min.js" />
+</c:if>
 <openmrs:hasPrivilege privilege="Manage Forms"> 
 
 <script type="text/javascript">

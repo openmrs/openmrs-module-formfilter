@@ -1,10 +1,11 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-
+<c:if test="${includeJquery}" >
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.css" />
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-1.4.2.min.js" />
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery-ui-1.8.2.custom.min.js" />
+</c:if>
 <openmrs:htmlInclude file="/moduleResources/formfilter/jquery.easy-confirm-dialog.js" />
 <openmrs:hasPrivilege privilege="Manage Forms">
 

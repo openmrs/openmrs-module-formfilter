@@ -27,6 +27,7 @@ import org.openmrs.Privilege;
 import org.openmrs.Role;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.formfilter.FormFilterProperty;
+import org.openmrs.module.formfilter.FormFilterUtil;
 import org.openmrs.module.formfilter.api.FormFilterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,6 +46,16 @@ import org.springframework.web.context.request.WebRequest;
 public class AddFormFilterPropertyController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+	
+	/**
+	 * Adds property to web page to include Jquery or not.
+	 * 
+	 * @see FormFilterUtil#includeJquery()	 
+	 */
+	@ModelAttribute("includeJquery")
+	public boolean useJquery(WebRequest request){
+		return FormFilterUtil.includeJquery();
+	}
 	
 	/**
 	 * Returns all roles.
