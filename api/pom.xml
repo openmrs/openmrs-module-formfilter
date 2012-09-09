@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>formfilter</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>formfilter-api</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Form Filter Module API</name>
 	<description>API project for FormFilter</description>
 
