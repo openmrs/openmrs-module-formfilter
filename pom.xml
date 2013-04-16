@@ -22,9 +22,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/trunk</connection>
-		<developerConnection>scm:svn:http://svn.openmrs.org/openmrs-modules/formfilter/trunk</developerConnection>
-		<url>http://svn.openmrs.org/openmrs-modules/formfilter/trunk</url>
+		<connection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</connection>
+		<developerConnection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</developerConnection>
+		<url>https://github.com/openmrs/openmrs-module-formfilter/</url>
 	</scm>
 
 	<modules>
