@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.openmrs.module</groupId>
-	<artifactId>formfilter</artifactId>
-	<version>1.2-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>Form Filter Module</name>
-	<description>Helps in filtering forms on form entry tab of patient dashboard.</description>
+    <groupId>org.openmrs.module</groupId>
+    <artifactId>formfilter</artifactId>
+    <version>1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Form Filter Module</name>
+    <description>Helps in filtering forms on form entry tab of patient dashboard.</description>
 
-	<developers>
-		<developer>
-			<name>goutham</name>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>goutham</name>
+        </developer>
+    </developers>
 
-	<organization>
-		<name>OpenMRS</name>
-		<url>http://openmrs.org</url>
-	</organization>
+    <organization>
+        <name>OpenMRS</name>
+        <url>http://openmrs.org</url>
+    </organization>
 
-	<scm>
-		<connection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</connection>
-		<developerConnection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</developerConnection>
-		<url>https://github.com/openmrs/openmrs-module-formfilter/</url>
-	  <tag>HEAD</tag>
-  </scm>
+    <scm>
+        <connection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</connection>
+        <developerConnection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</developerConnection>
+        <url>https://github.com/openmrs/openmrs-module-formfilter/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>openmrs-repo-modules</id>
+            <name>OpenMRS Modules</name>
+            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/modules</url>
+        </repository>
+        <snapshotRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Snapshots</name>
+            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<modules>
 		<module>api</module>
