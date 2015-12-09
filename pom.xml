@@ -4,7 +4,7 @@
 
     <groupId>org.openmrs.module</groupId>
     <artifactId>formfilter</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Form Filter Module</name>
     <description>Helps in filtering forms on form entry tab of patient dashboard.</description>
@@ -24,7 +24,7 @@
         <connection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</connection>
         <developerConnection>scm:git:https://github.com/openmrs/openmrs-module-formfilter/</developerConnection>
         <url>https://github.com/openmrs/openmrs-module-formfilter/</url>
-        <tag>1.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
