@@ -4,49 +4,12 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>formfilter</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.1-SNAPSHOT</version>
 	</parent>
-
 	<artifactId>formfilter-api</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.1-SNAPSHOT</version>
 	<name>Form Filter Module API</name>
 	<description>API project for FormFilter</description>
-
-	<dependencies>
-	
-		<!-- 
-		Add other dependencies from parent's pom:
-		<dependency>
-			<groupId>org.other.library</groupId> 
-			<artifactId>library-name</artifactId>
-		</dependency> 
-		-->
-
-		
-		
-
-		<!-- Begin OpenMRS core -->
-		
-		<dependency>
-			<groupId>org.openmrs.api</groupId>
-			<artifactId>openmrs-api</artifactId>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.web</groupId>
-			<artifactId>openmrs-web</artifactId>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.test</groupId>
-			<artifactId>openmrs-test</artifactId>
-			<type>jar</type>
-		</dependency>
-				
-		<!-- End OpenMRS core -->
-		
-	</dependencies>
 	
 	<build>
 		<resources>
