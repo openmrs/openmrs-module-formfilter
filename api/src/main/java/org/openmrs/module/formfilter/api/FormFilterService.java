@@ -48,7 +48,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * @return FormFilter
 	 * @should get FormFilter with given Form
 	 */
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public FormFilter getFormFilter(Form form);
 	
 	/**
