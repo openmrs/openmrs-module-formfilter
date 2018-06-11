@@ -16,30 +16,34 @@ package org.openmrs.module.formfilter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.Activator;
+import org.openmrs.module.BaseModuleActivator;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
-public class FormFilterActivator implements Activator {
+public class FormFilterActivator extends BaseModuleActivator {
 	
 	protected Log log = LogFactory.getLog(getClass());
 
 	/**
      * @see org.openmrs.module.Activator#shutdown()
      */
-    @Override
-    public void shutdown() {
-	    // TODO Auto-generated method stub
-	    
-    }
+	
 
 	/**
      * @see org.openmrs.module.Activator#startup()
      */
-    @Override
-    public void startup() {
-	    // TODO Auto-generated method stub
+	@Override
+    public void started() {
+	   
+		log.info("Started Form Filter Module");
 	    
+    }
+	
+	@Override
+    public void stopped() {
+	 
+		log.info("Stopped Form Filter Module");
     }
 	
 		

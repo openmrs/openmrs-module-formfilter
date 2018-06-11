@@ -20,6 +20,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Form;
 import org.openmrs.api.db.DAOException;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.formfilter.FormFilter;
 import org.openmrs.module.formfilter.FormFilterProperty;
 import org.openmrs.module.formfilter.api.db.FormFilterDAO;
@@ -31,21 +32,15 @@ public class HibernateFormFilterDAO implements FormFilterDAO {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private SessionFactory sessionFactory;
+	private DbSessionFactory sessionFactory;
 	
 	/**
 	 * @param sessionFactory the sessionFactory to set
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public void setSessionFactory(DbSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	/**
-	 * @return the sessionFactory
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
 	
 	/**
 	 * @see org.openmrs.module.formfilter.api.db.FormFilterDAO#saveFormFilter(org.openmrs.module.formfilter.FormFilter)
