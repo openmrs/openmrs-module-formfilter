@@ -40,7 +40,7 @@ public class PersonFormFilterEntryPortletController extends PersonFormEntryPortl
 	/**
 	 * @see org.openmrs.web.controller.PersonFormEntryPortletController#populateModel(javax.servlet.http.HttpServletRequest,
 	 *      java.util.Map)
-	 * @should return FormList
+	 * <strong>Should</strong> return FormList
 	 */
 	@Override
 	protected void populateModel(HttpServletRequest request, Map<String, Object> model) {

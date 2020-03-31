@@ -87,8 +87,8 @@ public class PrivilegeFormFilter implements FormFilterHandler {
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return True ,if user has any of specified privileges.
 	 * @return False,if user does not have any  specified privileges.
-	 * @should display form when user has any mentioned privileges.
-	 * @should not display form when user does not have any mentioned privileges.
+	 * <strong>Should</strong> display form when user has any mentioned privileges.
+	 * <strong>Should</strong> not display form when user does not have any mentioned privileges.
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {

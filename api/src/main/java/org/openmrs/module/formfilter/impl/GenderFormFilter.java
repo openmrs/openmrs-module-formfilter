@@ -90,8 +90,8 @@ public class GenderFormFilter implements FormFilterHandler {
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return true , if patient gender value match with this.gender
 	 * @return false, if patient gender value does not match with this.gender
-	 * @should display form when filter gender match with patient gender.
-	 * @should not display form when filter gender does not match with patient gender.
+	 * <strong>Should</strong> display form when filter gender match with patient gender.
+	 * <strong>Should</strong> not display form when filter gender does not match with patient gender.
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {

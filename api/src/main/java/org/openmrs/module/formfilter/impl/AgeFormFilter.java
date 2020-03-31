@@ -108,8 +108,8 @@ public class AgeFormFilter implements FormFilterHandler {
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return True , if patient age lies between minimumAge and maximumAge.
 	 * @return False, if patient age does not between minimumAge and maximumAge.
-	 * @should display form when patient age lies between filter minimum and maximum age values.
-	 * @should not display form when patient age does not lie between filter minimum and maximum age
+	 * <strong>Should</strong> display form when patient age lies between filter minimum and maximum age values.
+	 * <strong>Should</strong> not display form when patient age does not lie between filter minimum and maximum age
 	 *         values.
 	 */
 	@Override

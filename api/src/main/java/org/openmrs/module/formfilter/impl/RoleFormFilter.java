@@ -92,10 +92,10 @@ public class RoleFormFilter implements FormFilterHandler {
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return True ,if user has any mentioned roles.
 	 * @return False,if user does not have any mentioned roles.
-	 * @should display form when user has specified mentioned role and when useRoleInheritanceComparison value is No
-	 * @should not display form when user does not have specified mentioned role and when useRoleInheritanceComparison value is No
-	 * @should not display form when user does not have any mentioned role and when useRoleInheritanceComparison value is Yes
-	 * @should display form when user has any mentioned role and when useRoleInheritanceComparison value is Yes
+	 * <strong>Should</strong> display form when user has specified mentioned role and when useRoleInheritanceComparison value is No
+	 * <strong>Should</strong> not display form when user does not have specified mentioned role and when useRoleInheritanceComparison value is No
+	 * <strong>Should</strong> not display form when user does not have any mentioned role and when useRoleInheritanceComparison value is Yes
+	 * <strong>Should</strong> display form when user has any mentioned role and when useRoleInheritanceComparison value is Yes
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {
