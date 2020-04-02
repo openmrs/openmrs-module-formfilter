@@ -94,8 +94,8 @@ public class CohortFormFilter implements FormFilterHandler {
 	 * @param p , patient on whos dashboard forms are listed.
 	 * @param u , user viewing the list on patient dashboard.
 	 * @return True if the patient is defined in filter cohort otherwise False.
-	 * @should display form when patient is defined in mentioned cohort.
-	 * @should not display form when patient is not defined in mentioned cohort.
+	 * <strong>Should</strong> display form when patient is defined in mentioned cohort.
+	 * <strong>Should</strong> not display form when patient is not defined in mentioned cohort.
 	 */
 	@Override
 	public boolean shouldDisplayForm(Patient p, User u) {

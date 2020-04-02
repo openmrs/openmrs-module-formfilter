@@ -36,7 +36,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * Insert or update given form filter.
 	 * 
 	 * @param formFilter to save to db.
-	 * @should save the FormFilter
+	 * <strong>Should</strong> save the FormFilter
 	 */
 	public void saveFormFilter(FormFilter formFilter);
 	
@@ -46,7 +46,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * 
 	 * @param Form details to returns its FormFilter
 	 * @return FormFilter
-	 * @should get FormFilter with given Form
+	 * <strong>Should</strong> get FormFilter with given Form
 	 */
 	@Transactional(readOnly = false)
 	public FormFilter getFormFilter(Form form);
@@ -56,7 +56,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * 
 	 * @param formFilterId of FormFilter which needs to be returned
 	 * @return FormFilter
-	 * @should get FormFilter with given FilterId
+	 * <strong>Should</strong> get FormFilter with given FilterId
 	 */
 	@Transactional(readOnly = true)
 	public FormFilter getFormFilter(int formFilterId);
@@ -66,7 +66,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * 
 	 * @param formFilterId of FormFilter to which FormFilterProperty need to be added
 	 * @param formFilterProperty with all filter details
-	 * @should add FormFilterProperty
+	 * <strong>Should</strong> add FormFilterProperty
 	 */
 	public void addFormFilterProperty(int formFilterId, FormFilterProperty formFilterProperty);
 	
@@ -74,7 +74,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * Deletes Form Filter Property from database.
 	 * 
 	 * @param formFilterPropertyId of FormFilterProperty which needs to be removed from database completely
-	 * @should purge FormFilterProperty with given id
+	 * <strong>Should</strong> purge FormFilterProperty with given id
 	 */
 	public void purgeFormFilterProperty(int formFilterPropertyId);
 	
@@ -83,7 +83,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * 
 	 * @param formFilterPropertyId of FormFilterProperty which is to be returned
 	 * @return FormFilterProperty
-	 * @should return FormFilterProperty with given id
+	 * <strong>Should</strong> return FormFilterProperty with given id
 	 */
 	@Transactional(readOnly = true)
 	public FormFilterProperty getFormFilterProperty(int formFilterPropertyId);
@@ -92,7 +92,7 @@ public interface FormFilterService extends OpenmrsService {
 	 * Updates existing FormFilterProperty to database.
 	 * 
 	 * @param formFilterProperty which is to be saved to database
-	 * @should save FormFilterProperty
+	 * <strong>Should</strong> save FormFilterProperty
 	 */
 	public void saveFormFilterProperty(FormFilterProperty formFilterProperty);
 	
